@@ -11,10 +11,10 @@ public class CameraMovementScript : MonoBehaviour {
 
 	}
 
-	void FixedUpdate()
+	void LateUpdate()
 	{
-		Debug.Log(player.transform.position);
-		transform.position = new Vector3 (0, player.transform.position.y +2 , player.transform.position.z-5);
+		Debug.Log("Player's Position: "+player.transform.position);
+		transform.position = new Vector3 (player.transform.position.x, player.transform.position.y +2 , player.transform.position.z-5);
 
 	}
 	// Update is called once per frame

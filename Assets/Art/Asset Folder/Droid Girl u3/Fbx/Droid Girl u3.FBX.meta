@@ -3,6 +3,84 @@ guid: 8a576a7a898ef1e40b434cfdd070892f
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: DG_SKELETON_ARM_L
+    100002: DG_SKELETON_ARM_R
+    100004: DG_SKELETON_BASE
+    100006: DG_SKELETON_HAND_L00
+    100008: DG_SKELETON_HAND_L01
+    100010: DG_SKELETON_HAND_L02
+    100012: DG_SKELETON_HAND_L03
+    100014: DG_SKELETON_HAND_L04
+    100016: DG_SKELETON_HAND_L05
+    100018: DG_SKELETON_HAND_R00
+    100020: DG_SKELETON_HAND_R01
+    100022: DG_SKELETON_HAND_R02
+    100024: DG_SKELETON_HAND_R03
+    100026: DG_SKELETON_HAND_R04
+    100028: DG_SKELETON_HAND_R05
+    100030: DG_SKELETON_HEAD
+    100032: DG_SKELETON_HIP_L
+    100034: DG_SKELETON_HIP_R
+    100036: DG_SKELETON_LEG_L
+    100038: DG_SKELETON_LEG_R
+    100040: DG_SKELETON_NECK
+    100042: DG_SKELETON_PONYTAIL00
+    100044: DG_SKELETON_PONYTAIL01
+    100046: DG_SKELETON_PONYTAIL02
+    100048: DG_SKELETON_PONYTAIL03
+    100050: DG_SKELETON_PONYTAIL04
+    100052: DG_SKELETON_PONYTAIL05
+    100054: DG_SKELETON_ROOT
+    100056: DG_SKELETON_SHOULDER_L
+    100058: DG_SKELETON_SHOULDER_R
+    100060: DG_SKELETON_SPINE_1
+    100062: DG_SKELETON_SPINE_2
+    100064: DG_SKELETON_SPINE_3
+    100066: DG_SKELETON_UPPERARM_L
+    100068: DG_SKELETON_UPPERARM_R
+    100070: DG_SKELETON_UPPERLEG_L
+    100072: DG_SKELETON_UPPERLEG_R
+    100074: //RootNode
+    100076: DroidGirl_skin
+    400000: DG_SKELETON_ARM_L
+    400002: DG_SKELETON_ARM_R
+    400004: DG_SKELETON_BASE
+    400006: DG_SKELETON_HAND_L00
+    400008: DG_SKELETON_HAND_L01
+    400010: DG_SKELETON_HAND_L02
+    400012: DG_SKELETON_HAND_L03
+    400014: DG_SKELETON_HAND_L04
+    400016: DG_SKELETON_HAND_L05
+    400018: DG_SKELETON_HAND_R00
+    400020: DG_SKELETON_HAND_R01
+    400022: DG_SKELETON_HAND_R02
+    400024: DG_SKELETON_HAND_R03
+    400026: DG_SKELETON_HAND_R04
+    400028: DG_SKELETON_HAND_R05
+    400030: DG_SKELETON_HEAD
+    400032: DG_SKELETON_HIP_L
+    400034: DG_SKELETON_HIP_R
+    400036: DG_SKELETON_LEG_L
+    400038: DG_SKELETON_LEG_R
+    400040: DG_SKELETON_NECK
+    400042: DG_SKELETON_PONYTAIL00
+    400044: DG_SKELETON_PONYTAIL01
+    400046: DG_SKELETON_PONYTAIL02
+    400048: DG_SKELETON_PONYTAIL03
+    400050: DG_SKELETON_PONYTAIL04
+    400052: DG_SKELETON_PONYTAIL05
+    400054: DG_SKELETON_ROOT
+    400056: DG_SKELETON_SHOULDER_L
+    400058: DG_SKELETON_SHOULDER_R
+    400060: DG_SKELETON_SPINE_1
+    400062: DG_SKELETON_SPINE_2
+    400064: DG_SKELETON_SPINE_3
+    400066: DG_SKELETON_UPPERARM_L
+    400068: DG_SKELETON_UPPERARM_R
+    400070: DG_SKELETON_UPPERLEG_L
+    400072: DG_SKELETON_UPPERLEG_R
+    400074: //RootNode
+    400076: DroidGirl_skin
     4300000: hawk_body_max
     4300002: Cylinder001
     4300004: Tube001
@@ -10,6 +88,31 @@ ModelImporter:
     4300008: RC5300Reaper
     4300010: RC5300amount
     4300012: DroidGirl_skin
+    7400000: walk_start
+    7400002: walk_cycle
+    7400004: walk_end
+    7400006: idle_look_around
+    7400008: idle
+    7400010: jump_start
+    7400012: jump_cycle
+    7400014: jump_end
+    7400016: attack_melee
+    7400018: attack_throw
+    7400020: get_gun
+    7400022: store_gun
+    7400024: attack_shoot
+    7400026: attack_shoot_heavy
+    7400028: attack_shoot_brust
+    7400030: get_hit
+    7400032: lift_gun
+    7400034: run_cycle
+    7400036: dead
+    7400038: run_start
+    7400040: run_cycle_armed
+    7400042: run_end
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: DroidGirl_skin
   materials:
     importMaterials: 1
     materialName: 1
@@ -19,7 +122,7 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationCompression: 2
+    animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
@@ -62,7 +165,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 1
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -633,9 +736,9 @@ ModelImporter:
     armStretch: .0500000007
     legStretch: .0500000007
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: DG_SKELETON_ROOT
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 2
   additionalBone: 0
   userData: 
   assetBundleName: 

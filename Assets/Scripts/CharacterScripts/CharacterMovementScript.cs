@@ -17,7 +17,7 @@ public class CharacterMovementScript : MonoBehaviour {
 		_moving = false;
 		_ground = true;
 		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera>();
-		player.transform.eulerAngles = new Vector3 (0, 270, 0);// This means that the player will start facing left
+		player.transform.eulerAngles = new Vector3 (0, 0, 0);// This means that the player will start facing left
 		charAnimator = player.GetComponent<Animator> ();
 		charAnimator.SetBool ("moving", _moving); // Means that the character is not movin, genrally in the idle 
 		charAnimator.SetBool ("ground", _ground);// Character is on the ground
@@ -26,6 +26,28 @@ public class CharacterMovementScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Handles the jump of the character
+		if (Input.GetButton ("Horizontal")) {
+			
+			Debug.Log ("Moving");
+			Debug.Log (Input.GetAxis("Horizontal"));
+			_moving = true;
+			AnimationHandler (0);
+			
+			if (Input.GetAxis ("Horizontal") > 0) {
+				player.transform.eulerAngles = new Vector3 (0, 180, 0);
+			} else {
+				player.transform.eulerAngles = new Vector3 (0, 0, 0);
+			}
+			player.transform.Translate (Vector3.left * movingSpeed * -Input.GetAxis ("Horizontal"), camera.transform);
+			
+			
+			//player.transform.Translate(Vector3.left);
+			
+		} else {
+			_moving = false;
+			Debug.Log ("Not Moving");
+			AnimationHandler (0);
+		}
 		if (Input.GetButton("Jump"))
 		{
 			if(_ground)
@@ -43,28 +65,7 @@ public class CharacterMovementScript : MonoBehaviour {
 		}
 
 		//Handles's Basic movement of the Character
-		if (Input.GetButton ("Horizontal")) {
 
-			Debug.Log ("Moving");
-			Debug.Log (Input.GetAxis("Horizontal"));
-			_moving = true;
-			AnimationHandler (0);
-
-			if (Input.GetAxis ("Horizontal") > 0) {
-				player.transform.eulerAngles = new Vector3 (0, 90, 0);
-			} else {
-				player.transform.eulerAngles = new Vector3 (0, 270, 0);
-			}
-			player.transform.Translate (Vector3.left * movingSpeed * -Input.GetAxis ("Horizontal"), camera.transform);
-				
-			
-			//player.transform.Translate(Vector3.left);
-		
-		} else {
-			_moving = false;
-			Debug.Log ("Not Moving");
-			AnimationHandler (0);
-		}
 }
 /// <summary>
 	/// Handles all the change of parameters for the animator controller

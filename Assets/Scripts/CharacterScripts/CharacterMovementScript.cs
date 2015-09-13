@@ -7,7 +7,7 @@ public class CharacterMovementScript : MonoBehaviour {
 	public GameObject player;// Will be set to private
 	public Camera camera; // Will be set to private
 	public float movingSpeed, jumpingSpeed;
-	bool _moving, _ground;
+	bool _moving, _ground, _running;
 	Rigidbody rigidBody;
 
 	// Use this for initialization
@@ -16,11 +16,13 @@ public class CharacterMovementScript : MonoBehaviour {
 		rigidBody = player.GetComponent<Rigidbody> ();
 		_moving = false;
 		_ground = true;
+		_moving = true;
 		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera>();
 		player.transform.eulerAngles = new Vector3 (0, 0, 0);// This means that the player will start facing left
 		charAnimator = player.GetComponent<Animator> ();
 		charAnimator.SetBool ("moving", _moving); // Means that the character is not movin, genrally in the idle 
 		charAnimator.SetBool ("ground", _ground);// Character is on the ground
+		charAnimator.SetBool ("running", _running);
 	}
 	
 	// Update is called once per frame
@@ -32,14 +34,17 @@ public class CharacterMovementScript : MonoBehaviour {
 			Debug.Log (Input.GetAxis("Horizontal"));
 			_moving = true;
 			AnimationHandler (0);
-			
+
+			//_running = Input.GetKey(KeyCode.LeftShift);
+			//charAnimator.SetBool("running",_running);
+
 			if (Input.GetAxis ("Horizontal") > 0) {
 				player.transform.eulerAngles = new Vector3 (0, 180, 0);
 			} else {
 				player.transform.eulerAngles = new Vector3 (0, 0, 0);
 			}
 			player.transform.Translate (Vector3.left * movingSpeed * -Input.GetAxis ("Horizontal"), camera.transform);
-			
+
 			
 			//player.transform.Translate(Vector3.left);
 			

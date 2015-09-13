@@ -1,0 +1,90 @@
+Many Worlds on Unity Asset Store
+support contact: info@many-worlds.es
+
+DROID GIRL CHARACTER
+v 2.0
+
+Thanks for your purchase, we hope this model will be a very useful asset into your project.
+For any comment or issues please don't rate negative, just ask us for help to our support email address above this text.
+
+The model you just bought is a character modeled and prepared to work in Unity 4.x
+
+[PREFAB]:
+
+By defult you will find in your Droid Girl Asset Folder a prefabs folder with two different prefabs: one for the low (mobile-ready) model, wich is in fact the same model but with 2 materials (one for bumped reflection and other for emmisive), and other prefab for the DirectX 11 tesellation shader version. (UNITY PRO REQUIRED)
+
+[ANIMATION]:
+
+This asset is mecanim-ready with 19 loopeable/clamp animations compatible with mecanim and any other humanoid character you want.
+
+List of Animations:
+
+Stand Idle
+Look Around
+Jump
+Jump (non relative)
+Walk Cycle
+Walk Forward
+Run Cycle
+Run Forward
+Run with weapon
+Run Forward with weapon
+Combat Mode Idle
+Melee Attack 1
+Melee Attack 2
+Weapon Hold Idle
+Weapon Shot 1
+Weapon Shot 2
+Weapon Shot Cycle
+Get Damage 1
+Get Damage 2
+Die
+
+
+All the animations are imported in different and separated FBX files.
+
+
+
+[MESH]:
+
+Mesh polycount: 2232 triangles.
+
+You will also find a weapon attached to the right hand. This is just to help you know where the gun is, orientation and size to properly work with the animation. We know its not so beautiful but the asset doesn't include weapons, just the character.
+
+
+[MATERIALS]:
+
+LOW/SIMPLE MATERIAL:
+
+You will find 2 prefabs. One of them is for the simple version wich has 2 materials. One is for the base color, specular, normal and reflection effects and the other one for the emmisive effect. If you dont want to use the character with emmisive lights you can set the material count to 1 for a faster render. If you dont want reflection you can also set the material count to 1 and change the material shader to emmisive bumped specular.
+
+TESSELLATION:
+
+The tessellation shader looks great for high definition games wich will work properly in strong graphic cards (DirectX 11) but you will need to have the UNITY PRO version to use this shader.
+
+About the TEXTURES:
+
+All 2048x2048 RGBA
+
+21x DroidGirl_color 		>> RGB (color map) A (specular map/reflection mask)
+8x DroidGirl_emisive		>> Emisive Map
+1x DroidGirl_normal		>> Normal Map
+1x DroidGirl_heights		>> Displacement Map (DX11 Tessellation)
+1x DroidGirl_cavity		>> Cavity Map
+1x DroidGirl_oclussion		>> Oclussion Map
+3x DroidGirl_specular 		>> Specular Map
+1x DroidGirl_refmask			>> Reflection mask Map
+
+[SHADERS]
+
+- Bumped specular emissive reflection shader
+- Custom tesellation shader (Only PC PRO)
+
+
+[DEMOSCENE]:
+
+A little gift to say thank you for the purchase: you get the environment for the demoscene. If you like you can build your own environment by using these assets, which can be used to create sci-fi modular tunnels (you can see it on the youtube video).
+
+For the Tessellation Demo Scene you will need to activate DX11 (Project Settings/Player: "Use Direct3D 11") And import the Tessellation Shaders DX11. You can find this asset in your default packages (Assets/Import Package). Also you must have the UNITY PRO version to run with Tessellation shaders.
+
+Enjoy and please, rate us if you liked your work!

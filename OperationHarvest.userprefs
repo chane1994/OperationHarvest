@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\SudokuSolver\Assets\Scripts\SudokuSolver.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharacterScripts\CharacterMovementScript.cs">
     <Files>
-      <File FileName="..\SudokuSolver\Assets\Scripts\SudokuSolver.cs" Line="248" Column="6" />
+      <File FileName="Assets\Scripts\CharacterScripts\CharacterMovementScript.cs" Line="44" Column="53" />
+      <File FileName="..\SudokuSolver\Assets\Scripts\SudokuSolver.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

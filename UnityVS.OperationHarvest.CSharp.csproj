@@ -61,9 +61,13 @@
   <ItemGroup>
     <Compile Include="Assets\Art\Asset Folder\Demo\Scripts\Rotate.cs" />
     <Compile Include="Assets\Scripts\CameraScripts\CameraMovementScript.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\CameraScripts\SlightCameraFollow.cs" />
     <Compile Include="Assets\Scripts\CharacterScripts\CharacterMovementScript.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\Controller.cs" />
+=======
+    <Compile Include="Assets\Scripts\CharacterScripts\CharacterMovementScript.cs" />
+>>>>>>> origin/master
     <Compile Include="Assets\Scripts\EnemyScripts\GuardController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2012\UnityVS.CSharp.targets" />

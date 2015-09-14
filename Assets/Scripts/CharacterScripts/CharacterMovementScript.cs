@@ -7,7 +7,7 @@ public class CharacterMovementScript : MonoBehaviour {
 	public GameObject player;// Will be set to private
 	public Camera camera; // Will be set to private
 	public float movingSpeed, jumpingSpeed;
-	bool _moving, _ground, _running;
+	bool _moving, _ground, _running, _climbing;
 	Rigidbody rigidBody;
 
 	// Use this for initialization
@@ -23,41 +23,56 @@ public class CharacterMovementScript : MonoBehaviour {
 		charAnimator.SetBool ("moving", _moving); // Means that the character is not movin, genrally in the idle 
 		charAnimator.SetBool ("ground", _ground);// Character is on the ground
 		charAnimator.SetBool ("running", _running);
+		charAnimator.SetBool ("climbing", _climbing);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//Handles the jump of the character
+		//Handles's Basic movement of the Character
 		if (Input.GetButton ("Horizontal")) {
 			
-			Debug.Log ("Moving");
+			//Debug.Log ("Moving");
 			Debug.Log (Input.GetAxis("Horizontal"));
 			_moving = true;
+			if (Input.GetButton("Running"))
+			{
+				_running = true;
+				charAnimator.SetBool("running",_running);
+			}
+			else
 			AnimationHandler (0);
 
-			//_running = Input.GetKey(KeyCode.LeftShift);
-			//charAnimator.SetBool("running",_running);
+
 
 			if (Input.GetAxis ("Horizontal") > 0) {
 				player.transform.eulerAngles = new Vector3 (0, -270, 0);
 			} else {
 				player.transform.eulerAngles = new Vector3 (0, -90, 0);
 			}
+			if(_running)
+			{
+			player.transform.Translate (Vector3.left * movingSpeed * 5*-Input.GetAxis ("Horizontal"), camera.transform);
+			}
+			else
+			{
 			player.transform.Translate (Vector3.left * movingSpeed * -Input.GetAxis ("Horizontal"), camera.transform);
-
+			}
 			
 			//player.transform.Translate(Vector3.left);
 			
 		} else {
 			_moving = false;
-			Debug.Log ("Not Moving");
+			_running = false;
+			charAnimator.SetBool("running",_running);
+			//Debug.Log ("Not Moving");
 			AnimationHandler (0);
 		}
+		//Handles the jump of the character
 		if (Input.GetButton("Jump"))
 		{
 			if(_ground)
 			{
-				Debug.Log ("Jumping");
+				//Debug.Log ("Jumping");
 				_ground = false;
 				AnimationHandler(1);
 			rigidBody.AddForce(Vector3.up * jumpingSpeed);
@@ -69,7 +84,7 @@ public class CharacterMovementScript : MonoBehaviour {
 			charAnimator.SetTrigger ("canMelee");
 		}
 
-		//Handles's Basic movement of the Character
+
 
 }
 /// <summary>
@@ -86,23 +101,52 @@ public class CharacterMovementScript : MonoBehaviour {
 		if (col.gameObject.tag == "Floor") {
 			_ground = true;
 			AnimationHandler(1);
-			Debug.Log ("Landed on the ground");
+			//Debug.Log ("Landed on the ground");
+		}
+		if (col.gameObject.tag == "Climable") {
+			Debug.Log ("Try Climbing");
 		}
 	}
-	void OnCollisionStay(Collision col)
-	{
-		if (col.gameObject.tag == "Floor") {
-			_ground = true;
-			AnimationHandler(1);
-			Debug.Log ("Still on the ground");
-		}
-	}
+
 	void OnCollisionExit(Collision col)
 	{
 		if (col.gameObject.tag == "Floor") {
 			_ground = false;
 			AnimationHandler(1);
-			Debug.Log(" Jumped into the air");
+			//Debug.Log(" Jumped into the air");
+		}
+	}
+	void OnTriggerEnter(Collider col)
+	{
+		if (col.gameObject.tag == "Climable") {
+			
+			if (Input.GetButton ("Vertical")) {
+				Debug.Log ("Try Climbing");
+				
+				player.transform.Translate (Vector3.up * movingSpeed * Input.GetAxis ("Vertical"), camera.transform);
+				player.transform.eulerAngles = new Vector3 (0, 0, 0);
+			}	
+			this.rigidBody.useGravity = !Input.GetButton ("Vertical");
+		}
+	}
+	void OnTriggerStay(Collider col)
+	{
+		if (col.gameObject.tag == "Climable") {
+
+			if (Input.GetButton ("Vertical")) {
+				Debug.Log ("Try Climbing");
+
+				player.transform.Translate (Vector3.up * movingSpeed * Input.GetAxis ("Vertical"), camera.transform);
+				player.transform.eulerAngles = new Vector3 (0, 0, 0);
+			}	
+			this.rigidBody.useGravity = !Input.GetButton ("Vertical");
+		}
+	}
+	void OnTriggerExit(Collider col)
+	{
+		if (col.gameObject.tag == "Climable") {
+
+			this.rigidBody.useGravity = true;
 		}
 	}
 	void AnimationHandler(int aniState )

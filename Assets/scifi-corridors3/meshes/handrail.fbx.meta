@@ -3,7 +3,14 @@ guid: 46b33429734374c4d9b914682b2db47f
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Mesh
+    6400000: //RootNode
+    7400000: modo_Anim
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0

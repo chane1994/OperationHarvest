@@ -59,7 +59,7 @@ public class CharacterMovementScript : MonoBehaviour {
 			}
 			
 			//player.transform.Translate(Vector3.left);
-			
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 		} else {
 			_moving = false;
 			_running = false;
@@ -70,14 +70,14 @@ public class CharacterMovementScript : MonoBehaviour {
 		//Handles the jump of the character
 		if (Input.GetButton("Jump"))
 		{
-			if(_ground)
-			{
-				//Debug.Log ("Jumping");
-				_ground = false;
-				AnimationHandler(1);
-			rigidBody.AddForce(Vector3.up * jumpingSpeed);
-				AnimationHandler(2);
-			}
+            if (_ground)
+            {
+                //Debug.Log ("Jumping");
+                _ground = false;
+                AnimationHandler(1);
+                rigidBody.AddForce(Vector3.up * jumpingSpeed);
+                AnimationHandler(2);
+            }
 		}
 		if (Input.GetButton ("Fire1")) {
 			Debug.Log("MeleeAttack");
@@ -108,14 +108,14 @@ public class CharacterMovementScript : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionExit(Collision col)
+	/*void OnCollisionExit(Collision col)
 	{
 		if (col.gameObject.tag == "Floor") {
 			_ground = false;
 			AnimationHandler(1);
 			//Debug.Log(" Jumped into the air");
 		}
-	}
+	}*/
 	void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.tag == "Climable") {
@@ -151,10 +151,15 @@ public class CharacterMovementScript : MonoBehaviour {
 	}
 	void AnimationHandler(int aniState )
 	{
-		if (aniState == 0)
-		charAnimator.SetBool ("moving", _moving);
-		if (aniState == 1)
-		charAnimator.SetBool ("ground", _ground);
+        if (aniState == 0)
+        {
+            charAnimator.SetBool("moving", _moving);
+        }
+        if (aniState == 1)
+        {
+            charAnimator.SetBool("ground", _ground);
+        }
+        
 
 
 	}

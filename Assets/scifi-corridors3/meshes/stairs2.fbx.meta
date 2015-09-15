@@ -3,7 +3,20 @@ guid: a6f64d4ffedd62e42a7822c007a5b20e
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: Mesh
+    100002: 'Mesh '
+    100004: Mesh  1
+    100006: //RootNode
+    400000: Mesh
+    400002: 'Mesh '
+    400004: Mesh  1
+    400006: //RootNode
+    2300000: Mesh
+    3300000: Mesh
     4300000: Mesh
+    6400000: Mesh
+    7400000: modo_Anim
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0

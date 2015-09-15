@@ -9,10 +9,14 @@ public class CharacterMovementScript : MonoBehaviour {
 	public float movingSpeed, jumpingSpeed;
 	bool _moving, _ground, _running, _climbing;
 	Rigidbody rigidBody;
+	int currentWeapon;
+	public bool paused;
+
 
 	// Use this for initialization
 	void Start () {
 		player = this.gameObject;
+		paused = false;
 		rigidBody = player.GetComponent<Rigidbody> ();
 		_moving = false;
 		_ground = true;
@@ -29,6 +33,17 @@ public class CharacterMovementScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Handles's Basic movement of the Character
+
+		if (Input.GetButton ("Menu")) {
+			paused = !paused;
+		}
+		if (paused) {
+			GameObject x = GameObject.FindWithTag("Menu");
+			if(!x.activeSelf)
+			{
+				x.SetActive(paused);
+			}
+		}
 		if (Input.GetButton ("Horizontal")) {
 			
 			//Debug.Log ("Moving");
@@ -79,11 +94,39 @@ public class CharacterMovementScript : MonoBehaviour {
                 AnimationHandler(2);
             }
 		}
-		if (Input.GetButton ("Fire1")) {
-			Debug.Log("MeleeAttack");
-			charAnimator.SetTrigger ("canMelee");
+		//Handles Switching wapons
+		if (Input.GetButton("switchWeapon")) {
+			if (currentWeapon < 2)
+			{
+				currentWeapon++;
+				Debug.Log("current weapon is"+ currentWeapon);
+			}
+			else
+			{
+				currentWeapon = 0;
+			}
 		}
-
+		// Handles Firing weapons
+		if (Input.GetButton ("Fire1")) {
+			if (currentWeapon == 0)
+			{
+			Debug.Log("MeleeAttack");
+			charAnimator.SetTrigger ("canAttack");
+				charAnimator.SetInteger("currentWeapon",currentWeapon);
+			}
+			if (currentWeapon == 1)
+			{
+				Debug.Log("GrenadeAttack");
+				charAnimator.SetTrigger ("canAttack");
+				charAnimator.SetInteger("currentWeapon",currentWeapon);
+			}
+			if (currentWeapon == 2)
+			{
+				Debug.Log("MeleeAttack");
+				charAnimator.SetTrigger ("canAttack");
+				charAnimator.SetInteger("currentWeapon",currentWeapon);
+			}
+		}
 
 
 }

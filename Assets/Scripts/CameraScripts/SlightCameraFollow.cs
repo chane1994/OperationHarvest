@@ -12,14 +12,14 @@ public class SlightCameraFollow : MonoBehaviour {
     
 	void LateUpdate()
 	{
-		//Debug.Log("Player's Position: "+player.transform.position);
-        //Debug.Log("Camera Position: "+gameObject.transform.position);
+		Debug.Log("Player's Position: "+player.transform.position);
+        Debug.Log("Camera Position: "+gameObject.transform.position);
         if (player.transform.position.x - gameObject.transform.position.x >= 2)
-		    transform.position = new Vector3 (player.transform.position.x-2, player.transform.position.y +2 , player.transform.position.z-8);
+		    transform.position = new Vector3 (player.transform.position.x-2, player.transform.position.y +2 , player.transform.position.z-5);
         else if (player.transform.position.x - gameObject.transform.position.x <= -2)
-            transform.position = new Vector3(player.transform.position.x + 2, player.transform.position.y + 2, player.transform.position.z -8);
+            transform.position = new Vector3(player.transform.position.x + 2, player.transform.position.y + 2, player.transform.position.z - 5);
         else
-            transform.position = new Vector3(transform.position.x, player.transform.position.y + 2, player.transform.position.z - 8);
+            transform.position = new Vector3(transform.position.x, player.transform.position.y + 2, player.transform.position.z - 5);
 	}
 	
 	// Update is called once per frame

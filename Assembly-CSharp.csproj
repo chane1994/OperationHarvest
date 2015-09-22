@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Art\Asset Folder\Demo\Scripts\Rotate.cs" />
-     <Compile Include="Assets\Scripts\BulletMovement.cs" />
      <Compile Include="Assets\Scripts\CameraScripts\CameraMovementScript.cs" />
      <Compile Include="Assets\Scripts\CameraScripts\SlightCameraFollow.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\CharacterMovementScript.cs" />
@@ -55,9 +54,7 @@
      <Compile Include="Assets\Scripts\EnemyScripts\GuardController.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\NextRoom.cs" />
      <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\TES_BumpedReflectionEmissive.shader" />
-     <None Include="Assets\Mobility_01_Free_v2\Mobility_Free_Unity_Info.txt" />
      <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\BumpedReflectionEmissive.shader" />
-     <None Include="Assets\Military_Pistol_01_Free_v2\Docs\Military_Pistol_Free_Unity_Info.txt" />
      <None Include="Assets\Asset Folder\ManyWorlds\DroidGirl2.0\droid2.0.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

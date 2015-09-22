@@ -48,9 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Art\Asset Folder\Demo\Scripts\SmoothLookAt.js" />
      <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\TES_BumpedReflectionEmissive.shader" />
-     <None Include="Assets\Mobility_01_Free_v2\Mobility_Free_Unity_Info.txt" />
      <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\BumpedReflectionEmissive.shader" />
-     <None Include="Assets\Military_Pistol_01_Free_v2\Docs\Military_Pistol_Free_Unity_Info.txt" />
      <None Include="Assets\Asset Folder\ManyWorlds\DroidGirl2.0\droid2.0.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

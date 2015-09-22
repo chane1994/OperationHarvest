@@ -1,0 +1,279 @@
+fileFormatVersion: 2
+guid: ffd20b539cb62b944aa01b3ac41a564d
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Chest
+    100002: DGirl_Body
+    100004: DroidControl
+    100006: //RootNode
+    100008: DroidWeapon_demo
+    100010: Head
+    100012: LArm1
+    100014: LArm2
+    100016: LArmCollarbone
+    100018: LArmIKTarget
+    100020: LArmPalm
+    100022: LLeg1
+    100024: LLeg2
+    100026: LLegAnkle
+    100028: LLegPlatform
+    100030: PalmBone001
+    100032: PalmBone001 1
+    100034: PalmBone001Bone001
+    100036: PalmBone001Bone001 1
+    100038: PalmBone002
+    100040: PalmBone002 1
+    100042: PalmBone002Bone001
+    100044: PalmBone002Bone001 1
+    100046: Pelvis
+    100048: RArm1
+    100050: RArm2
+    100052: RArmCollarbone
+    100054: RArmIKTarget
+    100056: RArmPalm
+    100058: RLeg1
+    100060: RLeg2
+    100062: RLegAnkle
+    100064: RLegPlatform
+    100066: Spine
+    100068: Spine1
+    100070: Spine2
+    100072: Spine3
+    100074: Spine4
+    100076: Spine5
+    100078: Tail1
+    100080: Tail2
+    100082: Tail3
+    100084: Box001
+    100086: DGirl_Original001
+    400000: Chest
+    400002: DGirl_Body
+    400004: DroidControl
+    400006: //RootNode
+    400008: DroidWeapon_demo
+    400010: Head
+    400012: LArm1
+    400014: LArm2
+    400016: LArmCollarbone
+    400018: LArmIKTarget
+    400020: LArmPalm
+    400022: LLeg1
+    400024: LLeg2
+    400026: LLegAnkle
+    400028: LLegPlatform
+    400030: PalmBone001
+    400032: PalmBone001 1
+    400034: PalmBone001Bone001
+    400036: PalmBone001Bone001 1
+    400038: PalmBone002
+    400040: PalmBone002 1
+    400042: PalmBone002Bone001
+    400044: PalmBone002Bone001 1
+    400046: Pelvis
+    400048: RArm1
+    400050: RArm2
+    400052: RArmCollarbone
+    400054: RArmIKTarget
+    400056: RArmPalm
+    400058: RLeg1
+    400060: RLeg2
+    400062: RLegAnkle
+    400064: RLegPlatform
+    400066: Spine
+    400068: Spine1
+    400070: Spine2
+    400072: Spine3
+    400074: Spine4
+    400076: Spine5
+    400078: Tail1
+    400080: Tail2
+    400082: Tail3
+    400084: Box001
+    400086: DGirl_Original001
+    2300000: DGirl_Body
+    2300002: DroidWeapon_demo
+    2300004: Box001
+    3300000: DGirl_Body
+    3300002: DroidWeapon_demo
+    3300004: Box001
+    4300000: DGirl_Body
+    4300002: DroidWeapon_demo
+    4300004: DGirl_Original001
+    4300006: Box001
+    7400000: T_toIdle
+    9500000: //RootNode
+    13700000: DGirl_Original001
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 1
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths:
+    - Pelvis
+    clipAnimations:
+    - serializedVersion: 16
+      name: T_toIdle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: DGirl_Body
+        weight: 0
+      - path: DroidControl
+        weight: 0
+      - path: LArmIKTarget
+        weight: 0
+      - path: LLegPlatform
+        weight: 0
+      - path: Pelvis
+        weight: 1
+      - path: Pelvis/LLeg1
+        weight: 1
+      - path: Pelvis/LLeg1/LLeg2
+        weight: 1
+      - path: Pelvis/LLeg1/LLeg2/LLegAnkle
+        weight: 1
+      - path: Pelvis/RLeg1
+        weight: 1
+      - path: Pelvis/RLeg1/RLeg2
+        weight: 1
+      - path: Pelvis/RLeg1/RLeg2/RLegAnkle
+        weight: 1
+      - path: Pelvis/Spine1
+        weight: 1
+      - path: Pelvis/Spine1/Spine2
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/LArmCollarbone
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/LArmCollarbone/LArm1
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/LArmCollarbone/LArm1/LArm2
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/LArmCollarbone/LArm1/LArm2/LArmPalm
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/LArmCollarbone/LArm1/LArm2/LArmPalm/PalmBone001
+        weight: 0
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/LArmCollarbone/LArm1/LArm2/LArmPalm/PalmBone001/PalmBone001Bone001
+        weight: 0
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/LArmCollarbone/LArm1/LArm2/LArmPalm/PalmBone002
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/LArmCollarbone/LArm1/LArm2/LArmPalm/PalmBone002/PalmBone002Bone001
+        weight: 0
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/RArmCollarbone
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/RArmCollarbone/RArm1
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/RArmCollarbone/RArm1/RArm2
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/RArmCollarbone/RArm1/RArm2/RArmPalm
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/RArmCollarbone/RArm1/RArm2/RArmPalm/DroidWeapon_demo
+        weight: 0
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/RArmCollarbone/RArm1/RArm2/RArmPalm/PalmBone001
+          1
+        weight: 0
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/RArmCollarbone/RArm1/RArm2/RArmPalm/PalmBone001
+          1/PalmBone001Bone001 1
+        weight: 0
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/RArmCollarbone/RArm1/RArm2/RArmPalm/PalmBone002
+          1
+        weight: 0
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/RArmCollarbone/RArm1/RArm2/RArmPalm/PalmBone002
+          1/PalmBone002Bone001 1
+        weight: 0
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/Spine
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/Spine/Head
+        weight: 1
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/Spine/Head/Tail1
+        weight: 0
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/Spine/Head/Tail1/Tail2
+        weight: 0
+      - path: Pelvis/Spine1/Spine2/Spine3/Spine4/Spine5/Chest/Spine/Head/Tail1/Tail2/Tail3
+        weight: 0
+      - path: RArmIKTarget
+        weight: 0
+      - path: RLegPlatform
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

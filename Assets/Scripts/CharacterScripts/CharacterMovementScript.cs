@@ -1,18 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 
 public class CharacterMovementScript : MonoBehaviour {
 	public Animator charAnimator; //Access to Agent Controller, the animation controller of the model
 	public GameObject player;// Will be set to private
 	public Camera camera; // Will be set to private
+	public Camera fpCamera;
 	public float movingSpeed, jumpingSpeed;
 	bool _moving, _ground, _running, _climbing;
 	Rigidbody rigidBody;
 	int currentWeapon;
 	public bool paused;
+	public Transform muzzleLocation;
+	public GameObject currentBullet;
+	public GameObject currentGrenade;
+	Event shotEvent;
+	public float health;
+	bool direction;
+
+	GameObject menu;
 
 
+	bool aimBool;
+	float fireRate; //Gives a set fire rate to attacks
+	bool canfire; //Used to stop certain attacks from firing into the time is right (mainly used for shooting);
 	// Use this for initialization
 	void Start () {
 		player = this.gameObject;
@@ -21,29 +33,39 @@ public class CharacterMovementScript : MonoBehaviour {
 		_moving = false;
 		_ground = true;
 		_moving = true;
-		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera>();
+		fpCamera.enabled = false;
+		camera = GameObject.Find ("Camera").GetComponent<Camera> ();
+		canfire = false;	
+				
+		
 		player.transform.eulerAngles = new Vector3 (0, 180, 0);// This means that the player will start facing left
 		charAnimator = player.GetComponent<Animator> ();
 		charAnimator.SetBool ("moving", _moving); // Means that the character is not movin, genrally in the idle 
 		charAnimator.SetBool ("ground", _ground);// Character is on the ground
 		charAnimator.SetBool ("running", _running);
 		charAnimator.SetBool ("climbing", _climbing);
+		currentWeapon = 2;
+		health = 1;
+
+		menu = GameObject.FindGameObjectWithTag ("Menu");
+		menu.SetActive (false);
+		//Health ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		//Handles's Basic movement of the Character
+	void Health()
+	{
+		Image i = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
+		//i.sprite.
+	}
+	void HandleMenu()
+	{
 
 		if (Input.GetButton ("Menu")) {
 			paused = !paused;
+			menu.SetActive(paused);
 		}
-		if (paused) {
-			GameObject x = GameObject.FindWithTag("Menu");
-			if(!x.activeSelf)
-			{
-				x.SetActive(paused);
-			}
-		}
+	}
+	void HandleMovement()
+	{
 		if (Input.GetButton ("Horizontal")) {
 			
 			//Debug.Log ("Moving");
@@ -55,26 +77,30 @@ public class CharacterMovementScript : MonoBehaviour {
 				charAnimator.SetBool("running",_running);
 			}
 			else
-			AnimationHandler (0);
-
-
-
+			{
+				AnimationHandler (0);
+				_running = false;
+				charAnimator.SetBool("running",_running);
+			}
+			
 			if (Input.GetAxis ("Horizontal") > 0) {
+				direction = true;
 				player.transform.eulerAngles = new Vector3 (0, -270, 0);
 			} else {
+				direction = false;
 				player.transform.eulerAngles = new Vector3 (0, -90, 0);
 			}
 			if(_running)
 			{
-			player.transform.Translate (Vector3.left * movingSpeed * 5*-Input.GetAxis ("Horizontal"), camera.transform);
+				player.transform.Translate (Vector3.left * movingSpeed * 5*-Input.GetAxis ("Horizontal"), camera.transform);
 			}
 			else
 			{
-			player.transform.Translate (Vector3.left * movingSpeed * -Input.GetAxis ("Horizontal"), camera.transform);
+				player.transform.Translate (Vector3.left * movingSpeed * -Input.GetAxis ("Horizontal"), camera.transform);
 			}
 			
 			//player.transform.Translate(Vector3.left);
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+			transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 		} else {
 			_moving = false;
 			_running = false;
@@ -85,15 +111,43 @@ public class CharacterMovementScript : MonoBehaviour {
 		//Handles the jump of the character
 		if (Input.GetButton("Jump"))
 		{
-            if (_ground)
-            {
-                //Debug.Log ("Jumping");
-                _ground = false;
-                AnimationHandler(1);
-                rigidBody.AddForce(Vector3.up * jumpingSpeed);
-                AnimationHandler(2);
-            }
+			if (_ground)
+			{
+				//Debug.Log ("Jumping");
+				_ground = false;
+				AnimationHandler(1);
+				rigidBody.AddForce(Vector3.up * jumpingSpeed);
+				AnimationHandler(2);
+			}
 		}
+	}
+	void HandleAimMode()
+	{
+		//
+	}
+	// Update is called once per frame
+	void Update () {
+		//Handles's Basic movement of the Character
+		fireRate += Time.deltaTime;
+
+	// used for aiming mode
+		if (Input.GetButton ("Aiming")) {
+			aimBool = !aimBool;
+		} 
+
+		HandleMenu ();
+		if (!aimBool) {
+			fpCamera.enabled = false;
+			camera.enabled = true;
+			HandleMovement ();
+
+		} else {
+			fpCamera.enabled = true;
+			camera.enabled = false;
+			HandleAimMode();
+		}
+
+
 		//Handles Switching wapons
 		if (Input.GetButton("switchWeapon")) {
 			if (currentWeapon < 2)
@@ -107,38 +161,40 @@ public class CharacterMovementScript : MonoBehaviour {
 			}
 		}
 		// Handles Firing weapons
-		if (Input.GetButton ("Fire1")) {
+		if (Input.GetButton ("Fire1")&&fireRate > 2.5f) {
+		
 			if (currentWeapon == 0)
 			{
-			Debug.Log("MeleeAttack");
-			charAnimator.SetTrigger ("canAttack");
+				Debug.Log("MeleeAttack");
+				charAnimator.SetTrigger ("canAttack");
 				charAnimator.SetInteger("currentWeapon",currentWeapon);
+				fireRate = 0;
 			}
 			if (currentWeapon == 1)
 			{
 				Debug.Log("GrenadeAttack");
 				charAnimator.SetTrigger ("canAttack");
 				charAnimator.SetInteger("currentWeapon",currentWeapon);
+				fireRate = 0;
 			}
 			if (currentWeapon == 2)
 			{
-				Debug.Log("MeleeAttack");
+				Debug.Log("PistolAttack");
 				charAnimator.SetTrigger ("canAttack");
 				charAnimator.SetInteger("currentWeapon",currentWeapon);
+				canfire = true;
+				StartCoroutine(Delay(1f));
+			
+
+
 			}
+			fireRate = 0;
 		}
 
-
 }
-/// <summary>
-	/// Handles all the change of parameters for the animator controller
-	/// </summary>
-	/// // used for determing what the animation that needs to be played is.
-	/// <summary>
-	///  idle/walking = 0;
-	/// jump= 1;
-	/// Meele Attack = 2;
-	/// </summary>
+
+
+
 	void OnCollisionEnter(Collision col)
 	{
 		if (col.gameObject.tag == "Floor") {
@@ -202,8 +258,18 @@ public class CharacterMovementScript : MonoBehaviour {
         {
             charAnimator.SetBool("ground", _ground);
         }
-        
-
+	}
+	public bool Direction
+	{
+		get {return direction;}
+	}
+	IEnumerator Delay(float x)
+	{
+		Debug.Log ("I waited");
+	
+		yield return new WaitForSeconds(x);
+		Instantiate(currentBullet,muzzleLocation.position,muzzleLocation.rotation);
+		canfire = false;
 
 	}
 }

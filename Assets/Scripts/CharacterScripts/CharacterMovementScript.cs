@@ -8,7 +8,7 @@ public class CharacterMovementScript : MonoBehaviour {
 	public Camera camera; // Will be set to private
 	public Camera fpCamera;
 	public float movingSpeed, jumpingSpeed;
-	bool _moving, _ground, _running, _climbing;
+	bool _moving, _ground, _running, _climbing, _crouch;
 	Rigidbody rigidBody;
 	int currentWeapon;
 	public bool paused;
@@ -16,13 +16,17 @@ public class CharacterMovementScript : MonoBehaviour {
 	public GameObject currentBullet;
 	public GameObject currentGrenade;
 	Event shotEvent;
-	public float health;
+	float health;
 	bool direction;
 
 	GameObject menu;
+    Image healthBar;
 
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
 
-	bool aimBool;
+	bool aimBool; // Determines whether the game is in aiming mode
 	float fireRate; //Gives a set fire rate to attacks
 	bool canfire; //Used to stop certain attacks from firing into the time is right (mainly used for shooting);
 	// Use this for initialization
@@ -33,10 +37,11 @@ public class CharacterMovementScript : MonoBehaviour {
 		_moving = false;
 		_ground = true;
 		_moving = true;
+        _crouch = false;
 		fpCamera.enabled = false;
 		camera = GameObject.Find ("Camera").GetComponent<Camera> ();
-		canfire = false;	
-				
+		canfire = false;
+        aimBool = false;		
 		
 		player.transform.eulerAngles = new Vector3 (0, 180, 0);// This means that the player will start facing left
 		charAnimator = player.GetComponent<Animator> ();
@@ -44,23 +49,28 @@ public class CharacterMovementScript : MonoBehaviour {
 		charAnimator.SetBool ("ground", _ground);// Character is on the ground
 		charAnimator.SetBool ("running", _running);
 		charAnimator.SetBool ("climbing", _climbing);
+        charAnimator.SetBool("crouching", _crouch);
 		currentWeapon = 2;
-		health = 1;
+        charAnimator.SetInteger("currentWeapon", currentWeapon);
+		health = 100f;
 
 		menu = GameObject.FindGameObjectWithTag ("Menu");
+        healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
 		menu.SetActive (false);
 		//Health ();
 	}
+   
 	void Health()
 	{
-		Image i = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
-		//i.sprite.
+        healthBar.fillAmount = health * .01f;
 	}
 	void HandleMenu()
 	{
-
-		if (Input.GetButton ("Menu")) {
+        Cursor.visible = paused;
+        Cursor.SetCursor(null, hotSpot, cursorMode);
+		if (Input.GetButtonDown ("Menu")) {
 			paused = !paused;
+            
 			menu.SetActive(paused);
 		}
 	}
@@ -120,18 +130,68 @@ public class CharacterMovementScript : MonoBehaviour {
 				AnimationHandler(2);
 			}
 		}
+
+        if (Input.GetAxis("Vertical") < 0 && _ground)
+        {
+            _crouch = true;
+            charAnimator.SetBool("crouching", _crouch);
+            //Y Size of the Box collider on the player is equal to 15.2215, center y is = 7.1102
+            Vector3 temp = this.gameObject.GetComponent<BoxCollider>().size;          
+            this.gameObject.GetComponent<BoxCollider>().size = new Vector3(temp.x, 10f, temp.z);
+            temp = this.gameObject.GetComponent<BoxCollider>().center;
+            this.gameObject.GetComponent<BoxCollider>().center = new Vector3(temp.x, 4.5f, temp.z);
+        }
+        else if (Input.GetAxis("Vertical") >0)
+        {
+            _crouch = false;
+            charAnimator.SetBool("crouching", _crouch);
+            Vector3 temp = this.gameObject.GetComponent<BoxCollider>().size;
+            this.gameObject.GetComponent<BoxCollider>().size = new Vector3(temp.x, 15.2215f, temp.z);
+            temp = this.gameObject.GetComponent<BoxCollider>().center;
+            this.gameObject.GetComponent<BoxCollider>().center = new Vector3(temp.x, 7.1102f, temp.z);
+        }
 	}
-	void HandleAimMode()
+	void HandleAimMode(float fireRate)
 	{
-		//
+        Cursor.visible = true;
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        if (Input.GetButton ("Fire1"))
+        {
+          if (currentWeapon == 2 && fireRate> 2f)
+          {
+             
+            Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 15);
+            position = Camera.main.ScreenToWorldPoint(position);
+            GameObject instance = (GameObject)Instantiate(currentBullet,fpCamera.transform.position,Quaternion.identity);
+            instance.transform.LookAt(position);
+            instance.GetComponent<BulletMovement>().Position = position;
+             Debug.Log("Banana:" + position);
+             fireRate = 0;
+              
+          }
+        }
+       
+
+
+        //Debug.Log(mousePos);
 	}
+    public bool AimMode
+    {
+        get { return aimBool; }
+        set { aimBool = value; }
+    }
 	// Update is called once per frame
 	void Update () {
 		//Handles's Basic movement of the Character
 		fireRate += Time.deltaTime;
-
+        Health();
+        health -= .1f;
+        if (health <= 0)
+        {
+            charAnimator.SetBool("dead", true);
+        }
 	// used for aiming mode
-		if (Input.GetButton ("Aiming")) {
+		if (Input.GetButtonDown ("Aiming")) {
 			aimBool = !aimBool;
 		} 
 
@@ -140,56 +200,57 @@ public class CharacterMovementScript : MonoBehaviour {
 			fpCamera.enabled = false;
 			camera.enabled = true;
 			HandleMovement ();
-
+           
 		} else {
 			fpCamera.enabled = true;
 			camera.enabled = false;
-			HandleAimMode();
+			HandleAimMode(fireRate);
 		}
 
+        if (!aimBool)
+        {
+            //Handles Switching wapons
+            if (Input.GetButtonDown("switchWeapon"))
+            {
+                if (currentWeapon < 2)
+                {
+                    currentWeapon++;
+                    Debug.Log("current weapon is" + currentWeapon);
+                }
+                else
+                {
+                    currentWeapon = 0;
+                }
+            }
+            // Handles Firing weapons
+            if (Input.GetButton("Fire1") && fireRate > 2.5f)
+            {
 
-		//Handles Switching wapons
-		if (Input.GetButton("switchWeapon")) {
-			if (currentWeapon < 2)
-			{
-				currentWeapon++;
-				Debug.Log("current weapon is"+ currentWeapon);
-			}
-			else
-			{
-				currentWeapon = 0;
-			}
-		}
-		// Handles Firing weapons
-		if (Input.GetButton ("Fire1")&&fireRate > 2.5f) {
-		
-			if (currentWeapon == 0)
-			{
-				Debug.Log("MeleeAttack");
-				charAnimator.SetTrigger ("canAttack");
-				charAnimator.SetInteger("currentWeapon",currentWeapon);
-				fireRate = 0;
-			}
-			if (currentWeapon == 1)
-			{
-				Debug.Log("GrenadeAttack");
-				charAnimator.SetTrigger ("canAttack");
-				charAnimator.SetInteger("currentWeapon",currentWeapon);
-				fireRate = 0;
-			}
-			if (currentWeapon == 2)
-			{
-				Debug.Log("PistolAttack");
-				charAnimator.SetTrigger ("canAttack");
-				charAnimator.SetInteger("currentWeapon",currentWeapon);
-				canfire = true;
-				StartCoroutine(Delay(1f));
-			
-
-
-			}
-			fireRate = 0;
-		}
+                if (currentWeapon == 0)//This is the melee attack, usally with a sword
+                {
+                    Debug.Log("MeleeAttack");
+                    charAnimator.SetTrigger("canAttack");
+                    charAnimator.SetInteger("currentWeapon", currentWeapon);
+                    fireRate = 0;
+                }
+                if (currentWeapon == 1)//This is the grenade
+                {
+                    Debug.Log("GrenadeAttack");
+                    charAnimator.SetTrigger("canAttack");
+                    charAnimator.SetInteger("currentWeapon", currentWeapon);
+                    fireRate = 0;
+                }
+                if (currentWeapon == 2)//This is the pistol
+                {
+                    Debug.Log("PistolAttack");
+                    charAnimator.SetTrigger("canAttack");
+                    charAnimator.SetInteger("currentWeapon", currentWeapon);
+                    canfire = true;
+                    StartCoroutine(Delay(1f));
+                }
+                fireRate = 0;
+            }
+        }
 
 }
 

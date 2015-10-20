@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 
 public class CharacterMovementScript : MonoBehaviour {
 	public Animator charAnimator; //Access to Agent Controller, the animation controller of the model
 	public GameObject player;// Will be set to private
 	public Camera camera; // Will be set to private
+	public Camera fpCamera;
 	public float movingSpeed, jumpingSpeed;
 	bool _moving, _ground, _running, _climbing, _crouch;
 	Rigidbody rigidBody;
 	int currentWeapon;
 	public bool paused;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public Transform muzzleLocation;
 	public GameObject currentBullet;
 	public GameObject currentGrenade;
@@ -22,24 +21,14 @@ public class CharacterMovementScript : MonoBehaviour {
 
 	GameObject menu;
     Image healthBar;
-=======
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
-=======
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
 
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	bool aimBool; // Determines whether the game is in aiming mode
 	float fireRate; //Gives a set fire rate to attacks
 	bool canfire; //Used to stop certain attacks from firing into the time is right (mainly used for shooting);
-=======
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
-=======
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
 	// Use this for initialization
 	void Start () {
 		player = this.gameObject;
@@ -47,29 +36,18 @@ public class CharacterMovementScript : MonoBehaviour {
 		rigidBody = player.GetComponent<Rigidbody> ();
 		_moving = false;
 		_ground = true;
-		_moving = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
         _crouch = false;
 		fpCamera.enabled = false;
 		camera = GameObject.Find ("Camera").GetComponent<Camera> ();
 		canfire = false;
         aimBool = false;		
 		
-=======
-		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera>();
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
-=======
-		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera>();
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
 		player.transform.eulerAngles = new Vector3 (0, 180, 0);// This means that the player will start facing left
 		charAnimator = player.GetComponent<Animator> ();
 		charAnimator.SetBool ("moving", _moving); // Means that the character is not movin, genrally in the idle 
 		charAnimator.SetBool ("ground", _ground);// Character is on the ground
 		charAnimator.SetBool ("running", _running);
 		charAnimator.SetBool ("climbing", _climbing);
-<<<<<<< HEAD
-<<<<<<< HEAD
         charAnimator.SetBool("crouching", _crouch);
 		currentWeapon = 2;
         charAnimator.SetInteger("currentWeapon", currentWeapon);
@@ -93,38 +71,10 @@ public class CharacterMovementScript : MonoBehaviour {
 			paused = !paused;
             
 			menu.SetActive(paused);
-=======
+		}
 	}
-=======
-	}
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
-	
-	// Update is called once per frame
-	void Update () {
-		//Handles's Basic movement of the Character
-
-		if (Input.GetButton ("Menu")) {
-			paused = !paused;
-<<<<<<< HEAD
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
-		}
-		if (paused) {
-			GameObject x = GameObject.FindWithTag("Menu");
-			if(!x.activeSelf)
-			{
-				x.SetActive(paused);
-			}
-		}
-=======
-		}
-		if (paused) {
-			GameObject x = GameObject.FindWithTag("Menu");
-			if(!x.activeSelf)
-			{
-				x.SetActive(paused);
-			}
-		}
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
+	void HandleMovement()
+	{
 		if (Input.GetButton ("Horizontal")) {
 			
 			//Debug.Log ("Moving");
@@ -136,26 +86,30 @@ public class CharacterMovementScript : MonoBehaviour {
 				charAnimator.SetBool("running",_running);
 			}
 			else
-			AnimationHandler (0);
-
-
-
+			{
+				AnimationHandler (0);
+				_running = false;
+				charAnimator.SetBool("running",_running);
+			}
+			
 			if (Input.GetAxis ("Horizontal") > 0) {
+				direction = true;
 				player.transform.eulerAngles = new Vector3 (0, -270, 0);
 			} else {
+				direction = false;
 				player.transform.eulerAngles = new Vector3 (0, -90, 0);
 			}
 			if(_running)
 			{
-			player.transform.Translate (Vector3.left * movingSpeed * 5*-Input.GetAxis ("Horizontal"), camera.transform);
+				player.transform.Translate (Vector3.left * movingSpeed * 5*-Input.GetAxis ("Horizontal"), camera.transform);
 			}
 			else
 			{
-			player.transform.Translate (Vector3.left * movingSpeed * -Input.GetAxis ("Horizontal"), camera.transform);
+				player.transform.Translate (Vector3.left * movingSpeed * -Input.GetAxis ("Horizontal"), camera.transform);
 			}
 			
 			//player.transform.Translate(Vector3.left);
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+			transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 		} else {
 			_moving = false;
 			_running = false;
@@ -166,17 +120,15 @@ public class CharacterMovementScript : MonoBehaviour {
 		//Handles the jump of the character
 		if (Input.GetButton("Jump"))
 		{
-            if (_ground)
-            {
-                //Debug.Log ("Jumping");
-                _ground = false;
-                AnimationHandler(1);
-                rigidBody.AddForce(Vector3.up * jumpingSpeed);
-                AnimationHandler(2);
-            }
+			if (_ground)
+			{
+				//Debug.Log ("Jumping");
+				_ground = false;
+				AnimationHandler(1);
+				rigidBody.AddForce(Vector3.up * jumpingSpeed);
+				AnimationHandler(2);
+			}
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
         if (Input.GetAxis("Vertical") < 0 && _ground)
         {
@@ -232,7 +184,7 @@ public class CharacterMovementScript : MonoBehaviour {
 		//Handles's Basic movement of the Character
 		fireRate += Time.deltaTime;
         Health();
-        health -= .1f;
+       
         if (health <= 0)
         {
             charAnimator.SetBool("dead", true);
@@ -298,58 +250,11 @@ public class CharacterMovementScript : MonoBehaviour {
                 fireRate = 0;
             }
         }
-=======
-=======
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
-		//Handles Switching wapons
-		if (Input.GetButton("switchWeapon")) {
-			if (currentWeapon < 2)
-			{
-				currentWeapon++;
-				Debug.Log("current weapon is"+ currentWeapon);
-			}
-			else
-			{
-				currentWeapon = 0;
-			}
-		}
-		// Handles Firing weapons
-		if (Input.GetButton ("Fire1")) {
-			if (currentWeapon == 0)
-			{
-			Debug.Log("MeleeAttack");
-			charAnimator.SetTrigger ("canAttack");
-				charAnimator.SetInteger("currentWeapon",currentWeapon);
-			}
-			if (currentWeapon == 1)
-			{
-				Debug.Log("GrenadeAttack");
-				charAnimator.SetTrigger ("canAttack");
-				charAnimator.SetInteger("currentWeapon",currentWeapon);
-			}
-			if (currentWeapon == 2)
-			{
-				Debug.Log("MeleeAttack");
-				charAnimator.SetTrigger ("canAttack");
-				charAnimator.SetInteger("currentWeapon",currentWeapon);
-			}
-		}
-<<<<<<< HEAD
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
-=======
->>>>>>> a5b7b57d0af446a94174675b9e8768b406163c6a
-
 
 }
-/// <summary>
-	/// Handles all the change of parameters for the animator controller
-	/// </summary>
-	/// // used for determing what the animation that needs to be played is.
-	/// <summary>
-	///  idle/walking = 0;
-	/// jump= 1;
-	/// Meele Attack = 2;
-	/// </summary>
+
+
+
 	void OnCollisionEnter(Collision col)
 	{
 		if (col.gameObject.tag == "Floor") {
@@ -413,8 +318,18 @@ public class CharacterMovementScript : MonoBehaviour {
         {
             charAnimator.SetBool("ground", _ground);
         }
-        
-
+	}
+	public bool Direction
+	{
+		get {return direction;}
+	}
+	IEnumerator Delay(float x)
+	{
+		Debug.Log ("I waited");
+	
+		yield return new WaitForSeconds(x);
+		Instantiate(currentBullet,muzzleLocation.position,muzzleLocation.rotation);
+		canfire = false;
 
 	}
 }

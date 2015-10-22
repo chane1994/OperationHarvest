@@ -29,7 +29,7 @@ public class GuardController : MonoBehaviour
     {
         if (health > 0)
         {
-            if ((player.transform.position.x - gameObject.transform.position.x < 3 && player.transform.position.x > gameObject.transform.position.x && movingSpeed < 0) || (gameObject.transform.position.x - player.transform.position.x < 3 && player.transform.position.x < gameObject.transform.position.x && movingSpeed > 0))
+            if ((player.transform.position.x - gameObject.transform.position.x < 4 && player.transform.position.x > gameObject.transform.position.x && movingSpeed < 0) || (gameObject.transform.position.x - player.transform.position.x < 4 && player.transform.position.x < gameObject.transform.position.x && movingSpeed > 0))
             {
                 _move = false;
                 _seePlayer = true;

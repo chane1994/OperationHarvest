@@ -15,7 +15,7 @@ public class BulletMovement : MonoBehaviour {
 		
 		age = 0;
 		player = GameObject.FindGameObjectWithTag ("Player");
-		direction = player.GetComponent<CharacterMovementScript> ().Direction;
+		direction = player.GetComponent<CharacterMovementScript>().Direction;
         aimMode = player.GetComponent<CharacterMovementScript>().AimMode;
         Debug.Log("My direction is" + direction);
         Debug.Log("Aimmode is currently" + aimMode);
@@ -26,9 +26,11 @@ public class BulletMovement : MonoBehaviour {
     {
         set { position = value; }
     }
-	void Update () {
+	void Update () 
+    {
         if (!aimMode)
         {
+            
             age += Time.deltaTime;
             if (this.gameObject.tag == "Bullet")
             {
@@ -57,8 +59,23 @@ public class BulletMovement : MonoBehaviour {
             this.transform.LookAt(position);
             age += Time.deltaTime;
             this.transform.Translate(Vector3.forward);
+            
             if (age > 6)
                 Destroy(this.gameObject);
         }
-}
+        transform.position = new Vector3(transform.position.x, transform.position.y, -0.77f);
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            col.gameObject.GetComponent<CharacterMovementScript>().TakeHit(10f);
+        }
+        else if (col.gameObject.tag == "Enemy")
+        {
+            col.gameObject.GetComponent<GuardController>().TakeHit(10f);
+        }
+        Destroy(gameObject);
+    }
 }

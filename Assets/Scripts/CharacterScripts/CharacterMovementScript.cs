@@ -16,7 +16,7 @@ public class CharacterMovementScript : MonoBehaviour {
 	public GameObject currentBullet;
 	public GameObject currentGrenade;
 	Event shotEvent;
-	float health;
+	public float health;
 	bool direction;
 
 	GameObject menu;
@@ -65,6 +65,7 @@ public class CharacterMovementScript : MonoBehaviour {
 	}
 	void HandleMenu()
 	{
+        Health();
         Cursor.visible = paused;
         Cursor.SetCursor(null, hotSpot, cursorMode);
 		if (Input.GetButtonDown ("Menu")) {
@@ -184,7 +185,7 @@ public class CharacterMovementScript : MonoBehaviour {
 		//Handles's Basic movement of the Character
 		fireRate += Time.deltaTime;
         Health();
-       
+        //TakeHit(1.0f);
         if (health <= 0)
         {
             charAnimator.SetBool("dead", true);
@@ -332,4 +333,8 @@ public class CharacterMovementScript : MonoBehaviour {
 		canfire = false;
 
 	}
+    public void TakeHit(float f)
+    {
+        health -= f;
+    }
 }

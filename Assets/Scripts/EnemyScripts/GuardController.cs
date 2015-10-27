@@ -21,7 +21,8 @@ public class GuardController : MonoBehaviour
         animate = this.gameObject.GetComponent<Animator>();
         animate.SetBool("seePlayer", _seePlayer);
         animate.SetBool("move", _move);
-
+        gameObject.tag = "Enemy";
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.77f);
     }
 
     // Update is called once per frame

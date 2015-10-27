@@ -79,7 +79,7 @@ public class CharacterMovementScript : MonoBehaviour {
 		if (Input.GetButton ("Horizontal")) {
 			
 			//Debug.Log ("Moving");
-			Debug.Log (Input.GetAxis("Horizontal"));
+			//Debug.Log (Input.GetAxis("Horizontal"));
 			_moving = true;
 			if (Input.GetButton("Running"))
 			{
@@ -165,7 +165,7 @@ public class CharacterMovementScript : MonoBehaviour {
             GameObject instance = (GameObject)Instantiate(currentBullet,fpCamera.transform.position,Quaternion.identity);
             instance.transform.LookAt(position);
             instance.GetComponent<BulletMovement>().Position = position;
-             Debug.Log("Banana:" + position);
+             //Debug.Log("Banana:" + position);
              fireRate = 0;
               
           }
@@ -215,7 +215,7 @@ public class CharacterMovementScript : MonoBehaviour {
                 if (currentWeapon < 2)
                 {
                     currentWeapon++;
-                    Debug.Log("current weapon is" + currentWeapon);
+                    //Debug.Log("current weapon is" + currentWeapon);
                 }
                 else
                 {
@@ -228,21 +228,21 @@ public class CharacterMovementScript : MonoBehaviour {
 
                 if (currentWeapon == 0)//This is the melee attack, usally with a sword
                 {
-                    Debug.Log("MeleeAttack");
+                    //Debug.Log("MeleeAttack");
                     charAnimator.SetTrigger("canAttack");
                     charAnimator.SetInteger("currentWeapon", currentWeapon);
                     fireRate = 0;
                 }
                 if (currentWeapon == 1)//This is the grenade
                 {
-                    Debug.Log("GrenadeAttack");
+                    //Debug.Log("GrenadeAttack");
                     charAnimator.SetTrigger("canAttack");
                     charAnimator.SetInteger("currentWeapon", currentWeapon);
                     fireRate = 0;
                 }
                 if (currentWeapon == 2)//This is the pistol
                 {
-                    Debug.Log("PistolAttack");
+                    //Debug.Log("PistolAttack");
                     charAnimator.SetTrigger("canAttack");
                     charAnimator.SetInteger("currentWeapon", currentWeapon);
                     canfire = true;
@@ -264,7 +264,7 @@ public class CharacterMovementScript : MonoBehaviour {
 			//Debug.Log ("Landed on the ground");
 		}
 		if (col.gameObject.tag == "Climable") {
-			Debug.Log ("Try Climbing");
+			//Debug.Log ("Try Climbing");
 		}
 	}
 
@@ -281,7 +281,7 @@ public class CharacterMovementScript : MonoBehaviour {
 		if (col.gameObject.tag == "Climable") {
 			
 			if (Input.GetButton ("Vertical")) {
-				Debug.Log ("Try Climbing");
+				//Debug.Log ("Try Climbing");
 				
 				player.transform.Translate (Vector3.up * movingSpeed * Input.GetAxis ("Vertical"), camera.transform);
 				player.transform.eulerAngles = new Vector3 (0, 0, 0);
@@ -294,7 +294,7 @@ public class CharacterMovementScript : MonoBehaviour {
 		if (col.gameObject.tag == "Climable") {
 
 			if (Input.GetButton ("Vertical")) {
-				Debug.Log ("Try Climbing");
+				//Debug.Log ("Try Climbing");
 
 				player.transform.Translate (Vector3.up * movingSpeed * Input.GetAxis ("Vertical"), camera.transform);
 				player.transform.eulerAngles = new Vector3 (0, 0, 0);
@@ -326,7 +326,7 @@ public class CharacterMovementScript : MonoBehaviour {
 	}
 	IEnumerator Delay(float x)
 	{
-		Debug.Log ("I waited");
+		//Debug.Log ("I waited");
 	
 		yield return new WaitForSeconds(x);
 		Instantiate(currentBullet,muzzleLocation.position,muzzleLocation.rotation);

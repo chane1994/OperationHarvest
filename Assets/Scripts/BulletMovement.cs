@@ -17,8 +17,8 @@ public class BulletMovement : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		direction = player.GetComponent<CharacterMovementScript>().Direction;
         aimMode = player.GetComponent<CharacterMovementScript>().AimMode;
-        Debug.Log("My direction is" + direction);
-        Debug.Log("Aimmode is currently" + aimMode);
+        //Debug.Log("My direction is" + direction);
+      //  Debug.Log("Aimmode is currently" + aimMode);
 	}
 
 	// Update is called once per frame
@@ -37,7 +37,7 @@ public class BulletMovement : MonoBehaviour {
                 if (direction)
                 {
                     this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * 50);
-                    Debug.Log("Banana");
+                   // Debug.Log("Banana");
                 }
                 else
                     this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left * 50);

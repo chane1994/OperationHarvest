@@ -60,6 +60,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
     </Reference>
@@ -68,6 +74,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GrenadeScript.cs" />
+    <Compile Include="Assets\HandlerOptionsScript.cs" />
+    <Compile Include="Assets\HandlerScript.cs" />
+    <Compile Include="Assets\SciFiForces\Scripts\FlightAnimation.cs" />
+    <Compile Include="Assets\SciFiForces\Scripts\SciFiArtillery.cs" />
+    <Compile Include="Assets\SciFiForces\Scripts\SciFiTurret.cs" />
+    <Compile Include="Assets\SciFiForces\Scripts\TrackAnimator.cs" />
+    <Compile Include="Assets\SciFiForces\Scripts\WheelAnimator.cs" />
     <Compile Include="Assets\Scripts\BulletMovement.cs" />
     <Compile Include="Assets\Scripts\CameraScripts\CameraMovementScript.cs" />
     <Compile Include="Assets\Scripts\CameraScripts\SlightCameraFollow.cs" />

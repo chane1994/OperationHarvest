@@ -74,7 +74,15 @@ public class BulletMovement : MonoBehaviour {
         }
         else if (col.gameObject.tag == "Enemy")
         {
-            col.gameObject.GetComponent<GuardController>().TakeHit(10f);
+
+            if (col.gameObject.GetComponent<GuardController>())
+            {
+                col.gameObject.GetComponent<GuardController>().TakeHit(10f);
+            }
+            else 
+            {
+                print("We cool");
+            }
         }
         Destroy(gameObject);
     }

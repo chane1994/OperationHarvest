@@ -13,6 +13,7 @@ public class CharacterMovementScript : MonoBehaviour {
 	int currentWeapon;
 	public bool paused;
 	public Transform muzzleLocation;
+    public Transform grenadeLocation;
 	public GameObject currentBullet;
 	public GameObject currentGrenade;
 	Event shotEvent;
@@ -216,12 +217,19 @@ public class CharacterMovementScript : MonoBehaviour {
                 {
                     currentWeapon++;
                     //Debug.Log("current weapon is" + currentWeapon);
+                    
                 }
                 else
                 {
                     currentWeapon = 0;
-                }
+                }     
+        }
+            if (currentWeapon == 1)
+            {
+                Cursor.visible = true;
+                Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
             }
+
             // Handles Firing weapons
             if (Input.GetButton("Fire1") && fireRate > 2.5f)
             {
@@ -238,6 +246,7 @@ public class CharacterMovementScript : MonoBehaviour {
                     //Debug.Log("GrenadeAttack");
                     charAnimator.SetTrigger("canAttack");
                     charAnimator.SetInteger("currentWeapon", currentWeapon);
+                    Instantiate(currentGrenade, grenadeLocation.position, Quaternion.identity);
                     fireRate = 0;
                 }
                 if (currentWeapon == 2)//This is the pistol

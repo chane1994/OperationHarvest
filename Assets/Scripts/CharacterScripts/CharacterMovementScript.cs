@@ -156,24 +156,27 @@ public class CharacterMovementScript : MonoBehaviour {
 	{
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+		Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y,(float)-0.77);
+		charAnimator.SetLookAtPosition(position);
+		charAnimator.SetLookAtWeight(1.0f);
+		Debug.Log ("The mouse position is: " + position);
         if (Input.GetButton ("Fire1"))
         {
           if (currentWeapon == 2 && fireRate> 2f)
           {
              
-            Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 15);
+
+
             position = Camera.main.ScreenToWorldPoint(position);
             GameObject instance = (GameObject)Instantiate(currentBullet,fpCamera.transform.position,Quaternion.identity);
-            instance.transform.LookAt(position);
+          
+
             instance.GetComponent<BulletMovement>().Position = position;
              //Debug.Log("Banana:" + position);
              fireRate = 0;
               
           }
         }
-       
-
-
         //Debug.Log(mousePos);
 	}
     public bool AimMode
@@ -203,8 +206,7 @@ public class CharacterMovementScript : MonoBehaviour {
 			HandleMovement ();
            
 		} else {
-			fpCamera.enabled = true;
-			camera.enabled = false;
+
 			HandleAimMode(fireRate);
 		}
 
@@ -229,7 +231,20 @@ public class CharacterMovementScript : MonoBehaviour {
                 Cursor.visible = true;
                 Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
             }
+			if(_climbing)
+			{
+				transform.rotation = Quaternion.Euler(0,0,0);
+				this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+				if (Input.GetAxis("Vertical") == 0)
+					charAnimator.enabled = false;
+				else
+					charAnimator.enabled = true;
 
+			}
+			else
+			{
+				this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+			}
             // Handles Firing weapons
             if (Input.GetButton("Fire1") && fireRate > 2.5f)
             {
@@ -270,32 +285,24 @@ public class CharacterMovementScript : MonoBehaviour {
 		if (col.gameObject.tag == "Floor") {
 			_ground = true;
 			AnimationHandler(1);
+		
 			//Debug.Log ("Landed on the ground");
 		}
-		if (col.gameObject.tag == "Climable") {
-			//Debug.Log ("Try Climbing");
-		}
+
 	}
 
-	/*void OnCollisionExit(Collision col)
-	{
-		if (col.gameObject.tag == "Floor") {
-			_ground = false;
-			AnimationHandler(1);
-			//Debug.Log(" Jumped into the air");
-		}
-	}*/
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "Climable") {
+		if (col.gameObject.tag == "Climable" ) {
 			
 			if (Input.GetButton ("Vertical")) {
 				//Debug.Log ("Try Climbing");
-				
+				_climbing = true;
+				charAnimator.SetBool("climbing",_climbing);
 				player.transform.Translate (Vector3.up * movingSpeed * Input.GetAxis ("Vertical"), camera.transform);
-				player.transform.eulerAngles = new Vector3 (0, 0, 0);
+
 			}	
-			this.rigidBody.useGravity = !Input.GetButton ("Vertical");
+					
 		}
 	}
 	void OnTriggerStay(Collider col)
@@ -304,17 +311,18 @@ public class CharacterMovementScript : MonoBehaviour {
 
 			if (Input.GetButton ("Vertical")) {
 				//Debug.Log ("Try Climbing");
-
+				_climbing = true;
+				charAnimator.SetBool("climbing",_climbing);
 				player.transform.Translate (Vector3.up * movingSpeed * Input.GetAxis ("Vertical"), camera.transform);
-				player.transform.eulerAngles = new Vector3 (0, 0, 0);
+
 			}	
-			this.rigidBody.useGravity = !Input.GetButton ("Vertical");
 		}
 	}
 	void OnTriggerExit(Collider col)
 	{
 		if (col.gameObject.tag == "Climable") {
-
+			_climbing = false;
+			charAnimator.SetBool("climbing",_climbing);
 			this.rigidBody.useGravity = true;
 		}
 	}

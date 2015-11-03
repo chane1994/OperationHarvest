@@ -45,9 +45,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FollowMouse.cs" />
      <Compile Include="Assets\GrenadeScript.cs" />
      <Compile Include="Assets\HandlerOptionsScript.cs" />
      <Compile Include="Assets\HandlerScript.cs" />
+     <Compile Include="Assets\SciFiForces\Scripts\FlightAnimation.cs" />
+     <Compile Include="Assets\SciFiForces\Scripts\SciFiArtillery.cs" />
+     <Compile Include="Assets\SciFiForces\Scripts\SciFiTurret.cs" />
+     <Compile Include="Assets\SciFiForces\Scripts\TrackAnimator.cs" />
+     <Compile Include="Assets\SciFiForces\Scripts\WheelAnimator.cs" />
      <Compile Include="Assets\Scripts\BulletMovement.cs" />
      <Compile Include="Assets\Scripts\CameraScripts\CameraMovementScript.cs" />
      <Compile Include="Assets\Scripts\CameraScripts\SlightCameraFollow.cs" />
@@ -57,6 +63,7 @@
      <Compile Include="Assets\Scripts\EnemyScripts\GuardController.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\NextRoom.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
+     <Compile Include="Assets\TestIKScript.cs" />
      <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\TES_BumpedReflectionEmissive.shader" />
      <None Include="Assets\Mobility_01_Free_v2\Mobility_Free_Unity_Info.txt" />
      <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\BumpedReflectionEmissive.shader" />

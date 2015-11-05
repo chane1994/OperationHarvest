@@ -97,6 +97,7 @@ public class CharacterMovementScript : MonoBehaviour {
 			if (Input.GetAxis ("Horizontal") > 0) {
 				direction = true;
 				player.transform.eulerAngles = new Vector3 (0, -270, 0);
+                
 			} else {
 				direction = false;
 				player.transform.eulerAngles = new Vector3 (0, -90, 0);
@@ -159,7 +160,7 @@ public class CharacterMovementScript : MonoBehaviour {
 		Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y,(float)-0.77);
 		charAnimator.SetLookAtPosition(position);
 		charAnimator.SetLookAtWeight(1.0f);
-		Debug.Log ("The mouse position is: " + position);
+		//Debug.Log ("The mouse position is: " + position);
         if (Input.GetButton ("Fire1"))
         {
           if (currentWeapon == 2 && fireRate> 2f)
@@ -169,9 +170,9 @@ public class CharacterMovementScript : MonoBehaviour {
 
             position = Camera.main.ScreenToWorldPoint(position);
             GameObject instance = (GameObject)Instantiate(currentBullet,fpCamera.transform.position,Quaternion.identity);
-          
-
             instance.GetComponent<BulletMovement>().Position = position;
+            instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
+            
              //Debug.Log("Banana:" + position);
              fireRate = 0;
               
@@ -337,6 +338,8 @@ public class CharacterMovementScript : MonoBehaviour {
             charAnimator.SetBool("ground", _ground);
         }
 	}
+    //Right=true
+    //Left=false
 	public bool Direction
 	{
 		get {return direction;}
@@ -344,10 +347,18 @@ public class CharacterMovementScript : MonoBehaviour {
 	IEnumerator Delay(float x)
 	{
 		//Debug.Log ("I waited");
-	
-		yield return new WaitForSeconds(x);
-		Instantiate(currentBullet,muzzleLocation.position,muzzleLocation.rotation);
-		canfire = false;
+
+	    //Original Bullet 
+		/*yield return new WaitForSeconds(x);
+		Instantiate(currentBullet,muzzleLocation.position,muzzleLocation.rotation); 
+		canfire = false;*/
+
+        //New Bullet
+        yield return new WaitForSeconds(x);
+        GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
+        //instance.GetComponent<BulletMovement>().Position = position;
+        instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
+        canfire = false;
 
 	}
     public void TakeHit(float f)

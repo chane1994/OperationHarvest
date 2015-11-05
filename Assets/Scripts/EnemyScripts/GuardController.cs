@@ -10,9 +10,12 @@ public class GuardController : MonoBehaviour
     //Animation of the enemy
     public Animator animate;
     public GameObject player;
+    public GameObject currentBullet;
+    public Transform muzzleLocation;
     public float movingSpeed;
     public int count = 0;
     float health = 10;
+    bool canfire=true;
     // Use this for initialization
     void Start()
     {
@@ -22,7 +25,9 @@ public class GuardController : MonoBehaviour
         animate.SetBool("seePlayer", _seePlayer);
         animate.SetBool("move", _move);
         gameObject.tag = "Enemy";
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.77f);
+        //gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.77f);
+        player = GameObject.FindGameObjectWithTag("Player");
+        
     }
 
     // Update is called once per frame
@@ -30,13 +35,17 @@ public class GuardController : MonoBehaviour
     {
         if (health > 0)
         {
-            if ((player.transform.position.x - gameObject.transform.position.x < 4 && player.transform.position.x > gameObject.transform.position.x && movingSpeed < 0) || (gameObject.transform.position.x - player.transform.position.x < 4 && player.transform.position.x < gameObject.transform.position.x && movingSpeed > 0))
+            //Commented for testing move
+            /*if (((player.transform.position.x - gameObject.transform.position.x < 4 && player.transform.position.x > gameObject.transform.position.x && movingSpeed < 0) || (gameObject.transform.position.x - player.transform.position.x < 4 && player.transform.position.x < gameObject.transform.position.x && movingSpeed > 0)))
             {
-                _move = false;
-                _seePlayer = true;
-                Attack();
-                animate.SetBool("seePlayer", _seePlayer);
-                animate.SetBool("move", _move);
+                if (canfire)
+                {
+                    _move = false;
+                    _seePlayer = true;
+                    Attack();
+                    animate.SetBool("seePlayer", _seePlayer);
+                    animate.SetBool("move", _move);
+                }
             }
             else
             {
@@ -46,41 +55,55 @@ public class GuardController : MonoBehaviour
                 Move();
                 animate.SetBool("move", _move);
                 animate.SetBool("seePlayer", _seePlayer);
-            }
+            }*/
+            Move();
+            animate.SetBool("move", true);
+            animate.SetBool("seePlayer", false);
         }
 
-
+            
     }
     //Will add the direction into a seperate method later
     void Move()
     {
         count++;
         //handles the direction of the enemy
+        //NOTE: Had to modify due to the scene being on a different angle that was originally.  I think?
         if (movingSpeed > 0)
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
             this.gameObject.transform.Translate(new Vector3(-movingSpeed, 0, 0));
+            //this.gameObject.transform.Translate(new Vector3(0, -movingSpeed, 0));
+            //print("Walk a");
+            //gameObject.transform.Translate(Vector3.right * movingSpeed);
         }
         else
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
             this.gameObject.transform.Translate(new Vector3(movingSpeed, 0, 0));
+            //this.gameObject.transform.Translate(new Vector3(0, movingSpeed, 0));
+            //print("Walk b");
+            //gameObject.transform.Translate(Vector3.left * movingSpeed);
         }
-        if (count >= 500)
+        if (count >= 100)
         {
             movingSpeed *= -1;
             count = 0;
         }
+        //this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, 0.07f, this.gameObject.transform.position.z);
+        
     }
     void Attack()
     {
         if (movingSpeed > 0)
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            StartCoroutine(Delay(1f));
         }
         else
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            StartCoroutine(Delay(1f));
         }
     }
     public void TakeHit(float f)
@@ -90,6 +113,23 @@ public class GuardController : MonoBehaviour
         {
             animate.SetBool("dead", true);
         }
+    }
+    IEnumerator Delay(float x)
+    {
+        //Debug.Log ("I waited");
+
+        //Original Bullet 
+        /*yield return new WaitForSeconds(x);
+        Instantiate(currentBullet,muzzleLocation.position,muzzleLocation.rotation); 
+        canfire = false;*/
+
+        //New Bullet
+        yield return new WaitForSeconds(x);
+        GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
+        //instance.GetComponent<BulletMovement>().Position = position;
+        instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
+        canfire = false;
+
     }
 }
 

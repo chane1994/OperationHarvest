@@ -5,22 +5,26 @@ public class BulletMovement : MonoBehaviour {
 
 
 	float age;
-	GameObject player;
+	GameObject attacker;
 	bool direction; //if direction is true, bullet goes right. Else, it goes right
     bool aimMode;
     Vector3 position;
 	// Use this for initialization
 	void Start () {
-
-		
 		age = 0;
-		player = GameObject.FindGameObjectWithTag ("Player");
-		direction = player.GetComponent<CharacterMovementScript>().Direction;
-        aimMode = player.GetComponent<CharacterMovementScript>().AimMode;
+		//attacker = GameObject.FindGameObjectWithTag ("Player");
+		//direction = attacker.GetComponent<CharacterMovementScript>().Direction;
+        //aimMode = attacker.GetComponent<CharacterMovementScript>().AimMode;
         //Debug.Log("My direction is" + direction);
       //  Debug.Log("Aimmode is currently" + aimMode);
 	}
-
+    public void SetAttacker(GameObject g)
+    {
+        attacker = g;
+        direction = attacker.GetComponent<CharacterMovementScript>().Direction;
+        aimMode = attacker.GetComponent<CharacterMovementScript>().AimMode; 
+        print("Direction: "+direction);
+    }
 	// Update is called once per frame
     public Vector3 Position
     {
@@ -79,9 +83,10 @@ public class BulletMovement : MonoBehaviour {
             {
                 col.gameObject.GetComponent<GuardController>().TakeHit(10f);
             }
-            else 
+            else if(col.gameObject.GetComponent<TurretController>())
             {
-                print("We cool");
+                col.gameObject.GetComponent<TurretController>().TakeHit(10f);
+                
             }
         }
         Destroy(gameObject);

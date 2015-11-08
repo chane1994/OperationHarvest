@@ -21,8 +21,18 @@ public class BulletMovement : MonoBehaviour {
     public void SetAttacker(GameObject g)
     {
         attacker = g;
-        direction = attacker.GetComponent<CharacterMovementScript>().Direction;
-        aimMode = attacker.GetComponent<CharacterMovementScript>().AimMode; 
+        if (attacker.gameObject.tag == "Player")
+        {
+            direction = attacker.GetComponent<CharacterMovementScript>().Direction;
+            aimMode = attacker.GetComponent<CharacterMovementScript>().AimMode;
+        }
+        else if (attacker.GetComponent<GuardController>())
+        {
+            if (attacker.GetComponent<GuardController>().movingSpeed < 0)
+                direction = true;
+            else
+                direction = false;
+        }
         print("Direction: "+direction);
     }
 	// Update is called once per frame
@@ -68,27 +78,39 @@ public class BulletMovement : MonoBehaviour {
                 Destroy(this.gameObject);
         }
         transform.position = new Vector3(transform.position.x, transform.position.y, -0.77f);
+        
     }
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject != attacker)
         {
-            col.gameObject.GetComponent<CharacterMovementScript>().TakeHit(10f);
-        }
-        else if (col.gameObject.tag == "Enemy")
-        {
+            if (col.gameObject.tag == "Player")
+            {
+                col.gameObject.GetComponent<CharacterMovementScript>().TakeHit(10f);
+            }
+            else if (col.gameObject.tag == "Enemy")
+            {
 
-            if (col.gameObject.GetComponent<GuardController>())
-            {
-                //col.gameObject.GetComponent<GuardController>().TakeHit(10f);
+                if (col.gameObject.GetComponent<GuardController>())
+                {
+                    col.gameObject.GetComponent<GuardController>().TakeHit(10f);
+                }
+                else if (col.gameObject.GetComponent<TurretController>())
+                {
+                    col.gameObject.GetComponent<TurretController>().TakeHit(10f);
+
+                }
             }
-            else if(col.gameObject.GetComponent<TurretController>())
-            {
-                col.gameObject.GetComponent<TurretController>().TakeHit(10f);
-                
-            }
+            Destroy(gameObject);
         }
-       // Destroy(gameObject);
+       
+    }
+    //this prevents the bullet from spawning on the model it comes from
+    IEnumerable startAsTrigger()
+    {
+        this.GetComponent<Rigidbody>().detectCollisions = false;
+        yield return new WaitForSeconds(0.5f);
+        this.GetComponent<Rigidbody>().detectCollisions = true;
     }
 }

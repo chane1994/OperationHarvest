@@ -2,29 +2,35 @@
 using System.Collections;
 
 public class EnemyCamera : MonoBehaviour {
-	public Light light1;
+	/*public Light light1;
 	public Light light2;
 	public Light light3;
 	public Light light4;
-	public Light light5;
-    public AudioSource audio1;
+	public Light light5;*/
+    public Light[] lights;
+    /*public AudioSource audio1;
     public AudioSource audio2;
     public AudioSource audio3;
     public AudioSource audio4;
-    public AudioSource audio5;
+    public AudioSource audio5;*/
 	public Light cameraLight;
 	public GameObject player;
     public bool currentlyPlaying = false;
 	// Use this for initialization
 	void Start () 
 	{
-		
+        lights = gameObject.GetComponentsInChildren<Light>();
+        foreach (Light l in lights)
+        {
+            l.color = Color.white;
+            l.intensity = 1;
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (player.transform.position.y >= 6 && player.transform.position.x>-2.7 && player.transform.position.x<6.2 && !currentlyPlaying) 
+		/*if (player.transform.position.y >= 6 && player.transform.position.x>-2.7 && player.transform.position.x<6.2 && !currentlyPlaying) 
 		{
 			cameraLight.color = Color.red;
 			light1.intensity = 8;
@@ -38,7 +44,7 @@ public class EnemyCamera : MonoBehaviour {
             audio4.Play();
             audio5.Play();
             currentlyPlaying = true;
-		}
+		}*/
 		
 	}
 }

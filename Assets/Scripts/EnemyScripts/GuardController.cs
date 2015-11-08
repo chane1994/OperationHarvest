@@ -59,8 +59,8 @@ public class GuardController : MonoBehaviour
             }
             
         }
+        print("Can fire: " + canfire);
 
-            
     }
     //Will add the direction into a seperate method later
     void Move()
@@ -94,7 +94,7 @@ public class GuardController : MonoBehaviour
     }
     void Attack()
     {
-        if (movingSpeed > 0)
+        if (movingSpeed < 0)
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
             StartCoroutine(Delay(1f));
@@ -104,6 +104,7 @@ public class GuardController : MonoBehaviour
             this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
             StartCoroutine(Delay(1f));
         }
+        canfire = true;
     }
     public void TakeHit(float f)
     {
@@ -124,12 +125,26 @@ public class GuardController : MonoBehaviour
 
         //New Bullet
         yield return new WaitForSeconds(x);
-        //Was shooting from the foot before adding the new vector 3
-        GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
+        GameObject instance;
+        if (movingSpeed > 0)
+        {
+            this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
+            StartCoroutine(Delay(1f));
+            instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position+new Vector3(-1,0,0), muzzleLocation.rotation);
+        }
+        else
+        {
+            this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
+            StartCoroutine(Delay(1f));
+            instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position+new Vector3(1,0,0), muzzleLocation.rotation);
+        }
+        //original
+        //GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
         //instance.GetComponent<BulletMovement>().Position = position;
         instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
-        canfire = false;
-
+        
+        
     }
+    
 }
 

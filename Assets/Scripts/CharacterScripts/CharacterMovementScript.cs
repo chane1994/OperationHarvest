@@ -52,7 +52,8 @@ public class CharacterMovementScript : MonoBehaviour {
         charAnimator.SetBool("crouching", _crouch);
 		currentWeapon = 2;
         charAnimator.SetInteger("currentWeapon", currentWeapon);
-		health = 100f;
+        //Set from 100->10 to make demo seem difficult.  Maybe make permenant?
+		health = 10f;
 
 		menu = GameObject.FindGameObjectWithTag ("Menu");
         healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();

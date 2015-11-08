@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class CharacterMovementScript : MonoBehaviour {
 	public Animator charAnimator; //Access to Agent Controller, the animation controller of the model
 	public GameObject player;// Will be set to private
-	public Camera camera; // Will be set to private
-	public Camera fpCamera;
+    private Camera camera; // Will be set to private
+
 	public float movingSpeed, jumpingSpeed;
 	bool _moving, _ground, _running, _climbing, _crouch;
 	Rigidbody rigidBody;
@@ -24,8 +24,10 @@ public class CharacterMovementScript : MonoBehaviour {
     Image healthBar;
 
     public Texture2D cursorTexture;
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
+    public CursorMode cursorMode;
+    public Vector2 hotSpot;
+
+    public TestIKScript testIKScript;
 
 	bool aimBool; // Determines whether the game is in aiming mode
 	float fireRate; //Gives a set fire rate to attacks
@@ -38,16 +40,19 @@ public class CharacterMovementScript : MonoBehaviour {
 		_moving = false;
 		_ground = true;
         _crouch = false;
-		fpCamera.enabled = false;
-		camera = GameObject.Find ("Camera").GetComponent<Camera> ();
+	
+		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
 		canfire = false;
-        aimBool = false;		
-		
+        aimBool = false;
+
+        //This Script handles IK Stuff
+        testIKScript = this.gameObject.GetComponent<TestIKScript>();
+
 		player.transform.eulerAngles = new Vector3 (0, 180, 0);// This means that the player will start facing left
 		charAnimator = player.GetComponent<Animator> ();
 		charAnimator.SetBool ("moving", _moving); // Means that the character is not movin, genrally in the idle 
 		charAnimator.SetBool ("ground", _ground);// Character is on the ground
-		charAnimator.SetBool ("running", _running);
+		charAnimator.SetBool ("running", _running);// Character is Running
 		charAnimator.SetBool ("climbing", _climbing);
         charAnimator.SetBool("crouching", _crouch);
 		currentWeapon = 2;
@@ -156,30 +161,17 @@ public class CharacterMovementScript : MonoBehaviour {
 	}
 	void HandleAimMode(float fireRate)
 	{
+        
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-		Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y,(float)-0.77);
-		charAnimator.SetLookAtPosition(position);
-		charAnimator.SetLookAtWeight(1.0f);
-		//Debug.Log ("The mouse position is: " + position);
-        if (Input.GetButton ("Fire1"))
+        testIKScript.ikActive = true;
+        if (Input.GetButton("Fire1") && fireRate > 2.5f)
         {
-          if (currentWeapon == 2 && fireRate> 2f)
-          {
-             
-
-
-            position = Camera.main.ScreenToWorldPoint(position);
-            GameObject instance = (GameObject)Instantiate(currentBullet,fpCamera.transform.position,Quaternion.identity);
-            instance.GetComponent<BulletMovement>().Position = position;
-            instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
+            GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
             
-             //Debug.Log("Banana:" + position);
-             fireRate = 0;
-              
-          }
+            instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
+            fireRate = 0;
         }
-        //Debug.Log(mousePos);
 	}
     public bool AimMode
     {
@@ -202,18 +194,10 @@ public class CharacterMovementScript : MonoBehaviour {
 		} 
 
 		HandleMenu ();
-		if (!aimBool) {
-			fpCamera.enabled = false;
-			camera.enabled = true;
-			HandleMovement ();
+		HandleMovement ();
            
-		} else {
-
-			HandleAimMode(fireRate);
-		}
-
-        if (!aimBool)
-        {
+		
+        
             //Handles Switching wapons
             if (Input.GetButtonDown("switchWeapon"))
             {
@@ -227,7 +211,7 @@ public class CharacterMovementScript : MonoBehaviour {
                 {
                     currentWeapon = 0;
                 }     
-        }
+            }
             if (currentWeapon == 1)
             {
                 Cursor.visible = true;
@@ -237,15 +221,26 @@ public class CharacterMovementScript : MonoBehaviour {
 			{
 				transform.rotation = Quaternion.Euler(0,0,0);
 				this.gameObject.GetComponent<Rigidbody>().useGravity = false;
-				if (Input.GetAxis("Vertical") == 0)
-					charAnimator.enabled = false;
-				else
-					charAnimator.enabled = true;
+                if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+                {
+                    charAnimator.speed = 0;
+                    this.gameObject.GetComponent<Rigidbody>().Sleep();
+                    this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+                    this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX;
+                }              
+                else
+                {
+                    charAnimator.speed = 1;
+                    this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
+                }
 
 			}
 			else
 			{
 				this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+                this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
+                this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ;
 			}
             // Handles Firing weapons
             if (Input.GetButton("Fire1") && fireRate > 2.5f)
@@ -276,7 +271,14 @@ public class CharacterMovementScript : MonoBehaviour {
                 }
                 fireRate = 0;
             }
-        }
+            if (aimBool)
+            {
+                HandleAimMode(fireRate);
+            }
+            else
+            {
+                testIKScript.ikActive = false;
+            }
 
 }
 
@@ -297,7 +299,7 @@ public class CharacterMovementScript : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "Climable" ) {
 			
-			if (Input.GetButton ("Vertical")) {
+			if (Input.GetButton ("Vertical")  &&Input.GetButton ("Vertical") ) {
 				//Debug.Log ("Try Climbing");
 				_climbing = true;
 				charAnimator.SetBool("climbing",_climbing);
@@ -311,7 +313,8 @@ public class CharacterMovementScript : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "Climable") {
 
-			if (Input.GetButton ("Vertical")) {
+            if (Input.GetButton("Vertical") && Input.GetButton("Vertical"))
+            {
 				//Debug.Log ("Try Climbing");
 				_climbing = true;
 				charAnimator.SetBool("climbing",_climbing);

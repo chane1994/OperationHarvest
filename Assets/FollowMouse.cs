@@ -11,7 +11,7 @@ public class FollowMouse : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 screenPoint = Input.mousePosition; 
-		screenPoint.z = 4.42f;
+		screenPoint.z = Mathf.Abs(Camera.main.transform.position.z) + GameObject.FindGameObjectWithTag("Player").transform.position.z ;
 		this.gameObject.transform.position = Camera.main.ScreenToWorldPoint (screenPoint); 
 	}
 }

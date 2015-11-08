@@ -9,9 +9,11 @@ public class BulletMovement : MonoBehaviour {
 	bool direction; //if direction is true, bullet goes right. Else, it goes right
     bool aimMode;
     Vector3 position;
+    TestIKScript testIKScript;
 	// Use this for initialization
 	void Start () {
 		age = 0;
+        
 		//attacker = GameObject.FindGameObjectWithTag ("Player");
 		//direction = attacker.GetComponent<CharacterMovementScript>().Direction;
         //aimMode = attacker.GetComponent<CharacterMovementScript>().AimMode;
@@ -25,6 +27,12 @@ public class BulletMovement : MonoBehaviour {
         {
             direction = attacker.GetComponent<CharacterMovementScript>().Direction;
             aimMode = attacker.GetComponent<CharacterMovementScript>().AimMode;
+            if (aimMode)
+            {
+                testIKScript = GameObject.FindGameObjectWithTag("Player").GetComponent<TestIKScript>();
+                position = testIKScript.lookObj.position;
+                this.transform.LookAt(position);
+            }
         }
         else if (attacker.GetComponent<GuardController>())
         {
@@ -69,8 +77,8 @@ public class BulletMovement : MonoBehaviour {
         }
         else
         {
-          //  Debug.Log("I going towards "+ position);
-            this.transform.LookAt(position);
+           //Debug.Log("I going towards "+ position);
+            
             age += Time.deltaTime;
             this.transform.Translate(Vector3.forward);
             

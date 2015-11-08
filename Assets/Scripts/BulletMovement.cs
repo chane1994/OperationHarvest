@@ -81,7 +81,7 @@ public class BulletMovement : MonoBehaviour {
 
             if (col.gameObject.GetComponent<GuardController>())
             {
-                col.gameObject.GetComponent<GuardController>().TakeHit(10f);
+                //col.gameObject.GetComponent<GuardController>().TakeHit(10f);
             }
             else if(col.gameObject.GetComponent<TurretController>())
             {
@@ -89,6 +89,6 @@ public class BulletMovement : MonoBehaviour {
                 
             }
         }
-        Destroy(gameObject);
+       // Destroy(gameObject);
     }
 }

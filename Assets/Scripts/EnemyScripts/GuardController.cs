@@ -36,7 +36,7 @@ public class GuardController : MonoBehaviour
         if (health > 0)
         {
             //Commented for testing move
-            /*if (((player.transform.position.x - gameObject.transform.position.x < 4 && player.transform.position.x > gameObject.transform.position.x && movingSpeed < 0) || (gameObject.transform.position.x - player.transform.position.x < 4 && player.transform.position.x < gameObject.transform.position.x && movingSpeed > 0)))
+            if (((player.transform.position.x - gameObject.transform.position.x < 4 && player.transform.position.x > gameObject.transform.position.x && movingSpeed < 0) || (gameObject.transform.position.x - player.transform.position.x < 4 && player.transform.position.x < gameObject.transform.position.x && movingSpeed > 0)))
             {
                 if (canfire)
                 {
@@ -45,6 +45,7 @@ public class GuardController : MonoBehaviour
                     Attack();
                     animate.SetBool("seePlayer", _seePlayer);
                     animate.SetBool("move", _move);
+                    canfire = false;
                 }
             }
             else
@@ -55,10 +56,8 @@ public class GuardController : MonoBehaviour
                 Move();
                 animate.SetBool("move", _move);
                 animate.SetBool("seePlayer", _seePlayer);
-            }*/
-            Move();
-            animate.SetBool("move", true);
-            animate.SetBool("seePlayer", false);
+            }
+            
         }
 
             
@@ -69,10 +68,10 @@ public class GuardController : MonoBehaviour
         count++;
         //handles the direction of the enemy
         //NOTE: Had to modify due to the scene being on a different angle that was originally.  I think?
-        if (movingSpeed > 0)
+        if (movingSpeed < 0)
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
-            this.gameObject.transform.Translate(new Vector3(-movingSpeed, 0, 0));
+            this.gameObject.transform.Translate(new Vector3(0, 0, -movingSpeed));
             //this.gameObject.transform.Translate(new Vector3(0, -movingSpeed, 0));
             //print("Walk a");
             //gameObject.transform.Translate(Vector3.right * movingSpeed);
@@ -80,7 +79,7 @@ public class GuardController : MonoBehaviour
         else
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
-            this.gameObject.transform.Translate(new Vector3(movingSpeed, 0, 0));
+            this.gameObject.transform.Translate(new Vector3(0, 0, movingSpeed));
             //this.gameObject.transform.Translate(new Vector3(0, movingSpeed, 0));
             //print("Walk b");
             //gameObject.transform.Translate(Vector3.left * movingSpeed);
@@ -97,12 +96,12 @@ public class GuardController : MonoBehaviour
     {
         if (movingSpeed > 0)
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
             StartCoroutine(Delay(1f));
         }
         else
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
             StartCoroutine(Delay(1f));
         }
     }
@@ -125,6 +124,7 @@ public class GuardController : MonoBehaviour
 
         //New Bullet
         yield return new WaitForSeconds(x);
+        //Was shooting from the foot before adding the new vector 3
         GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
         //instance.GetComponent<BulletMovement>().Position = position;
         instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);

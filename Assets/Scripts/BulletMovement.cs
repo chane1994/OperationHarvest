@@ -33,7 +33,7 @@ public class BulletMovement : MonoBehaviour {
             else
                 direction = false;
         }
-        print("Direction: "+direction);
+        
     }
 	// Update is called once per frame
     public Vector3 Position

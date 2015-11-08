@@ -16,6 +16,7 @@ public class GuardController : MonoBehaviour
     public int count = 0;
     float health = 10;
     bool canfire=true;
+    static bool alarmActive = false;
     // Use this for initialization
     void Start()
     {
@@ -35,7 +36,7 @@ public class GuardController : MonoBehaviour
     {
         if (health > 0)
         {
-            //Commented for testing move
+            //Need to add a way to make sure they are on the same vertical plane
             if (((player.transform.position.x - gameObject.transform.position.x < 4 && player.transform.position.x > gameObject.transform.position.x && movingSpeed < 0) || (gameObject.transform.position.x - player.transform.position.x < 4 && player.transform.position.x < gameObject.transform.position.x && movingSpeed > 0)))
             {
                 if (canfire)
@@ -59,7 +60,7 @@ public class GuardController : MonoBehaviour
             }
             
         }
-        print("Can fire: " + canfire);
+        //print("Can fire: " + canfire);
 
     }
     //Will add the direction into a seperate method later
@@ -94,17 +95,22 @@ public class GuardController : MonoBehaviour
     }
     void Attack()
     {
-        if (movingSpeed < 0)
+        if (health > 0)
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
-            StartCoroutine(Delay(1f));
+            ActivateAlarm();
+            if (movingSpeed < 0)
+            {
+                this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
+                StartCoroutine(Delay(1f));
+            }
+            else
+            {
+                this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
+                StartCoroutine(Delay(1f));
+            }
+            
+            canfire = true;
         }
-        else
-        {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
-            StartCoroutine(Delay(1f));
-        }
-        canfire = true;
     }
     public void TakeHit(float f)
     {
@@ -125,26 +131,29 @@ public class GuardController : MonoBehaviour
 
         //New Bullet
         yield return new WaitForSeconds(x);
-        GameObject instance;
+        GameObject instance= new GameObject();
         if (movingSpeed > 0)
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
             StartCoroutine(Delay(1f));
-            instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position+new Vector3(-1,0,0), muzzleLocation.rotation);
+            if(health>0)
+                instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position+new Vector3(-1,0,0), muzzleLocation.rotation);
         }
         else
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
             StartCoroutine(Delay(1f));
-            instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position+new Vector3(1,0,0), muzzleLocation.rotation);
+            if(health>0)
+                instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position+new Vector3(1,0,0), muzzleLocation.rotation);
         }
         //original
         //GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
         //instance.GetComponent<BulletMovement>().Position = position;
-        instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
-        
-        
+        instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);      
     }
-    
+    void ActivateAlarm()
+    {
+        GameObject.FindGameObjectWithTag("Light Manager").GetComponent<EnemyCamera>().SetAlarm(true);
+    }
 }
 

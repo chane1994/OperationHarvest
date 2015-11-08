@@ -47,4 +47,24 @@ public class EnemyCamera : MonoBehaviour {
 		}*/
 		
 	}
+
+    public void SetAlarm(bool status)
+    {
+        if (status)
+        {
+            foreach (Light l in lights)
+            { 
+                l.intensity = 8;
+                l.color = Color.red;
+            }
+        }
+        else
+        {
+            foreach (Light l in lights)
+            {
+                l.intensity = 1;
+                l.color = Color.white;
+            }
+        }
+    }
 }

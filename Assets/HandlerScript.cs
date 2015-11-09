@@ -7,10 +7,12 @@ public class HandlerScript : MonoBehaviour, IPointerDownHandler {
     public GameObject globalTimerButton;
     public GameObject mapButton;
     public GameObject computerButton;
+    public GameObject inputTimer;
     public Animator parentAnimator;
     int animationState;
     bool activeHandler; // Helps handle the animation and stops it from doing the animations repeately
     bool wasClicked;
+    bool isOn;
 	// Use this for initialization
 	void Start () {
         wasClicked = false;
@@ -18,8 +20,10 @@ public class HandlerScript : MonoBehaviour, IPointerDownHandler {
         globalTimerButton.SetActive(wasClicked);
         mapButton.SetActive(wasClicked);
         computerButton.SetActive(wasClicked);
+        inputTimer.SetActive(false);
         activeHandler = false;
         animationState = 2;
+        isOn = false;
         
 	}
 	
@@ -27,18 +31,23 @@ public class HandlerScript : MonoBehaviour, IPointerDownHandler {
 	void Update () {
 	    
         if(wasClicked){
-            StartCoroutine(Yield(.2f));
+            StartCoroutine(Yield(1f));
             globalTimerButton.SetActive(true);
            mapButton.SetActive(true);
            computerButton.SetActive(true);
+           isOn = true;
         }
         else
         {
             globalTimerButton.SetActive(false);
             mapButton.SetActive(false);
             computerButton.SetActive(false);
+            isOn = false;
         }
-     
+        if (isOn)
+        {
+            inputTimer.SetActive(globalTimerButton.GetComponent<UIButtonScript>().WasClicked);
+        }
 	}
     public void OnPointerDown(PointerEventData eventData)
     {

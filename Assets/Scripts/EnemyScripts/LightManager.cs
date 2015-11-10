@@ -24,6 +24,7 @@ public class LightManager : MonoBehaviour {
         {
             l.color = Color.white;
             l.intensity = 1;
+            l.GetComponent<AudioSource>().loop = true;
         }
 	}
 	
@@ -56,6 +57,8 @@ public class LightManager : MonoBehaviour {
             { 
                 l.intensity = 8;
                 l.color = Color.red;
+                l.GetComponent<AudioSource>().Play();
+                
             }
         }
         else
@@ -64,6 +67,7 @@ public class LightManager : MonoBehaviour {
             {
                 l.intensity = 1;
                 l.color = Color.white;
+                l.GetComponent<AudioSource>().Pause();
             }
         }
     }

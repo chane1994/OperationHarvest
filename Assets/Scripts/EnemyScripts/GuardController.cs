@@ -59,11 +59,9 @@ public class GuardController : MonoBehaviour
             Debug.DrawRay(muzzleLocation.position, new Vector3(7 * direction, 0, 0), Color.blue);
            // if (Physics.Raycast(transform.position, new Vector3(direction, 0, 0), 7.0f))
             
-            
-            
-            if(Physics.Raycast(transform.position, new Vector3(direction,0,0),out hit,7.0f)&&hit.collider.tag=="Player")
+            if(Physics.Raycast(muzzleLocation.position, new Vector3(direction,0,0),out hit,7.0f)&&hit.collider.tag=="Player"&&player.GetComponent<CharacterMovementScript>().health>0)
             {
-                print("Hit!");
+                print("Player hp " + player.GetComponent<CharacterMovementScript>().health);
                 if (canfire)
                 {
                     _move = false;
@@ -119,6 +117,7 @@ public class GuardController : MonoBehaviour
     }
     void Attack()
     {
+        
         if (health > 0)
         {
             ActivateAlarm();
@@ -170,6 +169,7 @@ public class GuardController : MonoBehaviour
             if(health>0)
                 instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position+new Vector3(1,0,0), muzzleLocation.rotation);
         }
+        gameObject.GetComponent<AudioSource>().Play();
         //original
         //GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
         //instance.GetComponent<BulletMovement>().Position = position;

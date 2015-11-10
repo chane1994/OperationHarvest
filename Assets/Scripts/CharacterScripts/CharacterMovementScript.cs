@@ -58,7 +58,7 @@ public class CharacterMovementScript : MonoBehaviour {
 		currentWeapon = 2;
         charAnimator.SetInteger("currentWeapon", currentWeapon);
         //Set from 100->10 to make demo seem difficult.  Maybe make permenant?
-		health = 10f;
+		health = 100f;
 
 		menu = GameObject.FindGameObjectWithTag ("Menu");
         healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
@@ -356,10 +356,11 @@ public class CharacterMovementScript : MonoBehaviour {
 		/*yield return new WaitForSeconds(x);
 		Instantiate(currentBullet,muzzleLocation.position,muzzleLocation.rotation); 
 		canfire = false;*/
-
+        
         //New Bullet
         yield return new WaitForSeconds(x);
         GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
+        gameObject.GetComponent<AudioSource>().Play();
         //instance.GetComponent<BulletMovement>().Position = position;
         instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
         canfire = false;

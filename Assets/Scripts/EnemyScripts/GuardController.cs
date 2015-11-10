@@ -37,8 +37,33 @@ public class GuardController : MonoBehaviour
         if (health > 0)
         {
             //Need to add a way to make sure they are on the same vertical plane
-            if (((player.transform.position.x - gameObject.transform.position.x < 4 && player.transform.position.x > gameObject.transform.position.x && movingSpeed < 0) || (gameObject.transform.position.x - player.transform.position.x < 4 && player.transform.position.x < gameObject.transform.position.x && movingSpeed > 0)))
+            /*if (((player.transform.position.x - gameObject.transform.position.x < 4 && player.transform.position.x > gameObject.transform.position.x && movingSpeed < 0) || (gameObject.transform.position.x - player.transform.position.x < 4 && player.transform.position.x < gameObject.transform.position.x && movingSpeed > 0)))
             {
+                if (canfire)
+                {
+                    _move = false;
+                    _seePlayer = true;
+                    Attack();
+                    animate.SetBool("seePlayer", _seePlayer);
+                    animate.SetBool("move", _move);
+                    canfire = false;
+                }
+            }*/
+            
+            int direction = 0;
+            RaycastHit hit;
+            if (movingSpeed > 0)
+                direction = -1;
+            else
+                direction = 1;
+            Debug.DrawRay(muzzleLocation.position, new Vector3(7 * direction, 0, 0), Color.blue);
+           // if (Physics.Raycast(transform.position, new Vector3(direction, 0, 0), 7.0f))
+            
+            
+            
+            if(Physics.Raycast(transform.position, new Vector3(direction,0,0),out hit,7.0f)&&hit.collider.tag=="Player")
+            {
+                print("Hit!");
                 if (canfire)
                 {
                     _move = false;
@@ -51,7 +76,6 @@ public class GuardController : MonoBehaviour
             }
             else
             {
-
                 _move = true;
                 _seePlayer = false;
                 Move();
@@ -153,7 +177,7 @@ public class GuardController : MonoBehaviour
     }
     void ActivateAlarm()
     {
-        GameObject.FindGameObjectWithTag("Light Manager").GetComponent<EnemyCamera>().SetAlarm(true);
+        GameObject.FindGameObjectWithTag("Light Manager").GetComponent<LightManager>().SetAlarm(true);
     }
 }
 

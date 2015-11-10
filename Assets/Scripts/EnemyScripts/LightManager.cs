@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyCamera : MonoBehaviour {
+public class LightManager : MonoBehaviour {
 	/*public Light light1;
 	public Light light2;
 	public Light light3;

@@ -33,6 +33,12 @@ public class BulletMovement : MonoBehaviour {
                 position = testIKScript.lookObj.position;
                 this.transform.LookAt(position);
             }
+            else
+            {
+                Debug.Log("Tossed Grenade");
+                position = GameObject.FindGameObjectWithTag("LookAtObj").transform.position;
+                this.transform.LookAt(position);
+            }
         }
         else if (attacker.GetComponent<GuardController>())
         {
@@ -52,25 +58,12 @@ public class BulletMovement : MonoBehaviour {
     {
         if (!aimMode)
         {
-            
             age += Time.deltaTime;
-            if (this.gameObject.tag == "Bullet")
-            {
-                if (direction)
-                {
-                    this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * 50);
-                   // Debug.Log("Banana");
-                }
-                else
-                    this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left * 50);
-            }
             if (this.gameObject.tag == "Grenade")
             {
-
-                if (direction)
-                    this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right);
-                else
-                    this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left);
+                this.transform.Translate((Vector3.forward * Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, 
+                    GameObject.FindGameObjectWithTag("LookAtObj").transform.position)) / 25);
+              
             }
             if (age > 8)
                 Destroy(this.gameObject);
@@ -80,7 +73,7 @@ public class BulletMovement : MonoBehaviour {
            //Debug.Log("I going towards "+ position);
             
             age += Time.deltaTime;
-            this.transform.Translate(Vector3.forward);
+            this.transform.Translate(Vector3.forward/2);
             
             if (age > 6)
                 Destroy(this.gameObject);

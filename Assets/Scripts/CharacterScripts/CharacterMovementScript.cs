@@ -20,6 +20,8 @@ public class CharacterMovementScript : MonoBehaviour {
 	public float health;
 	bool direction;
 
+    public float soundIntensity;
+
 	GameObject menu;
     Image healthBar;
 
@@ -30,7 +32,7 @@ public class CharacterMovementScript : MonoBehaviour {
     public TestIKScript testIKScript;
 
 	bool aimBool; // Determines whether the game is in aiming mode
-	float fireRate; //Gives a set fire rate to attacks
+	public float fireRate; //Gives a set fire rate to attacks
 	bool canfire; //Used to stop certain attacks from firing into the time is right (mainly used for shooting);
 	// Use this for initialization
 	void Start () {
@@ -102,7 +104,7 @@ public class CharacterMovementScript : MonoBehaviour {
 			
 			if (Input.GetAxis ("Horizontal") > 0) {
 				direction = true;
-				player.transform.eulerAngles = new Vector3 (0, -270, 0);
+				
                 
 			} else {
 				direction = false;
@@ -111,10 +113,12 @@ public class CharacterMovementScript : MonoBehaviour {
 			if(_running)
 			{
 				player.transform.Translate (Vector3.left * movingSpeed * 5*-Input.GetAxis ("Horizontal"), camera.transform);
+                charAnimator.SetBool("running", _running);
 			}
 			else
 			{
 				player.transform.Translate (Vector3.left * movingSpeed * -Input.GetAxis ("Horizontal"), camera.transform);
+                charAnimator.SetBool("running", _running);
 			}
 			
 			//player.transform.Translate(Vector3.left);
@@ -134,8 +138,7 @@ public class CharacterMovementScript : MonoBehaviour {
 				//Debug.Log ("Jumping");
 				_ground = false;
 				AnimationHandler(1);
-				rigidBody.AddForce(Vector3.up * jumpingSpeed);
-				AnimationHandler(2);
+                StartCoroutine(jumpDelay(.30f));
 			}
 		}
 
@@ -161,17 +164,10 @@ public class CharacterMovementScript : MonoBehaviour {
 	}
 	void HandleAimMode(float fireRate)
 	{
-        
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         testIKScript.ikActive = true;
-        if (Input.GetButton("Fire1") && fireRate > 2.5f)
-        {
-            GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
-            
-            instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
-            fireRate = 0;
-        }
+        
 	}
     public bool AimMode
     {
@@ -189,15 +185,11 @@ public class CharacterMovementScript : MonoBehaviour {
             charAnimator.SetBool("dead", true);
         }
 	// used for aiming mode
-		if (Input.GetButtonDown ("Aiming")) {
-			aimBool = !aimBool;
-		} 
+		
 
 		HandleMenu ();
 		HandleMovement ();
-           
-		
-        
+
             //Handles Switching wapons
             if (Input.GetButtonDown("switchWeapon"))
             {
@@ -214,8 +206,17 @@ public class CharacterMovementScript : MonoBehaviour {
             }
             if (currentWeapon == 1)
             {
+                aimBool = false;
                 Cursor.visible = true;
                 Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+            }
+            else if (currentWeapon == 0)
+            {
+                aimBool = false;
+            }
+            else
+            {
+                aimBool = true;
             }
 			if(_climbing)
 			{
@@ -243,41 +244,49 @@ public class CharacterMovementScript : MonoBehaviour {
                 this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ;
 			}
             // Handles Firing weapons
-            if (Input.GetButton("Fire1") && fireRate > 2.5f)
+            if (Input.GetButton("Fire1") && fireRate > 1.5f)
             {
-
+                fireRate = 0;
                 if (currentWeapon == 0)//This is the melee attack, usally with a sword
                 {
                     //Debug.Log("MeleeAttack");
                     charAnimator.SetTrigger("canAttack");
                     charAnimator.SetInteger("currentWeapon", currentWeapon);
-                    fireRate = 0;
+                   
+                    aimBool = false;
                 }
                 if (currentWeapon == 1)//This is the grenade
                 {
+                    aimBool = false;
                     //Debug.Log("GrenadeAttack");
                     charAnimator.SetTrigger("canAttack");
                     charAnimator.SetInteger("currentWeapon", currentWeapon);
-                    Instantiate(currentGrenade, grenadeLocation.position, Quaternion.identity);
-                    fireRate = 0;
+                    GameObject instance = (GameObject)Instantiate(currentGrenade, grenadeLocation.position, Quaternion.identity);
+                    instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
+                   
                 }
                 if (currentWeapon == 2)//This is the pistol
                 {
+                    aimBool = true;
                     //Debug.Log("PistolAttack");
-                    charAnimator.SetTrigger("canAttack");
-                    charAnimator.SetInteger("currentWeapon", currentWeapon);
-                    canfire = true;
-                    StartCoroutine(Delay(1f));
+                    //charAnimator.SetTrigger("canAttack");
+                   // charAnimator.SetInteger("currentWeapon", currentWeapon);
+                    canfire = true;                    
+                    Debug.Log("Fire a shot!");
+                    GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
+                    instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
+                    gameObject.GetComponent<AudioSource>().Play();
+                  
                 }
-                fireRate = 0;
+               
             }
-            if (aimBool)
+            if (!aimBool)
             {
-                HandleAimMode(fireRate);
+                testIKScript.ikActive = false;
             }
             else
             {
-                testIKScript.ikActive = false;
+                HandleAimMode(fireRate);
             }
 
 }
@@ -288,9 +297,9 @@ public class CharacterMovementScript : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "Floor") {
 			_ground = true;
-			AnimationHandler(1);
-		
-			//Debug.Log ("Landed on the ground");
+            charAnimator.speed = 1;
+            AnimationHandler(1);
+			Debug.Log ("Landed on the ground");
 		}
 
 	}
@@ -347,25 +356,15 @@ public class CharacterMovementScript : MonoBehaviour {
 	public bool Direction
 	{
 		get {return direction;}
+        set { direction = value; }
 	}
-	IEnumerator Delay(float x)
-	{
-		//Debug.Log ("I waited");
-
-	    //Original Bullet 
-		/*yield return new WaitForSeconds(x);
-		Instantiate(currentBullet,muzzleLocation.position,muzzleLocation.rotation); 
-		canfire = false;*/
-        
-        //New Bullet
+    IEnumerator jumpDelay(float x)
+    {
         yield return new WaitForSeconds(x);
-        GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
-        gameObject.GetComponent<AudioSource>().Play();
-        //instance.GetComponent<BulletMovement>().Position = position;
-        instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
-        canfire = false;
-
-	}
+        charAnimator.speed = 0;
+        rigidBody.AddForce(Vector3.up * jumpingSpeed);
+        
+    }
     public void TakeHit(float f)
     {
         health -= f;

@@ -19,7 +19,16 @@ public class TestIKScript : MonoBehaviour {
 	}
 	void Update()
 	{
-
+        if (lookObj.position.x > this.gameObject.transform.position.x)
+        {
+            this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
+            this.gameObject.GetComponent<CharacterMovementScript>().Direction = true;
+        }
+        else{
+            this.transform.eulerAngles = new Vector3(0, 270, 0);
+            this.gameObject.GetComponent<CharacterMovementScript>().Direction = false;
+        }
+        
 	}
 	//a callback for calculating IK
 	void OnAnimatorIK()

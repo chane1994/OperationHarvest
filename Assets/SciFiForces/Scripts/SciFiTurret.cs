@@ -16,7 +16,7 @@ public class SciFiTurret : MonoBehaviour
     public float spinSpeed = 90;
     public bool enablePitch = true;
     public bool enableYaw = true;
-    public float yawSpeed = 10;
+    public float yawSpeed = 90;
     public float pitchSpeed = 10;
     public float dampSpeed = 0.1f;
     float yawVelocity;
@@ -40,7 +40,10 @@ public class SciFiTurret : MonoBehaviour
             
         }
     }
-
+    void Start()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     bool AngleInRange (float A, float D)
     {
         if (A < (360 - D) && A > 180) {

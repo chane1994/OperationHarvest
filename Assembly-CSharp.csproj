@@ -49,6 +49,7 @@
      <Compile Include="Assets\GrenadeScript.cs" />
      <Compile Include="Assets\HandlerOptionsScript.cs" />
      <Compile Include="Assets\HandlerScript.cs" />
+     <Compile Include="Assets\InteractableScripts.cs" />
      <Compile Include="Assets\LookAtTarget.cs" />
      <Compile Include="Assets\SciFiForces\Scripts\FlightAnimation.cs" />
      <Compile Include="Assets\SciFiForces\Scripts\SciFiArtillery.cs" />
@@ -60,9 +61,10 @@
      <Compile Include="Assets\Scripts\CameraScripts\CameraMovementScript.cs" />
      <Compile Include="Assets\Scripts\CameraScripts\SlightCameraFollow.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\CharacterMovementScript.cs" />
+     <Compile Include="Assets\Scripts\Computer.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\Controller.cs" />
-     <Compile Include="Assets\Scripts\EnemyScripts\EnemyCamera.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\GuardController.cs" />
+     <Compile Include="Assets\Scripts\EnemyScripts\LightManager.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\SciFiTurret2.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\TurretController.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\NextRoom.cs" />
@@ -74,11 +76,20 @@
      <None Include="Assets\Mobility_01_Free_v2\Mobility_Free_Unity_Info.txt" />
      <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\BumpedReflectionEmissive.shader" />
      <None Include="Assets\Asset Folder\ManyWorlds\DroidGirl2.0\droid2.0.txt" />
+ <Reference Include="Assembly-UnityScript-firstpass">
+ <HintPath>C:/Users/Asus/Documents/OperationHarvest/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity5/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
@@ -86,6 +97,10 @@
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity5/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{0FF99A8B-5AD8-223D-D68E-584EE3251819}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

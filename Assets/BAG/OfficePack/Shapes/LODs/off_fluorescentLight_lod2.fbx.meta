@@ -3,6 +3,36 @@ guid: 375486749f7bcd344bb2799d08f18f79
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: caps
+    100002: capsA
+    100004: capsB
+    100006: cover
+    100008: hangs
+    100010: //RootNode
+    100012: tubeA
+    100014: tubeB
+    400000: caps
+    400002: capsA
+    400004: capsB
+    400006: cover
+    400008: hangs
+    400010: //RootNode
+    400012: tubeA
+    400014: tubeB
+    2300000: caps
+    2300002: capsA
+    2300004: capsB
+    2300006: cover
+    2300008: hangs
+    2300010: tubeA
+    2300012: tubeB
+    3300000: caps
+    3300002: capsA
+    3300004: capsB
+    3300006: cover
+    3300008: hangs
+    3300010: tubeA
+    3300012: tubeB
     4300000: cover
     4300002: caps
     4300004: hangs
@@ -10,6 +40,7 @@ ModelImporter:
     4300008: capsA
     4300010: tubeB
     4300012: capsB
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

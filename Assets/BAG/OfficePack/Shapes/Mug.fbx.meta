@@ -3,9 +3,20 @@ guid: ae1f5e5898afb2d49999d9dc3c087c98
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: mug
+    100004: mug_handle
+    400000: //RootNode
+    400002: mug
+    400004: mug_handle
+    2300000: mug
+    2300002: mug_handle
+    3300000: mug
+    3300002: mug_handle
     4300000: Mug
     4300002: mug
     4300004: mug_handle
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

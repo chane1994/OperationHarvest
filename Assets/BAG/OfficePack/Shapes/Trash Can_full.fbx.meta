@@ -3,8 +3,19 @@ guid: 6bdc906931b64304397ef6dd5b41e0e5
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: Plane03
+    100002: //RootNode
+    100004: Trash_Can
+    400000: Plane03
+    400002: //RootNode
+    400004: Trash_Can
+    2300000: Plane03
+    2300002: Trash_Can
+    3300000: Plane03
+    3300002: Trash_Can
     4300000: Trash_Can
     4300002: Plane03
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

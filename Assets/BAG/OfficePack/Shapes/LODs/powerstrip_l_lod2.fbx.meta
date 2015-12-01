@@ -3,12 +3,39 @@ guid: 0259fc283de01424f939c995b9a24f37
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: body
+    100002: Box02
+    100004: cord
+    100006: light
+    100008: lightbase
+    100010: //RootNode
+    100012: sockets
+    400000: body
+    400002: Box02
+    400004: cord
+    400006: light
+    400008: lightbase
+    400010: //RootNode
+    400012: sockets
+    2300000: body
+    2300002: Box02
+    2300004: cord
+    2300006: light
+    2300008: lightbase
+    2300010: sockets
+    3300000: body
+    3300002: Box02
+    3300004: cord
+    3300006: light
+    3300008: lightbase
+    3300010: sockets
     4300000: Box02
     4300002: lightbase
     4300004: light
     4300006: cord
     4300008: sockets
     4300010: body
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

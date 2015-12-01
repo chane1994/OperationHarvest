@@ -3,8 +3,19 @@ guid: 7fffd0313d317f046bfc559570e341a3
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: Duplicate00
+    100002: //RootNode
+    100004: Plane01
+    400000: Duplicate00
+    400002: //RootNode
+    400004: Plane01
+    2300000: Duplicate00
+    2300002: Plane01
+    3300000: Duplicate00
+    3300002: Plane01
     4300000: Plane01
     4300002: Duplicate00
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

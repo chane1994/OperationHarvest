@@ -3,7 +3,12 @@ guid: 9d96f3a3e2cc27c43a978009c4123682
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Projector
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

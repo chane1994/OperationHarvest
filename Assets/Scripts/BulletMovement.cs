@@ -57,11 +57,11 @@ public class BulletMovement : MonoBehaviour {
     }
 	void Update () 
     {
-        if (!aimMode)
+        if (attacker.tag == "Player")
         {
-            age += Time.deltaTime;
-            if (this.gameObject.tag == "Grenade")
+            if (!aimMode)
             {
+<<<<<<< HEAD
                 this.transform.Translate(( moveSpeed* Vector3.forward * Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, 
                     GameObject.FindGameObjectWithTag("LookAtObj").transform.position)) / 25);
               
@@ -89,19 +89,46 @@ public class BulletMovement : MonoBehaviour {
                     }
                 }
             }
+=======
+                age += Time.deltaTime;
+                if (this.gameObject.tag == "Grenade")
+                {
+                    this.transform.Translate((Vector3.forward * Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position,
+                        GameObject.FindGameObjectWithTag("LookAtObj").transform.position)) / 25);
+
+                }
+                if (age > 8)
+                    Destroy(this.gameObject);
+            }
+
+            else
+            {
+                //Debug.Log("I going towards "+ position);
+
+                age += Time.deltaTime;
+                this.transform.Translate(Vector3.forward / 2);
+
+                if (age > 6)
+                    Destroy(this.gameObject);
+            }
+            transform.position = new Vector3(transform.position.x, transform.position.y, attacker.transform.position.z);
+>>>>>>> 8d86a67a0fbd3b13cc598f6dcaef67aa6f6c8d6e
         }
         else
         {
-           //Debug.Log("I going towards "+ position);
-            
             age += Time.deltaTime;
-            this.transform.Translate(Vector3.forward/2);
-            
+            if (direction)
+            {
+                this.transform.Translate(Vector3.down / 2);
+            }
+            else
+            {
+                this.transform.Translate(Vector3.down/ 2);
+            }
+
             if (age > 6)
                 Destroy(this.gameObject);
         }
-        transform.position = new Vector3(transform.position.x, transform.position.y, -0.77f);
-        
     }
 
     void OnCollisionEnter(Collision col)

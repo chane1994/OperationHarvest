@@ -3,8 +3,19 @@ guid: 801765ef8458f2e48b3e79bcc8a39a44
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: Detector_Button
+    100002: //RootNode
+    100004: Smoke_Detector
+    400000: Detector_Button
+    400002: //RootNode
+    400004: Smoke_Detector
+    2300000: Detector_Button
+    2300002: Smoke_Detector
+    3300000: Detector_Button
+    3300002: Smoke_Detector
     4300000: Smoke_Detector
     4300002: Detector_Button
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

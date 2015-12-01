@@ -3,8 +3,19 @@ guid: 1d64996e0fa37274da764bc6ad90aeb6
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: pin
+    100002: Thumb
+    100004: //RootNode
+    400000: pin
+    400002: Thumb
+    400004: //RootNode
+    2300000: pin
+    2300002: Thumb
+    3300000: pin
+    3300002: Thumb
     4300000: Thumb
     4300002: pin
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

@@ -3,12 +3,39 @@ guid: bfa1a425244c5ab4d89035aad31da1c9
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: Book4
+    100002: Book5
+    100004: Book6
+    100006: Book7
+    100008: Book8
+    100010: Book9
+    100012: //RootNode
+    400000: Book4
+    400002: Book5
+    400004: Book6
+    400006: Book7
+    400008: Book8
+    400010: Book9
+    400012: //RootNode
+    2300000: Book4
+    2300002: Book5
+    2300004: Book6
+    2300006: Book7
+    2300008: Book8
+    2300010: Book9
+    3300000: Book4
+    3300002: Book5
+    3300004: Book6
+    3300006: Book7
+    3300008: Book8
+    3300010: Book9
     4300000: Book4
     4300002: Book5
     4300004: Book6
     4300006: Book7
     4300008: Book8
     4300010: Book9
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

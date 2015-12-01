@@ -3,8 +3,19 @@ guid: 53b782f49bb49b9419f7c8cfb75f214d
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: Brief_Case
+    100004: Latch
+    400000: //RootNode
+    400002: Brief_Case
+    400004: Latch
+    2300000: Brief_Case
+    2300002: Latch
+    3300000: Brief_Case
+    3300002: Latch
     4300000: Brief_Case
     4300002: Latch
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

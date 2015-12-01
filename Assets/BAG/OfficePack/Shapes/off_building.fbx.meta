@@ -3,6 +3,84 @@ guid: dfa2e7fda0671cb4fa271995b1ff9ec5
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: boardRoomWindows
+    100002: boardRoomWindows 1
+    100004: bRoomGlass
+    100006: bRoomGlass 1
+    100008: ceiling
+    100010: ceiling 1
+    100012: dblDoorLeft
+    100014: dblDoorLeft 1
+    100016: dblDoors
+    100018: dblDoors 1
+    100020: door
+    100022: door 1
+    100024: doorhandleA
+    100026: doorhandleA 1
+    100028: doorhandleB
+    100030: doorhandleB 1
+    100032: floor
+    100034: floor 1
+    100036: hallGlass
+    100038: hallGlass 1
+    100040: hallway
+    100042: hallway 1
+    100044: innerWall
+    100046: innerWall 1
+    100048: //RootNode
+    100050: office
+    100052: office 1
+    100054: officeDoor
+    100056: officeDoor 1
+    100058: wallA
+    100060: wallA 1
+    100062: wallB
+    100064: wallB 1
+    100066: wallC
+    100068: wallC 1
+    100070: wallD
+    100072: wallD 1
+    100074: windows
+    100076: windows 1
+    400000: boardRoomWindows
+    400002: boardRoomWindows 1
+    400004: bRoomGlass
+    400006: bRoomGlass 1
+    400008: ceiling
+    400010: ceiling 1
+    400012: dblDoorLeft
+    400014: dblDoorLeft 1
+    400016: dblDoors
+    400018: dblDoors 1
+    400020: door
+    400022: door 1
+    400024: doorhandleA
+    400026: doorhandleA 1
+    400028: doorhandleB
+    400030: doorhandleB 1
+    400032: floor
+    400034: floor 1
+    400036: hallGlass
+    400038: hallGlass 1
+    400040: hallway
+    400042: hallway 1
+    400044: innerWall
+    400046: innerWall 1
+    400048: //RootNode
+    400050: office
+    400052: office 1
+    400054: officeDoor
+    400056: officeDoor 1
+    400058: wallA
+    400060: wallA 1
+    400062: wallB
+    400064: wallB 1
+    400066: wallC
+    400068: wallC 1
+    400070: wallD
+    400072: wallD 1
+    400074: windows
+    400076: windows 1
     4300000: floor
     4300002: wallA
     4300004: dblDoors
@@ -32,6 +110,27 @@ ModelImporter:
     4300052: office
     4300054: Duplicate28
     4300056: hallGlass
+    7400000: blank
+    11100000: //RootNode
+    13700000: boardRoomWindows
+    13700002: bRoomGlass
+    13700004: ceiling 1
+    13700006: dblDoorLeft
+    13700008: dblDoors 1
+    13700010: door
+    13700012: doorhandleA 1
+    13700014: doorhandleB 1
+    13700016: floor 1
+    13700018: hallGlass 1
+    13700020: hallway 1
+    13700022: innerWall 1
+    13700024: office 1
+    13700026: officeDoor 1
+    13700028: wallA 1
+    13700030: wallB 1
+    13700032: wallC 1
+    13700034: wallD
+    13700036: windows
   materials:
     importMaterials: 1
     materialName: 3

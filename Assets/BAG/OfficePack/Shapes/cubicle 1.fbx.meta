@@ -3,10 +3,29 @@ guid: d423bac4ac54a044d9921be76091c970
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: polySurface7
+    100004: Regroup01
+    100006: Regroup02
+    100008: wood
+    400000: //RootNode
+    400002: polySurface7
+    400004: Regroup01
+    400006: Regroup02
+    400008: wood
+    2300000: polySurface7
+    2300002: Regroup01
+    2300004: Regroup02
+    2300006: wood
+    3300000: polySurface7
+    3300002: Regroup01
+    3300004: Regroup02
+    3300006: wood
     4300000: polySurface7
     4300002: Regroup01
     4300004: Regroup02
     4300006: wood
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

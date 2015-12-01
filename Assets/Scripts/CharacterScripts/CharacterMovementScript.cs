@@ -183,6 +183,7 @@ public class CharacterMovementScript : MonoBehaviour {
         if (health <= 0)
         {
             charAnimator.SetBool("dead", true);
+            this.enabled = false;
         }
 	// used for aiming mode
 		

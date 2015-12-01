@@ -3,17 +3,18 @@ using System.Collections;
 
 public class BulletMovement : MonoBehaviour {
 
-
+    int moveSpeed;
 	float age;
 	GameObject attacker;
 	bool direction; //if direction is true, bullet goes right. Else, it goes right
     bool aimMode;
     Vector3 position;
     TestIKScript testIKScript;
+    public GameObject explosion;
 	// Use this for initialization
 	void Start () {
 		age = 0;
-        
+        moveSpeed = 1;
 		//attacker = GameObject.FindGameObjectWithTag ("Player");
 		//direction = attacker.GetComponent<CharacterMovementScript>().Direction;
         //aimMode = attacker.GetComponent<CharacterMovementScript>().AimMode;
@@ -35,7 +36,7 @@ public class BulletMovement : MonoBehaviour {
             }
             else
             {
-                Debug.Log("Tossed Grenade");
+                //Debug.Log("Tossed Grenade");
                 position = GameObject.FindGameObjectWithTag("LookAtObj").transform.position;
                 this.transform.LookAt(position);
             }
@@ -61,12 +62,33 @@ public class BulletMovement : MonoBehaviour {
             age += Time.deltaTime;
             if (this.gameObject.tag == "Grenade")
             {
-                this.transform.Translate((Vector3.forward * Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, 
+                this.transform.Translate(( moveSpeed* Vector3.forward * Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, 
                     GameObject.FindGameObjectWithTag("LookAtObj").transform.position)) / 25);
               
             }
-            if (age > 8)
+            if (age > 4)
+            {
+                
+                GameObject temp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
+                if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, temp.transform.position) < 15f)
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovementScript>().TakeHit(50f);
+                }
+                foreach (GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
+                {
+
+                    if (g.gameObject.GetComponent<GuardController>())
+                    {
+                        g.gameObject.GetComponent<GuardController>().TakeHit(10f);
+                    }
+                    else if (g.gameObject.GetComponent<TurretController>())
+                    {
+                        g.gameObject.GetComponent<TurretController>().TakeHit(10f);
+
+                    }
+                }
+            }
         }
         else
         {
@@ -84,7 +106,7 @@ public class BulletMovement : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject != attacker)
+        if (col.gameObject != attacker && this.gameObject.tag != "Grenade")
         {
             if (col.gameObject.tag == "Player")
             {
@@ -103,7 +125,34 @@ public class BulletMovement : MonoBehaviour {
 
                 }
             }
+            
             Destroy(gameObject);
+        }
+        else if (this.gameObject.tag == "Grenade" && col.gameObject != attacker)
+        {
+            
+            if (col.gameObject.tag == "Player")
+            {
+                col.gameObject.GetComponent<CharacterMovementScript>().TakeHit(10f);
+            }
+            else if (col.gameObject.tag == "Enemy")
+            {
+
+                if (col.gameObject.GetComponent<GuardController>())
+                {
+                    col.gameObject.GetComponent<GuardController>().TakeHit(10f);
+                }
+                else if (col.gameObject.GetComponent<TurretController>())
+                {
+                    col.gameObject.GetComponent<TurretController>().TakeHit(10f);
+
+                }
+            }
+            else if (col.gameObject.tag == "Floor")
+            {
+                moveSpeed = 0;
+            }
+            
         }
        
     }

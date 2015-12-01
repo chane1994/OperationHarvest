@@ -3,9 +3,24 @@ guid: cb453fadb130fd24dae4130eb3071f5f
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: pCylinder1
+    100002: //RootNode
+    100004: polySurface2
+    100006: polySurface3
+    400000: pCylinder1
+    400002: //RootNode
+    400004: polySurface2
+    400006: polySurface3
+    2300000: pCylinder1
+    2300002: polySurface2
+    2300004: polySurface3
+    3300000: pCylinder1
+    3300002: polySurface2
+    3300004: polySurface3
     4300000: polySurface2
     4300002: polySurface3
     4300004: pCylinder1
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

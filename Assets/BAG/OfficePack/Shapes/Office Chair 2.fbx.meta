@@ -3,6 +3,48 @@ guid: dab167399b4463543ad0d61f6ded6162
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: Chair_Back
+    100002: Chair_Seat
+    100004: Chair_Stand
+    100006: Left_Arm_Rest
+    100008: //RootNode
+    100010: Right_Arm_Rest
+    100012: Wheel1
+    100014: Wheel2
+    100016: Wheel3
+    100018: Wheel4
+    100020: Wheel5
+    400000: Chair_Back
+    400002: Chair_Seat
+    400004: Chair_Stand
+    400006: Left_Arm_Rest
+    400008: //RootNode
+    400010: Right_Arm_Rest
+    400012: Wheel1
+    400014: Wheel2
+    400016: Wheel3
+    400018: Wheel4
+    400020: Wheel5
+    2300000: Chair_Back
+    2300002: Chair_Seat
+    2300004: Chair_Stand
+    2300006: Left_Arm_Rest
+    2300008: Right_Arm_Rest
+    2300010: Wheel1
+    2300012: Wheel2
+    2300014: Wheel3
+    2300016: Wheel4
+    2300018: Wheel5
+    3300000: Chair_Back
+    3300002: Chair_Seat
+    3300004: Chair_Stand
+    3300006: Left_Arm_Rest
+    3300008: Right_Arm_Rest
+    3300010: Wheel1
+    3300012: Wheel2
+    3300014: Wheel3
+    3300016: Wheel4
+    3300018: Wheel5
     4300000: Left_Arm_Rest
     4300002: Right_Arm_Rest
     4300004: Wheel5
@@ -13,6 +55,7 @@ ModelImporter:
     4300014: Chair_Stand
     4300016: Chair_Seat
     4300018: Chair_Back
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

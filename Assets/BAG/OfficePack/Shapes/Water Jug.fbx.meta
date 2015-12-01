@@ -3,6 +3,48 @@ guid: 4c37b8b8f457242469fdb4264d4bd5d0
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: Cooler_Base
+    100002: Cup
+    100004: Cup_Holder
+    100006: Nozzle
+    100008: Nozzle1
+    100010: Nozzle_Base
+    100012: Nozzle_Base1
+    100014: Nozzle_Switch
+    100016: Nozzle_Switch1
+    100018: //RootNode
+    100020: Water_jug
+    400000: Cooler_Base
+    400002: Cup
+    400004: Cup_Holder
+    400006: Nozzle
+    400008: Nozzle1
+    400010: Nozzle_Base
+    400012: Nozzle_Base1
+    400014: Nozzle_Switch
+    400016: Nozzle_Switch1
+    400018: //RootNode
+    400020: Water_jug
+    2300000: Cooler_Base
+    2300002: Cup
+    2300004: Cup_Holder
+    2300006: Nozzle
+    2300008: Nozzle1
+    2300010: Nozzle_Base
+    2300012: Nozzle_Base1
+    2300014: Nozzle_Switch
+    2300016: Nozzle_Switch1
+    2300018: Water_jug
+    3300000: Cooler_Base
+    3300002: Cup
+    3300004: Cup_Holder
+    3300006: Nozzle
+    3300008: Nozzle1
+    3300010: Nozzle_Base
+    3300012: Nozzle_Base1
+    3300014: Nozzle_Switch
+    3300016: Nozzle_Switch1
+    3300018: Water_jug
     4300000: Cooler_Base
     4300002: Water_jug
     4300004: Cup_Holder
@@ -13,6 +55,7 @@ ModelImporter:
     4300014: Nozzle1
     4300016: Nozzle_Base1
     4300018: Nozzle_Switch1
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

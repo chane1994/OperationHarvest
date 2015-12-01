@@ -3,8 +3,19 @@ guid: 61c522216a9de7c408702a34ccd689e4
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: Mouse
+    100002: //RootNode
+    100004: Mouse_Wheel
+    400000: Mouse
+    400002: //RootNode
+    400004: Mouse_Wheel
+    2300000: Mouse
+    2300002: Mouse_Wheel
+    3300000: Mouse
+    3300002: Mouse_Wheel
     4300000: Mouse
     4300002: Mouse_Wheel
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

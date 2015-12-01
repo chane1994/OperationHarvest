@@ -3,7 +3,12 @@ guid: 37a1ee1f0f1ff1d4b927aa5d2bdda363
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Boardroom_Table
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

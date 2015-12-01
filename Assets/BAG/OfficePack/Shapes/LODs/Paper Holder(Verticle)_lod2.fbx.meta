@@ -3,7 +3,12 @@ guid: dae82677e09cb744e8e6ceb1780de92f
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Paper_Holder_Verticle_
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

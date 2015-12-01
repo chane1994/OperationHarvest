@@ -3,8 +3,19 @@ guid: b6603df7d61019a46ab3fc2f6a1ff48f
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: cord5
+    100002: plug5
+    100004: //RootNode
+    400000: cord5
+    400002: plug5
+    400004: //RootNode
+    2300000: cord5
+    2300002: plug5
+    3300000: cord5
+    3300002: plug5
     4300000: plug5
     4300002: cord5
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

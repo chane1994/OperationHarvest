@@ -3,6 +3,56 @@ guid: 3ff9279e7f6b9d74abf233b1f93f0b59
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: cord4
+    100002: cord40
+    100004: cord5
+    100006: cord51
+    100008: cord6
+    100010: Duplicate02
+    100012: plug1
+    100014: plug2
+    100016: plug3
+    100018: plug4
+    100020: plug5
+    100022: plug6
+    100024: //RootNode
+    400000: cord4
+    400002: cord40
+    400004: cord5
+    400006: cord51
+    400008: cord6
+    400010: Duplicate02
+    400012: plug1
+    400014: plug2
+    400016: plug3
+    400018: plug4
+    400020: plug5
+    400022: plug6
+    400024: //RootNode
+    2300000: cord4
+    2300002: cord40
+    2300004: cord5
+    2300006: cord51
+    2300008: cord6
+    2300010: Duplicate02
+    2300012: plug1
+    2300014: plug2
+    2300016: plug3
+    2300018: plug4
+    2300020: plug5
+    2300022: plug6
+    3300000: cord4
+    3300002: cord40
+    3300004: cord5
+    3300006: cord51
+    3300008: cord6
+    3300010: Duplicate02
+    3300012: plug1
+    3300014: plug2
+    3300016: plug3
+    3300018: plug4
+    3300020: plug5
+    3300022: plug6
     4300000: plug1
     4300002: cord1
     4300004: plug2
@@ -18,6 +68,7 @@ ModelImporter:
     4300024: cord40
     4300026: cord51
     4300028: Duplicate02
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

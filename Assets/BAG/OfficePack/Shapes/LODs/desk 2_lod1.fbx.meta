@@ -3,8 +3,19 @@ guid: 85381356f05caa046b7ccb79690cb287
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: deskmetal
+    100004: deskwood
+    400000: //RootNode
+    400002: deskmetal
+    400004: deskwood
+    2300000: deskmetal
+    2300002: deskwood
+    3300000: deskmetal
+    3300002: deskwood
     4300000: deskwood
     4300002: deskmetal
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

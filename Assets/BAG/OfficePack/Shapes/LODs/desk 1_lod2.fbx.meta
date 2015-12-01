@@ -3,8 +3,22 @@ guid: 1c86ebfb59f925d40bba738090e0f454
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: pCube1
+    100004: pCube1 1
+    100006: wood
+    100008: wood 1
+    400000: //RootNode
+    400002: pCube1
+    400004: pCube1 1
+    400006: wood
+    400008: wood 1
     4300000: pCube1
     4300002: wood
+    7400000: Take_001
+    11100000: //RootNode
+    13700000: pCube1 1
+    13700002: wood 1
   materials:
     importMaterials: 1
     materialName: 3

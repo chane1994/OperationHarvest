@@ -3,6 +3,68 @@ guid: be6e45157da1846488d46ff9e3c3f06c
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: Book1
+    100002: Book10
+    100004: Book11
+    100006: Book12
+    100008: Book13
+    100010: Book14
+    100012: Book15
+    100014: Book2
+    100016: Book3
+    100018: Book4
+    100020: Book5
+    100022: Book6
+    100024: Book7
+    100026: Book8
+    100028: Book9
+    100030: //RootNode
+    400000: Book1
+    400002: Book10
+    400004: Book11
+    400006: Book12
+    400008: Book13
+    400010: Book14
+    400012: Book15
+    400014: Book2
+    400016: Book3
+    400018: Book4
+    400020: Book5
+    400022: Book6
+    400024: Book7
+    400026: Book8
+    400028: Book9
+    400030: //RootNode
+    2300000: Book1
+    2300002: Book10
+    2300004: Book11
+    2300006: Book12
+    2300008: Book13
+    2300010: Book14
+    2300012: Book15
+    2300014: Book2
+    2300016: Book3
+    2300018: Book4
+    2300020: Book5
+    2300022: Book6
+    2300024: Book7
+    2300026: Book8
+    2300028: Book9
+    3300000: Book1
+    3300002: Book10
+    3300004: Book11
+    3300006: Book12
+    3300008: Book13
+    3300010: Book14
+    3300012: Book15
+    3300014: Book2
+    3300016: Book3
+    3300018: Book4
+    3300020: Book5
+    3300022: Book6
+    3300024: Book7
+    3300026: Book8
+    3300028: Book9
     4300000: Book1
     4300002: Book2
     4300004: Book3
@@ -18,6 +80,7 @@ ModelImporter:
     4300024: Book13
     4300026: Book14
     4300028: Book15
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

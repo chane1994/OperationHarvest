@@ -3,7 +3,12 @@ guid: cc1c1a609c6e69a4abdc404430e8de01
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Pencil_Shapener
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

@@ -1,0 +1,17 @@
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.dll
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\Mono.Cecil.dll
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\UnityEditor.dll
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\UnityEngine.dll
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\UnityEngine.Networking.dll
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\UnityEngine.xml
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\UnityEngine.Networking.xml
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\UnityEditor.xml
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\Mono.Cecil.xml
+D:\OperationHarvest\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.xml
+D:\OperationHarvest\Temp\UnityVS_obj\Debug\OperationHarvest.CSharp.Plugins.csprojResolveAssemblyReference.cache
+D:\OperationHarvest\Temp\UnityVS_obj\Debug\Assembly-CSharp-firstpass.dll
+D:\OperationHarvest\Temp\UnityVS_obj\Debug\Assembly-CSharp-firstpass.pdb

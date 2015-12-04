@@ -22,9 +22,17 @@ public class LightManager : MonoBehaviour {
         lights = gameObject.GetComponentsInChildren<Light>();
         foreach (Light l in lights)
         {
-            l.color = Color.white;
-            l.intensity = 1;
-            l.GetComponent<AudioSource>().loop = true;
+            if (l.name != "EnemyCamera")
+            {
+                l.color = Color.white;
+                l.intensity = 1;
+                l.GetComponent<AudioSource>().loop = true;
+            }
+            else
+            {
+                l.color = Color.green;
+                l.intensity = 10;
+            }
         }
 	}
 	
@@ -65,9 +73,17 @@ public class LightManager : MonoBehaviour {
         {
             foreach (Light l in lights)
             {
-                l.intensity = 1;
-                l.color = Color.white;
-                l.GetComponent<AudioSource>().Pause();
+                if (l.name != "EnemyCamera")
+                {
+                    l.intensity = 1;
+                    l.color = Color.white;
+                    l.GetComponent<AudioSource>().Pause();
+                }
+                else
+                {
+                    l.color = Color.green;
+                    l.intensity = 10;
+                }
             }
         }
     }

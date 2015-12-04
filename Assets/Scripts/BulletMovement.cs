@@ -61,14 +61,17 @@ public class BulletMovement : MonoBehaviour {
         {
             if (!aimMode)
             {
-<<<<<<< HEAD
-                this.transform.Translate(( moveSpeed* Vector3.forward * Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, 
+                this.transform.Translate((moveSpeed * Vector3.forward * Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position,
                     GameObject.FindGameObjectWithTag("LookAtObj").transform.position)) / 25);
-              
-            }
-            if (age > 4)
-            {
                 
+            }
+            else
+            {
+                this.transform.Translate(Vector3.forward);
+            }
+
+            if (age > 4)
+            {                
                 GameObject temp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
                 if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, temp.transform.position) < 15f)
@@ -89,11 +92,10 @@ public class BulletMovement : MonoBehaviour {
                     }
                 }
             }
-=======
                 age += Time.deltaTime;
                 if (this.gameObject.tag == "Grenade")
                 {
-                    this.transform.Translate((Vector3.forward * Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position,
+                    this.transform.Translate(( moveSpeed *Vector3.forward * Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position,
                         GameObject.FindGameObjectWithTag("LookAtObj").transform.position)) / 25);
 
                 }
@@ -106,29 +108,20 @@ public class BulletMovement : MonoBehaviour {
                 //Debug.Log("I going towards "+ position);
 
                 age += Time.deltaTime;
-                this.transform.Translate(Vector3.forward / 2);
-
-                if (age > 6)
-                    Destroy(this.gameObject);
+                if (direction)
+                {
+                    this.transform.Translate(Vector3.down / 2);
+                }
+                else
+                {
+                    this.transform.Translate(Vector3.down / 2);
+                }
+             if (age > 6)
+                Destroy(this.gameObject);
             }
             transform.position = new Vector3(transform.position.x, transform.position.y, attacker.transform.position.z);
->>>>>>> 8d86a67a0fbd3b13cc598f6dcaef67aa6f6c8d6e
-        }
-        else
-        {
-            age += Time.deltaTime;
-            if (direction)
-            {
-                this.transform.Translate(Vector3.down / 2);
-            }
-            else
-            {
-                this.transform.Translate(Vector3.down/ 2);
-            }
-
-            if (age > 6)
-                Destroy(this.gameObject);
-        }
+           
+         
     }
 
     void OnCollisionEnter(Collision col)
@@ -190,4 +183,11 @@ public class BulletMovement : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         this.GetComponent<Rigidbody>().detectCollisions = true;
     }
+
+    //void OnDestroy()
+    //{
+    //    print("WORKED");
+    //    gameObject.GetComponent<AudioSource>().Play();
+    //}
+
 }

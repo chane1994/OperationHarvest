@@ -58,67 +58,62 @@ public class BulletMovement : MonoBehaviour {
 	void Update () 
     {
         if (attacker.tag == "Player")
-        {
-            if (!aimMode)
+        {            
+
+            age += Time.deltaTime;
+            if (this.gameObject.tag == "Grenade")
             {
                 this.transform.Translate((moveSpeed * Vector3.forward * Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position,
                     GameObject.FindGameObjectWithTag("LookAtObj").transform.position)) / 25);
-                
+                if (age > 4)
+                {
+                    GameObject temp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
+                    Destroy(this.gameObject);
+                    if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, temp.transform.position) < 15f)
+                    {
+                        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovementScript>().TakeHit(50f);
+                    }
+                    foreach (GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
+                    {
+
+                        if (g.gameObject.GetComponent<GuardController>())
+                        {
+                            g.gameObject.GetComponent<GuardController>().TakeHit(10f);
+                        }
+                        else if (g.gameObject.GetComponent<TurretController>())
+                        {
+                            g.gameObject.GetComponent<TurretController>().TakeHit(10f);
+
+                        }
+                    }
+                }
             }
             else
             {
                 this.transform.Translate(Vector3.forward);
-            }
-
-            if (age > 4)
-            {                
-                GameObject temp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
-                Destroy(this.gameObject);
-                if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, temp.transform.position) < 15f)
+                if (age > 4 || Vector3.Distance(this.gameObject.transform.position,GameObject.FindGameObjectWithTag("Player").transform.position) >200)
                 {
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovementScript>().TakeHit(50f);
-                }
-                foreach (GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
-                {
-
-                    if (g.gameObject.GetComponent<GuardController>())
-                    {
-                        g.gameObject.GetComponent<GuardController>().TakeHit(10f);
-                    }
-                    else if (g.gameObject.GetComponent<TurretController>())
-                    {
-                        g.gameObject.GetComponent<TurretController>().TakeHit(10f);
-
-                    }
-                }
-            }
-                age += Time.deltaTime;
-                if (this.gameObject.tag == "Grenade")
-                {
-                    this.transform.Translate(( moveSpeed *Vector3.forward * Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position,
-                        GameObject.FindGameObjectWithTag("LookAtObj").transform.position)) / 25);
-
-                }
-                if (age > 8)
                     Destroy(this.gameObject);
+                }
             }
 
+        }
+        else
+        {
+            //Debug.Log("I going towards "+ position);
+
+            age += Time.deltaTime;
+            if (direction)
+            {
+                this.transform.Translate(Vector3.down / 2);
+            }
             else
             {
-                //Debug.Log("I going towards "+ position);
-
-                age += Time.deltaTime;
-                if (direction)
-                {
-                    this.transform.Translate(Vector3.down / 2);
-                }
-                else
-                {
-                    this.transform.Translate(Vector3.down / 2);
-                }
-             if (age > 6)
-                Destroy(this.gameObject);
+                this.transform.Translate(Vector3.down / 2);
             }
+            if (age > 6)
+                Destroy(this.gameObject);
+        }
             transform.position = new Vector3(transform.position.x, transform.position.y, attacker.transform.position.z);
            
          

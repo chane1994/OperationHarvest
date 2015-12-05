@@ -122,7 +122,7 @@ public class CharacterMovementScript : MonoBehaviour {
 			}
 			
 			//player.transform.Translate(Vector3.left);
-			transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 		} else {
 			_moving = false;
 			_running = false;

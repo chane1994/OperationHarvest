@@ -62,6 +62,7 @@
      <Compile Include="Assets\Detonator Explosion Framework\System\DetonatorSpray.cs" />
      <Compile Include="Assets\Detonator Explosion Framework\TestScene\DetonatorTest.cs" />
      <Compile Include="Assets\Detonator Explosion Framework\TestScene\TouchToMouse.cs" />
+     <Compile Include="Assets\RagDollScript.cs" />
      <Compile Include="Assets\SciFiForces\Scripts\FlightAnimation.cs" />
      <Compile Include="Assets\SciFiForces\Scripts\SciFiArtillery.cs" />
      <Compile Include="Assets\SciFiForces\Scripts\SciFiTurret.cs" />
@@ -72,6 +73,7 @@
      <Compile Include="Assets\Scripts\CameraScripts\CameraMovementScript.cs" />
      <Compile Include="Assets\Scripts\CameraScripts\SlightCameraFollow.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\CharacterMovementScript.cs" />
+     <Compile Include="Assets\Scripts\CharacterScripts\MainMenuCharacterCrawling.cs" />
      <Compile Include="Assets\Scripts\Computer.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\Controller.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\EnemyCamera.cs" />

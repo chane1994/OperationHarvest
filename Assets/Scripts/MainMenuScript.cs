@@ -8,6 +8,7 @@ public class MainMenuScript : MonoBehaviour {
     public GameObject TutorialLevelButton;
     public GameObject startImages;
     public GameObject LevelImages;
+    public GameObject creditImages;
     public int nextStage;
 	// Use this for initialization
 	void Start () {
@@ -21,9 +22,20 @@ public class MainMenuScript : MonoBehaviour {
             LevelImages.SetActive(true);
             startImages.SetActive(false);
         }
+        if (credits.GetComponent<UIButtonScript>().WasClicked)
+        {
+            startImages.SetActive(false);
+            creditImages.SetActive(true);
+        }
         if (TutorialLevelButton.GetComponent<UIButtonScript>().WasClicked)
         {
             Application.LoadLevel("CurrentLevel");
+        }
+        //TODO: Fix only 1 time credits glitch
+        if (creditImages.GetComponent<UIButtonScript>().WasClicked)
+        {
+            creditImages.SetActive(false);
+            startImages.SetActive(true);
         }
 	}
 }

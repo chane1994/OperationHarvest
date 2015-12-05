@@ -22,7 +22,7 @@ public class MainMenuCharacterCrawling : MonoBehaviour {
 	void Update () 
     {
         timer += Time.deltaTime;
-        if (timer > 10)
+        if (timer > 1 && !walk)
         {
             timer = 0;
             walk = !walk;

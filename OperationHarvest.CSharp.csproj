@@ -100,12 +100,6 @@
     <Compile Include="Assets\Detonator Explosion Framework\System\DetonatorSpray.cs" />
     <Compile Include="Assets\Detonator Explosion Framework\TestScene\DetonatorTest.cs" />
     <Compile Include="Assets\Detonator Explosion Framework\TestScene\TouchToMouse.cs" />
-    <Compile Include="Assets\FollowMouse.cs" />
-    <Compile Include="Assets\GrenadeScript.cs" />
-    <Compile Include="Assets\HandlerOptionsScript.cs" />
-    <Compile Include="Assets\HandlerScript.cs" />
-    <Compile Include="Assets\InteractableScripts.cs" />
-    <Compile Include="Assets\LookAtTarget.cs" />
     <Compile Include="Assets\SciFiForces\Scripts\FlightAnimation.cs" />
     <Compile Include="Assets\SciFiForces\Scripts\SciFiArtillery.cs" />
     <Compile Include="Assets\SciFiForces\Scripts\SciFiTurret.cs" />
@@ -125,7 +119,14 @@
     <Compile Include="Assets\Scripts\EnemyScripts\SciFiTurret2.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\TempTrigger.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\TurretController.cs" />
+    <Compile Include="Assets\Scripts\FollowMouse.cs" />
+    <Compile Include="Assets\Scripts\GrenadeScript.cs" />
+    <Compile Include="Assets\Scripts\HandlerOptionsScript.cs" />
+    <Compile Include="Assets\Scripts\HandlerScript.cs" />
+    <Compile Include="Assets\Scripts\InteractableScripts.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\NextRoom.cs" />
+    <Compile Include="Assets\Scripts\LookAtTarget.cs" />
+    <Compile Include="Assets\Scripts\MainMenuLight.cs" />
     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\TestIKScript.cs" />

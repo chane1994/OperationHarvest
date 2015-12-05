@@ -13,7 +13,7 @@ public class LightManager : MonoBehaviour {
     public AudioSource audio3;
     public AudioSource audio4;
     public AudioSource audio5;*/
-	public Light cameraLight;
+	//public Light cameraLight;
 	public GameObject player;
     public bool currentlyPlaying = false;
 	// Use this for initialization
@@ -59,6 +59,7 @@ public class LightManager : MonoBehaviour {
 
     public void SetAlarm(bool status)
     {
+        //print("ALARM SET");
         if (status)
         {
             foreach (Light l in lights)
@@ -85,6 +86,18 @@ public class LightManager : MonoBehaviour {
                     l.intensity = 10;
                 }
             }
+        }
+    }
+
+    public bool AlarmStatus()
+    {
+        if (lights[0].color == Color.red)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

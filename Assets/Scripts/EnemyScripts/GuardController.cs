@@ -12,10 +12,12 @@ public class GuardController : MonoBehaviour
     public GameObject player;
     public GameObject currentBullet;
     public Transform muzzleLocation;
+    public GameObject Ragdoll;
     public float movingSpeed;
     public int count = 0;
-    float health = 10;
+    public float health = 10;
     bool canfire=true;
+    public int direction;
     static bool alarmActive = false;
     // Use this for initialization
     void Start()
@@ -28,6 +30,7 @@ public class GuardController : MonoBehaviour
         gameObject.tag = "Enemy";
         //gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.77f);
         player = GameObject.FindGameObjectWithTag("Player");
+        this.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, player.transform.position.z);
         
     }
 
@@ -37,20 +40,20 @@ public class GuardController : MonoBehaviour
         if (health > 0)
         {
             //Need to add a way to make sure they are on the same vertical plane
-            /*if (((player.transform.position.x - gameObject.transform.position.x < 4 && player.transform.position.x > gameObject.transform.position.x && movingSpeed < 0) || (gameObject.transform.position.x - player.transform.position.x < 4 && player.transform.position.x < gameObject.transform.position.x && movingSpeed > 0)))
-            {
-                if (canfire)
-                {
-                    _move = false;
-                    _seePlayer = true;
-                    Attack();
-                    animate.SetBool("seePlayer", _seePlayer);
-                    animate.SetBool("move", _move);
-                    canfire = false;
-                }
-            }*/
+            //if (((player.transform.position.y - gameObject.transform.position.y < 4 && player.transform.position.x > gameObject.transform.position.x && movingSpeed < 0) || (gameObject.transform.position.y - player.transform.position.y < 4 && player.transform.position.x < gameObject.transform.position.x && movingSpeed > 0)))
+            //{
+            //    if (canfire)
+            //    {
+            //        _move = false;
+            //        _seePlayer = true;
+            //        Attack();
+            //        animate.SetBool("seePlayer", _seePlayer);
+            //        animate.SetBool("move", _move);
+            //        canfire = false;
+            //    }
+            //}
             
-            int direction = 0;
+            direction = 0;
             RaycastHit hit;
             if (movingSpeed > 0)
                 direction = -1;
@@ -61,14 +64,15 @@ public class GuardController : MonoBehaviour
             
             if(Physics.Raycast(muzzleLocation.position, new Vector3(direction,0,0),out hit,7.0f)&&hit.collider.tag=="Player"&&player.GetComponent<CharacterMovementScript>().health>0)
             {
-                print("Player hp " + player.GetComponent<CharacterMovementScript>().health);
                 if (canfire)
                 {
+                    print("Player hp " + player.GetComponent<CharacterMovementScript>().health);
                     _move = false;
                     _seePlayer = true;
-                    Attack();
                     animate.SetBool("seePlayer", _seePlayer);
                     animate.SetBool("move", _move);
+                    this.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, player.transform.position.z);
+                    Attack();                   
                     canfire = false;
                 }
             }
@@ -79,6 +83,10 @@ public class GuardController : MonoBehaviour
                 Move();
                 animate.SetBool("move", _move);
                 animate.SetBool("seePlayer", _seePlayer);
+            }
+            if (Physics.Raycast(muzzleLocation.position, new Vector3(direction, 0, 0), out hit, 7.0f) && hit.collider.tag == "Player" && !GameObject.FindGameObjectWithTag("Light Manager").GetComponent<LightManager>().AlarmStatus())
+            {
+                ActivateAlarm();
             }
             
         }
@@ -117,60 +125,45 @@ public class GuardController : MonoBehaviour
     }
     void Attack()
     {
-        
-        if (health > 0)
-        {
-            ActivateAlarm();
-            if (movingSpeed < 0)
-            {
-                this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
-                StartCoroutine(Delay(1f));
-            }
-            else
-            {
-                this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
-                StartCoroutine(Delay(1f));
-            }
+      
+                Debug.Log("I left");
+                Vector3 lookPos = new Vector3(player.transform.position.x, this.transform.position.y, this.transform.position.z);
+                this.transform.LookAt(lookPos);   
+                StartCoroutine(Delay(1.0f));
             
+         
             canfire = true;
-        }
+            
     }
     public void TakeHit(float f)
     {
         health -= f;
         if (health <= 0)
         {
-            animate.SetBool("dead", true);
+            //this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            //this.gameObject.transform.position= new Vector3(this.transform.gameObject.transform.position.x,this.transform.gameObject.transform.position.y-50,this.transform.gameObject.transform.position.z);
+            Instantiate(Ragdoll, this.transform.position, this.transform.rotation);
+            Destroy(this.gameObject);
         }
     }
     IEnumerator Delay(float x)
     {
-        //Debug.Log ("I waited");
 
-        //Original Bullet 
-        /*yield return new WaitForSeconds(x);
-        Instantiate(currentBullet,muzzleLocation.position,muzzleLocation.rotation); 
-        canfire = false;*/
 
+        Debug.Log("before wait");
         //New Bullet
         yield return new WaitForSeconds(x);
-        GameObject instance= new GameObject();
-        if (movingSpeed > 0)
-        {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
-            StartCoroutine(Delay(1f));
-            if(health>0)
-                instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position+new Vector3(-1,0,0), muzzleLocation.rotation);
-        }
-        else
-        {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
-            StartCoroutine(Delay(1f));
-            if(health>0)
-                instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position+new Vector3(1,0,0), muzzleLocation.rotation);
-        }
-        gameObject.GetComponent<AudioSource>().Play();
-        //original
+        GameObject instance= (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
+      
+            
+                Debug.Log("Hit");
+                //this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
+                //StartCoroutine(Delay(1f));
+
+             
+          
+            gameObject.GetComponent<AudioSource>().Play();
+        
         //GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
         //instance.GetComponent<BulletMovement>().Position = position;
         instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);      

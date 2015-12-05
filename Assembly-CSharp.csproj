@@ -62,12 +62,6 @@
      <Compile Include="Assets\Detonator Explosion Framework\System\DetonatorSpray.cs" />
      <Compile Include="Assets\Detonator Explosion Framework\TestScene\DetonatorTest.cs" />
      <Compile Include="Assets\Detonator Explosion Framework\TestScene\TouchToMouse.cs" />
-     <Compile Include="Assets\FollowMouse.cs" />
-     <Compile Include="Assets\GrenadeScript.cs" />
-     <Compile Include="Assets\HandlerOptionsScript.cs" />
-     <Compile Include="Assets\HandlerScript.cs" />
-     <Compile Include="Assets\InteractableScripts.cs" />
-     <Compile Include="Assets\LookAtTarget.cs" />
      <Compile Include="Assets\SciFiForces\Scripts\FlightAnimation.cs" />
      <Compile Include="Assets\SciFiForces\Scripts\SciFiArtillery.cs" />
      <Compile Include="Assets\SciFiForces\Scripts\SciFiTurret.cs" />
@@ -80,11 +74,20 @@
      <Compile Include="Assets\Scripts\CharacterScripts\CharacterMovementScript.cs" />
      <Compile Include="Assets\Scripts\Computer.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\Controller.cs" />
+     <Compile Include="Assets\Scripts\EnemyScripts\EnemyCamera.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\GuardController.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\LightManager.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\SciFiTurret2.cs" />
+     <Compile Include="Assets\Scripts\EnemyScripts\TempTrigger.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\TurretController.cs" />
+     <Compile Include="Assets\Scripts\FollowMouse.cs" />
+     <Compile Include="Assets\Scripts\GrenadeScript.cs" />
+     <Compile Include="Assets\Scripts\HandlerOptionsScript.cs" />
+     <Compile Include="Assets\Scripts\HandlerScript.cs" />
+     <Compile Include="Assets\Scripts\InteractableScripts.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\NextRoom.cs" />
+     <Compile Include="Assets\Scripts\LookAtTarget.cs" />
+     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\TestIKScript.cs" />
      <Compile Include="Assets\UIButtonScript.cs" />
@@ -97,17 +100,11 @@
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Users/Asus/Documents/OperationHarvest/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity5/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

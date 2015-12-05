@@ -130,7 +130,7 @@ public class BulletMovement : MonoBehaviour {
         {
             if (col.gameObject.tag == "Player")
             {
-                col.gameObject.GetComponent<CharacterMovementScript>().TakeHit(10f);
+                col.gameObject.GetComponent<CharacterMovementScript>().TakeHit(100f);
             }
             else if (col.gameObject.tag == "Enemy")
             {

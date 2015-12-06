@@ -13,17 +13,19 @@ public class SciFiTurret : MonoBehaviour
 
     public bool spinBarrels = false;
     public Vector2 barrelSpinAxis = Vector3.up;
-    public float spinSpeed = 90;
+    public float spinSpeed = 150;
     public bool enablePitch = true;
     public bool enableYaw = true;
-    public float yawSpeed = 90;
+    public float yawSpeed = 150;
     public float pitchSpeed = 10;
     public float dampSpeed = 0.1f;
     float yawVelocity;
     float pitchVelocity;
     float actualSpinSpeed;
     float targetSpinSpeed;
-
+    bool canFire;
+    public Transform muzzleLocation;
+    public GameObject currentBullet;
     void Reset ()
     {
         if (transform.childCount == 1) {
@@ -43,6 +45,7 @@ public class SciFiTurret : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        canFire = true;
     }
     bool AngleInRange (float A, float D)
     {
@@ -96,7 +99,7 @@ public class SciFiTurret : MonoBehaviour
             }
         
         }
-            
+      
 
             
     }

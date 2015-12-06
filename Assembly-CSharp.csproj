@@ -89,6 +89,7 @@
      <Compile Include="Assets\Scripts\InteractableScripts.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\NextRoom.cs" />
      <Compile Include="Assets\Scripts\LookAtTarget.cs" />
+     <Compile Include="Assets\Scripts\MainMenuLight.cs" />
      <Compile Include="Assets\Scripts\MainMenuScript.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\TestIKScript.cs" />

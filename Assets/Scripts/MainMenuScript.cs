@@ -24,18 +24,16 @@ public class MainMenuScript : MonoBehaviour {
         }
         if (credits.GetComponent<UIButtonScript>().WasClicked)
         {
-            startImages.SetActive(false);
-            creditImages.SetActive(true);
+            Application.LoadLevel("Credits");
         }
         if (TutorialLevelButton.GetComponent<UIButtonScript>().WasClicked)
         {
             Application.LoadLevel("CurrentLevel");
         }
-        //TODO: Fix only 1 time credits glitch
-        if (creditImages.GetComponent<UIButtonScript>().WasClicked)
+       /* if (creditImages.GetComponent<UIButtonScript>().WasClicked)
         {
             creditImages.SetActive(false);
             startImages.SetActive(true);
-        }
+        }*/
 	}
 }

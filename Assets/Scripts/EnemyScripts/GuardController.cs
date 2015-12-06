@@ -16,9 +16,12 @@ public class GuardController : MonoBehaviour
     public float movingSpeed;
     public int count = 0;
     public float health = 10;
-    bool canfire=true;
+    bool canfire = true;
     public int direction;
     static bool alarmActive = false;
+    public int paceDistance;
+    public GameObject pointA;
+    public GameObject pointB;
     // Use this for initialization
     void Start()
     {
@@ -31,11 +34,14 @@ public class GuardController : MonoBehaviour
         //gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.77f);
         player = GameObject.FindGameObjectWithTag("Player");
         this.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, player.transform.position.z);
-        
+        if (movingSpeed > 0)
+            direction = -1;
+        else
+            direction = 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Depricated Update from before waypoint system
+    /*void Update()
     {
         if (health > 0)
         {
@@ -52,7 +58,7 @@ public class GuardController : MonoBehaviour
             //        canfire = false;
             //    }
             //}
-            
+
             direction = 0;
             RaycastHit hit;
             if (movingSpeed > 0)
@@ -60,9 +66,9 @@ public class GuardController : MonoBehaviour
             else
                 direction = 1;
             Debug.DrawRay(muzzleLocation.position, new Vector3(7 * direction, 0, 0), Color.blue);
-           // if (Physics.Raycast(transform.position, new Vector3(direction, 0, 0), 7.0f))
-            
-            if(Physics.Raycast(muzzleLocation.position, new Vector3(direction,0,0),out hit,7.0f)&&hit.collider.tag=="Player"&&player.GetComponent<CharacterMovementScript>().health>0)
+            // if (Physics.Raycast(transform.position, new Vector3(direction, 0, 0), 7.0f))
+
+            if (Physics.Raycast(muzzleLocation.position, new Vector3(direction, 0, 0), out hit, 7.0f) && hit.collider.tag == "Player" && player.GetComponent<CharacterMovementScript>().health > 0)
             {
                 if (canfire)
                 {
@@ -72,7 +78,7 @@ public class GuardController : MonoBehaviour
                     animate.SetBool("seePlayer", _seePlayer);
                     animate.SetBool("move", _move);
                     this.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, player.transform.position.z);
-                    Attack();                   
+                    Attack();
                     canfire = false;
                 }
             }
@@ -88,13 +94,52 @@ public class GuardController : MonoBehaviour
             {
                 ActivateAlarm();
             }
-            
+
+        }
+        //print("Can fire: " + canfire);
+
+    }*/
+    void Update()
+    {
+        if (health > 0)
+        {
+            RaycastHit hit;
+            Debug.DrawRay(muzzleLocation.position, new Vector3(7 * direction, 0, 0), Color.blue);
+            // if (Physics.Raycast(transform.position, new Vector3(direction, 0, 0), 7.0f))
+
+            if (Physics.Raycast(muzzleLocation.position, new Vector3(direction, 0, 0), out hit, 7.0f) && hit.collider.tag == "Player" && player.GetComponent<CharacterMovementScript>().health > 0)
+            {
+                if (canfire)
+                {
+                    print("Player hp " + player.GetComponent<CharacterMovementScript>().health);
+                    _move = false;
+                    _seePlayer = true;
+                    animate.SetBool("seePlayer", _seePlayer);
+                    animate.SetBool("move", _move);
+                    this.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, player.transform.position.z);
+                    Attack();
+                    canfire = false;
+                }
+            }
+            else
+            {
+                _move = true;
+                _seePlayer = false;
+                Move();
+                animate.SetBool("move", _move);
+                animate.SetBool("seePlayer", _seePlayer);
+            }
+            if (Physics.Raycast(muzzleLocation.position, new Vector3(direction, 0, 0), out hit, 7.0f) && hit.collider.tag == "Player" && !GameObject.FindGameObjectWithTag("Light Manager").GetComponent<LightManager>().AlarmStatus())
+            {
+                ActivateAlarm();
+            }
+
         }
         //print("Can fire: " + canfire);
 
     }
-    //Will add the direction into a seperate method later
-    void Move()
+    //Depricated Move from before we had waypoints
+    /*void Move()
     {
         count++;
         //handles the direction of the enemy
@@ -115,25 +160,51 @@ public class GuardController : MonoBehaviour
             //print("Walk b");
             //gameObject.transform.Translate(Vector3.left * movingSpeed);
         }
-        if (count >= 100)
+        if (count >= paceDistance)
         {
             movingSpeed *= -1;
             count = 0;
         }
+    }*/
+    void Move()
+    {
+        //handles the direction of the enemy
+        //NOTE: Had to modify due to the scene being on a different angle that was originally.  I think?
+        if (direction > 0)
+        {
+            this.gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
+            this.gameObject.transform.Translate(new Vector3(0, 0, -movingSpeed));
+            //this.gameObject.transform.Translate(new Vector3(0, -movingSpeed, 0));
+            //print("Walk a");
+            //gameObject.transform.Translate(Vector3.right * movingSpeed);
+        }
+        else
+        {
+            this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
+            this.gameObject.transform.Translate(new Vector3(0, 0, movingSpeed));
+            //this.gameObject.transform.Translate(new Vector3(0, movingSpeed, 0));
+            //print("Walk b");
+            //gameObject.transform.Translate(Vector3.left * movingSpeed);
+        }
+        /*if (count >= paceDistance)
+        {
+            movingSpeed *= -1;
+            count = 0;
+        }*/
         //this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, 0.07f, this.gameObject.transform.position.z);
-        
+
     }
     void Attack()
     {
-      
-                Debug.Log("I left");
-                Vector3 lookPos = new Vector3(player.transform.position.x, this.transform.position.y, this.transform.position.z);
-                this.transform.LookAt(lookPos);   
-                StartCoroutine(Delay(1.0f));
-            
-         
-            canfire = true;
-            
+
+        Debug.Log("I left");
+        Vector3 lookPos = new Vector3(player.transform.position.x, this.transform.position.y, this.transform.position.z);
+        this.transform.LookAt(lookPos);
+        StartCoroutine(Delay(1.0f));
+
+
+        canfire = true;
+
     }
     public void TakeHit(float f)
     {
@@ -153,24 +224,29 @@ public class GuardController : MonoBehaviour
         Debug.Log("before wait");
         //New Bullet
         yield return new WaitForSeconds(x);
-        GameObject instance= (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
-      
-            
-                Debug.Log("Hit");
-                //this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
-                //StartCoroutine(Delay(1f));
+        GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
 
-             
-          
-            gameObject.GetComponent<AudioSource>().Play();
-        
+
+        Debug.Log("Hit");
+        //this.gameObject.transform.eulerAngles = new Vector3(0, 270, 0);
+        //StartCoroutine(Delay(1f));
+
+
+
+        gameObject.GetComponent<AudioSource>().Play();
+
         //GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
         //instance.GetComponent<BulletMovement>().Position = position;
-        instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);      
+        instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
     }
     void ActivateAlarm()
     {
         GameObject.FindGameObjectWithTag("Light Manager").GetComponent<LightManager>().SetAlarm(true);
+    }
+    public void ChangeDirection()
+    {
+        direction *= -1;
+        movingSpeed *= -1;
     }
 }
 

@@ -83,6 +83,7 @@
     <None Include="Assets\Detonator Explosion Framework\Resources\Detonator\Textures\HeatDistort.shader" />
     <None Include="Assets\Mobility_01_Free_v2\Mobility_Free_Unity_Info.txt" />
     <None Include="Assets\Ninja_01_Free_v01\Docs\Ninja_01_Free_v1_READ_ME.txt" />
+    <None Include="Assets\loreFiles\Test.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2012\UnityVS.CSharp.targets" />
 </Project>

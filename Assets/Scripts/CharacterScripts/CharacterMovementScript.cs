@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class CharacterMovementScript : MonoBehaviour {
 	public Animator charAnimator; //Access to Agent Controller, the animation controller of the model
 	public GameObject player;// Will be set to private
     private Camera camera; // Will be set to private
+    private List<string> obtainedLore = new List<string>();//used to track which lore the player has unlocked
 
 	public float movingSpeed, jumpingSpeed;
 	bool _moving, _ground, _running, _climbing, _crouch;
@@ -369,5 +371,10 @@ public class CharacterMovementScript : MonoBehaviour {
     public void TakeHit(float f)
     {
         health -= f;
+    }
+    public void AddLore(string s)
+    {
+        print(s+".txt");
+        obtainedLore.Add(s+".txt");
     }
 }

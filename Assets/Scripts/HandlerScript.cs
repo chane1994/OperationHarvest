@@ -29,7 +29,14 @@ public class HandlerScript : MonoBehaviour, IPointerDownHandler {
 	
 	// Update is called once per frame
 	void Update () {
-	    
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Vector3.Distance(this.transform.position, Input.mousePosition) < 5f)
+            {
+                wasClicked = !wasClicked;
+            }
+        }
+
         if(wasClicked){
             StartCoroutine(Yield(1f));
             globalTimerButton.SetActive(true);

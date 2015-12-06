@@ -69,7 +69,10 @@ public class CharacterMovementScript : MonoBehaviour {
 		menu.SetActive (false);
 		//Health ();
 	}
-   
+    public List<string> GetLore
+    {
+        get { return obtainedLore; }
+    }
 	void Health()
 	{
         healthBar.fillAmount = health * .01f;
@@ -191,7 +194,9 @@ public class CharacterMovementScript : MonoBehaviour {
 		
 
 		HandleMenu ();
-		HandleMovement ();
+        if (!paused)
+        {
+            HandleMovement();
 
             //Handles Switching wapons
             if (Input.GetButtonDown("switchWeapon"))
@@ -200,12 +205,12 @@ public class CharacterMovementScript : MonoBehaviour {
                 {
                     currentWeapon++;
                     //Debug.Log("current weapon is" + currentWeapon);
-                    
+
                 }
                 else
                 {
                     currentWeapon = 0;
-                }     
+                }
             }
             if (currentWeapon == 1)
             {
@@ -221,17 +226,17 @@ public class CharacterMovementScript : MonoBehaviour {
             {
                 aimBool = true;
             }
-			if(_climbing)
-			{
-				transform.rotation = Quaternion.Euler(0,0,0);
-				this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            if (_climbing)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                this.gameObject.GetComponent<Rigidbody>().useGravity = false;
                 if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
                 {
                     charAnimator.speed = 0;
                     this.gameObject.GetComponent<Rigidbody>().Sleep();
                     this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
                     this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX;
-                }              
+                }
                 else
                 {
                     charAnimator.speed = 1;
@@ -239,13 +244,13 @@ public class CharacterMovementScript : MonoBehaviour {
 
                 }
 
-			}
-			else
-			{
-				this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            }
+            else
+            {
+                this.gameObject.GetComponent<Rigidbody>().useGravity = true;
                 this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
                 this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ;
-			}
+            }
             // Handles Firing weapons
             if (Input.GetButton("Fire1") && fireRate > 1.5f)
             {
@@ -255,7 +260,7 @@ public class CharacterMovementScript : MonoBehaviour {
                     //Debug.Log("MeleeAttack");
                     charAnimator.SetTrigger("canAttack");
                     charAnimator.SetInteger("currentWeapon", currentWeapon);
-                   
+
                     aimBool = false;
                 }
                 if (currentWeapon == 1)//This is the grenade
@@ -266,22 +271,22 @@ public class CharacterMovementScript : MonoBehaviour {
                     charAnimator.SetInteger("currentWeapon", currentWeapon);
                     GameObject instance = (GameObject)Instantiate(currentGrenade, grenadeLocation.position, Quaternion.identity);
                     instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
-                   
+
                 }
                 if (currentWeapon == 2)//This is the pistol
                 {
                     aimBool = true;
                     //Debug.Log("PistolAttack");
                     //charAnimator.SetTrigger("canAttack");
-                   // charAnimator.SetInteger("currentWeapon", currentWeapon);
-                    canfire = true;                    
+                    // charAnimator.SetInteger("currentWeapon", currentWeapon);
+                    canfire = true;
                     Debug.Log("Fire a shot!");
                     GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
                     instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
                     gameObject.GetComponent<AudioSource>().Play();
-                  
+
                 }
-               
+
             }
             if (!aimBool)
             {
@@ -291,6 +296,7 @@ public class CharacterMovementScript : MonoBehaviour {
             {
                 HandleAimMode(fireRate);
             }
+        }
 
 }
 

@@ -100,6 +100,7 @@
     <Compile Include="Assets\Detonator Explosion Framework\System\DetonatorSpray.cs" />
     <Compile Include="Assets\Detonator Explosion Framework\TestScene\DetonatorTest.cs" />
     <Compile Include="Assets\Detonator Explosion Framework\TestScene\TouchToMouse.cs" />
+    <Compile Include="Assets\RagDollScript.cs" />
     <Compile Include="Assets\SciFiForces\Scripts\FlightAnimation.cs" />
     <Compile Include="Assets\SciFiForces\Scripts\SciFiArtillery.cs" />
     <Compile Include="Assets\SciFiForces\Scripts\SciFiTurret.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Assets\Scripts\EnemyScripts\Controller.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyCamera.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\GuardController.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\GuardWaypoint.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\LightManager.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\SciFiTurret2.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\TempTrigger.cs" />
@@ -124,6 +126,7 @@
     <Compile Include="Assets\Scripts\HandlerOptionsScript.cs" />
     <Compile Include="Assets\Scripts\HandlerScript.cs" />
     <Compile Include="Assets\Scripts\InteractableScripts.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\CollectableScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\NextRoom.cs" />
     <Compile Include="Assets\Scripts\LookAtTarget.cs" />
     <Compile Include="Assets\Scripts\MainMenuLight.cs" />
@@ -139,6 +142,7 @@
     <None Include="Assets\Detonator Explosion Framework\Resources\Detonator\Textures\HeatDistort.shader" />
     <None Include="Assets\Mobility_01_Free_v2\Mobility_Free_Unity_Info.txt" />
     <None Include="Assets\Ninja_01_Free_v01\Docs\Ninja_01_Free_v1_READ_ME.txt" />
+    <None Include="Assets\loreFiles\Test.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2012\UnityVS.CSharp.targets" />
 </Project>

@@ -10,7 +10,7 @@ public class SciFiTurret : MonoBehaviour
     public Transform yaw;
     public Transform[] pitch;
     public Transform[] barrels;
-
+    float fireRate;
     public bool spinBarrels = false;
     public Vector2 barrelSpinAxis = Vector3.up;
     public float spinSpeed = 150;
@@ -24,7 +24,7 @@ public class SciFiTurret : MonoBehaviour
     float actualSpinSpeed;
     float targetSpinSpeed;
     bool canFire;
-    public Transform muzzleLocation;
+ 
     public GameObject currentBullet;
     void Reset ()
     {
@@ -72,15 +72,10 @@ public class SciFiTurret : MonoBehaviour
 
     void Update ()
     {
+        fireRate += Time.deltaTime;
         if (target == null || yaw == null || pitch == null)
             return;
 
-        targetSpinSpeed = spinBarrels ? spinSpeed : 0;
-
-        actualSpinSpeed = Mathf.Lerp (actualSpinSpeed, targetSpinSpeed, Time.deltaTime);
-        foreach (var b in barrels) {
-            b.Rotate (barrelSpinAxis * actualSpinSpeed * Time.deltaTime, Space.Self);
-        }
 
         
         if (enableYaw) {
@@ -96,10 +91,15 @@ public class SciFiTurret : MonoBehaviour
             PE.x = Mathf.SmoothDampAngle (PE.x, LE.x, ref pitchVelocity, dampSpeed, pitchSpeed);
             foreach (var p in this.pitch) {
                 p.localEulerAngles = PE;
-            }
-        
+            }        
         }
-      
+        if (Vector3.Distance(this.transform.position, target.position ) <15 && fireRate >.5f)
+        {
+          
+            GameObject instance = (GameObject)Instantiate(currentBullet);
+            instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
+            fireRate = 0;
+        }
 
             
     }

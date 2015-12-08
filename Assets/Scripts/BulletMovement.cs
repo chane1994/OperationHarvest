@@ -48,6 +48,11 @@ public class BulletMovement : MonoBehaviour {
             else
                 direction = false;
         }
+        else
+        {
+            position = GameObject.FindGameObjectWithTag("Player").transform.position;
+            this.transform.LookAt(position);
+        }
         
     }
 	// Update is called once per frame

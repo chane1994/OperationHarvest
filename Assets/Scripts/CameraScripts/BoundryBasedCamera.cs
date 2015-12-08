@@ -40,8 +40,13 @@ public class BoundryBasedCamera : MonoBehaviour
                 cameraShift += 0.05f;
             }
         }
+        if (!player.GetComponent<CharacterMovementScript>().Crouch)
         transform.position = new Vector3(player.transform.position.x + cameraShift, player.transform.position.y + 2, player.transform.position.z - zoom);
-	}
+	    
+        else
+            transform.position = new Vector3(player.transform.position.x + cameraShift, player.transform.position.y, player.transform.position.z - zoom);
+	    
+    }
 	
 	// Update is called once per frame
 	void Update () {

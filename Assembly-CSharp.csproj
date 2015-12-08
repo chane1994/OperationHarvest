@@ -77,6 +77,7 @@
      <Compile Include="Assets\Scripts\CharacterScripts\CharacterMovementScript.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\MainMenuCharacterCrawling.cs" />
      <Compile Include="Assets\Scripts\Computer.cs" />
+     <Compile Include="Assets\Scripts\CreditsScript.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\Controller.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\EnemyCamera.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\GuardController.cs" />
@@ -93,12 +94,14 @@
      <Compile Include="Assets\Scripts\LevelScripts\CollectableScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\NextRoom.cs" />
      <Compile Include="Assets\Scripts\LookAtTarget.cs" />
+     <Compile Include="Assets\Scripts\LorePageParser.cs" />
      <Compile Include="Assets\Scripts\MainMenuLight.cs" />
      <Compile Include="Assets\Scripts\MainMenuScript.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\TestIKScript.cs" />
      <Compile Include="Assets\UIButtonScript.cs" />
      <None Include="Assets\Ninja_01_Free_v01\Docs\Ninja_01_Free_v1_READ_ME.txt" />
+     <None Include="Assets\loreFiles\LoreManager.txt" />
      <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\TES_BumpedReflectionEmissive.shader" />
      <None Include="Assets\Mobility_01_Free_v2\Mobility_Free_Unity_Info.txt" />
      <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\BumpedReflectionEmissive.shader" />

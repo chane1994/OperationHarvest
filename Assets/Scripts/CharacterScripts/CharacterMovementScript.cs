@@ -77,6 +77,10 @@ public class CharacterMovementScript : MonoBehaviour {
 	{
         healthBar.fillAmount = health * .01f;
 	}
+    public bool Crouch
+    {
+        get { return _crouch; }
+    }
 	void HandleMenu()
 	{
         Health();

@@ -101,6 +101,10 @@ public class GuardController : MonoBehaviour
     }*/
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
         if (health > 0)
         {
             RaycastHit hit;
@@ -129,9 +133,13 @@ public class GuardController : MonoBehaviour
                 animate.SetBool("move", _move);
                 animate.SetBool("seePlayer", _seePlayer);
             }
-            if (Physics.Raycast(muzzleLocation.position, new Vector3(direction, 0, 0), out hit, 7.0f) && hit.collider.tag == "Player" && !GameObject.FindGameObjectWithTag("Light Manager").GetComponent<LightManager>().AlarmStatus())
+            if (Physics.Raycast(muzzleLocation.position, new Vector3(direction, 0, 0), out hit, 21.0f) && hit.collider.tag == "Player" && !GameObject.FindGameObjectWithTag("Light Manager").GetComponent<LightManager>().AlarmStatus())
             {
                 ActivateAlarm();
+            }
+            else
+            {
+                DeactivateAlarm();
             }
 
         }
@@ -211,6 +219,7 @@ public class GuardController : MonoBehaviour
         health -= f;
         if (health <= 0)
         {
+            DeactivateAlarm();
             //this.gameObject.GetComponent<Rigidbody>().useGravity = false;
             //this.gameObject.transform.position= new Vector3(this.transform.gameObject.transform.position.x,this.transform.gameObject.transform.position.y-50,this.transform.gameObject.transform.position.z);
             Instantiate(Ragdoll, this.transform.position, this.transform.rotation);
@@ -242,6 +251,10 @@ public class GuardController : MonoBehaviour
     void ActivateAlarm()
     {
         GameObject.FindGameObjectWithTag("Light Manager").GetComponent<LightManager>().SetAlarm(true);
+    }
+    void DeactivateAlarm()
+    {
+        GameObject.FindGameObjectWithTag("Light Manager").GetComponent<LightManager>().SetAlarm(false);
     }
     public void ChangeDirection()
     {

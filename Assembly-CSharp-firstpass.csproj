@@ -46,13 +46,23 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+     <None Include="Assets\loreFiles\DataFile3.txt" />
+     <None Include="Assets\loreFiles\DataFile2.txt" />
      <None Include="Assets\Ninja_01_Free_v01\Docs\Ninja_01_Free_v1_READ_ME.txt" />
+     <None Include="Assets\loreFiles\DataFile1.txt" />
+     <None Include="Assets\loreFiles\DataFile6.txt" />
      <None Include="Assets\loreFiles\LoreManager.txt" />
      <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\TES_BumpedReflectionEmissive.shader" />
      <None Include="Assets\Mobility_01_Free_v2\Mobility_Free_Unity_Info.txt" />
+     <None Include="Assets\loreFiles\DataFile8.txt" />
+     <None Include="Assets\loreFiles\DataFile10.txt" />
+     <None Include="Assets\loreFiles\DataFile4.txt" />
      <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\BumpedReflectionEmissive.shader" />
      <None Include="Assets\loreFiles\Test.txt" />
+     <None Include="Assets\loreFiles\DataFile7.txt" />
+     <None Include="Assets\loreFiles\DataFile9.txt" />
      <None Include="Assets\Detonator Explosion Framework\Resources\Detonator\Textures\HeatDistort.shader" />
+     <None Include="Assets\loreFiles\DataFile5.txt" />
      <None Include="Assets\Asset Folder\ManyWorlds\DroidGirl2.0\droid2.0.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

@@ -7,13 +7,14 @@ public class DataFileScript : MonoBehaviour {
     const int NUM_BUTTONS=10;
     public Sprite notObtained;
     public GameObject words;
+    GameObject offButton;
 	// Use this for initialization
 	void Start () 
     {
         words.GetComponent<Text>().text = "";
         StreamReader file = new StreamReader("./Assets/loreFiles/LoreManager.txt");
         string[,] text = new string[NUM_BUTTONS, 2];
-       
+        offButton = GameObject.Find("OffButton");
         
         //Requires that File be in the same order as the objects
         string line = "";
@@ -34,6 +35,10 @@ public class DataFileScript : MonoBehaviour {
     // Update is called once per frame
     void Update() 
     {
+        if (offButton.GetComponent<UIButtonScript>().WasClicked)
+        {
+            Application.LoadLevel("MainMenuScene");
+        }
         for (int i = 1; i < NUM_BUTTONS+1; i++)
         {   //TODO:change the file to only contain true values
             if (gameObject.transform.GetChild(0).GetChild(i).GetComponent<UIButtonScript>().WasClicked && gameObject.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite != notObtained)

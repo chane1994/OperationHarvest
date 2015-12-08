@@ -81,6 +81,16 @@ public class CharacterMovementScript : MonoBehaviour {
     {
         get { return _crouch; }
     }
+    public GameObject Menu
+    {
+        get { return menu; }
+        set { menu = value; }
+    }
+    public Image HealthBar
+    {
+        get { return healthBar; }
+        set { healthBar = value; }
+    }
 	void HandleMenu()
 	{
         Health();
@@ -192,7 +202,9 @@ public class CharacterMovementScript : MonoBehaviour {
         if (health <= 0)
         {
             charAnimator.SetBool("dead", true);
-            this.enabled = false;
+            GameObject.FindGameObjectWithTag("Respawn").GetComponent<SpawnerScript>().Spawner(this.gameObject);
+            
+
         }
 	// used for aiming mode
 		

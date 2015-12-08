@@ -12,17 +12,12 @@ public class LookAtTarget : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+    void Update()
+    {
 
-        if (lookForTarget)
-        {
-            this.transform.localPosition = Vector3.zero;
-            transform.LookAt(lookAt.position);
-            transform.Rotate(new Vector3(1.0f, 0, 0), -90);
-        }
-        else
-        {
-            this.transform.localPosition = oldPos;
-        }
-	}
+
+        this.transform.localPosition = Vector3.zero;
+        transform.LookAt(lookAt.position);
+        transform.Rotate(new Vector3(1.0f, 0, 0), -90);
+    }
 }

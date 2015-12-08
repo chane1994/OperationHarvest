@@ -9,6 +9,7 @@ public class MainMenuScript : MonoBehaviour {
     public GameObject startImages;
     public GameObject LevelImages;
     public GameObject creditImages;
+    public GameObject dataFileButton;
     public int nextStage;
 	// Use this for initialization
 	void Start () {
@@ -30,10 +31,9 @@ public class MainMenuScript : MonoBehaviour {
         {
             Application.LoadLevel("CurrentLevel");
         }
-       /* if (creditImages.GetComponent<UIButtonScript>().WasClicked)
+        if (dataFileButton.GetComponent<UIButtonScript>().WasClicked)
         {
-            creditImages.SetActive(false);
-            startImages.SetActive(true);
-        }*/
+            Application.LoadLevel("DataFiles");
+        }
 	}
 }

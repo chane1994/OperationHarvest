@@ -9,6 +9,7 @@ public class CharacterMovementScript : MonoBehaviour {
     private Camera camera; // Will be set to private
     private List<string> obtainedLore = new List<string>();//used to track which lore the player has unlocked
 
+    float zaxis;
 	public float movingSpeed, jumpingSpeed;
 	bool _moving, _ground, _running, _climbing, _crouch;
 	Rigidbody rigidBody;

@@ -10,6 +10,7 @@ public class MainMenuScript : MonoBehaviour {
     public GameObject LevelImages;
     public GameObject creditImages;
     public GameObject dataFileButton;
+    public GameObject level1;
     public int nextStage;
 	// Use this for initialization
 	void Start () {
@@ -30,6 +31,10 @@ public class MainMenuScript : MonoBehaviour {
         if (TutorialLevelButton.GetComponent<UIButtonScript>().WasClicked)
         {
             Application.LoadLevel("CurrentLevel");
+        }
+        if (level1.GetComponent<UIButtonScript>().WasClicked)
+        {
+            Application.LoadLevel("TutorialStealthScene1");
         }
         if (dataFileButton.GetComponent<UIButtonScript>().WasClicked)
         {

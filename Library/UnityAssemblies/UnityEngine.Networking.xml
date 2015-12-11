@@ -210,7 +210,7 @@
     </member>
     <member name="F:UnityEngine.Networking.CommandAttribute.channel">
       <summary>
-        <para>The QoS channel to use to send this command on, see [[Networking.QosType]].</para>
+        <para>The QoS channel to use to send this command on, see Networking.QosType.</para>
       </summary>
     </member>
     <member name="T:UnityEngine.Networking.LogFilter">
@@ -548,12 +548,12 @@
     </member>
     <member name="P:UnityEngine.Networking.NetworkBehaviour.connectionToClient">
       <summary>
-        <para>The [[NetworkConnection]] associated with this [[NetworkIdentity]]. This is only valid for player objects on the server.</para>
+        <para>The NetworkConnection associated with this NetworkIdentity. This is only valid for player objects on the server.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Networking.NetworkBehaviour.connectionToServer">
       <summary>
-        <para>The [[NetworkConnection]] associated with this [[NetworkIdentity]]. This is only valid for player objects on the server.</para>
+        <para>The NetworkConnection associated with this NetworkIdentity. This is only valid for player objects on the server.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Networking.NetworkBehaviour.hasAuthority">
@@ -1269,7 +1269,7 @@
     </member>
     <member name="P:UnityEngine.Networking.NetworkCRC.scriptCRCCheck">
       <summary>
-        <para>Enables a CRC check between server and client that ensures the [[NetworkBehaviour]] scripts match.</para>
+        <para>Enables a CRC check between server and client that ensures the NetworkBehaviour scripts match.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Networking.NetworkCRC.scripts">
@@ -3475,7 +3475,7 @@
     </member>
     <member name="F:UnityEngine.Networking.NetworkTransform.TransformSyncMode.SyncCharacterController">
       <summary>
-        <para>Sync using the [[CharacterController]] component.</para>
+        <para>Sync using the CharacterController component.</para>
       </summary>
     </member>
     <member name="F:UnityEngine.Networking.NetworkTransform.TransformSyncMode.SyncNone">
@@ -3485,12 +3485,12 @@
     </member>
     <member name="F:UnityEngine.Networking.NetworkTransform.TransformSyncMode.SyncRigidbody2D">
       <summary>
-        <para>Sync using the [[Rigidbody2D]] component.</para>
+        <para>Sync using the Rigidbody2D component.</para>
       </summary>
     </member>
     <member name="F:UnityEngine.Networking.NetworkTransform.TransformSyncMode.SyncRigidbody3D">
       <summary>
-        <para>Sync using the [[Rigidbody]] component.</para>
+        <para>Sync using the Rigidbody component.</para>
       </summary>
     </member>
     <member name="F:UnityEngine.Networking.NetworkTransform.TransformSyncMode.SyncTransform">

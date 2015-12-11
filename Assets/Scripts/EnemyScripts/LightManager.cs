@@ -66,7 +66,8 @@ public class LightManager : MonoBehaviour {
             { 
                 l.intensity = 8;
                 l.color = Color.red;
-                l.GetComponent<AudioSource>().Play();
+                if(l.name != "EnemyCamera")
+                    l.GetComponent<AudioSource>().Play();
                 
             }
         }

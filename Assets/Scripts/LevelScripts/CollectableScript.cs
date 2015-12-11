@@ -21,7 +21,8 @@ public class CollectableScript : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
-            col.GetComponent<CharacterMovementScript>().AddLore(gameObject.name);
+            //col.GetComponent<CharacterMovementScript>().AddLore(gameObject.name);
+            UpdateFile();
             Destroy(gameObject);
         }
     }
@@ -52,5 +53,6 @@ public class CollectableScript : MonoBehaviour {
                 file.WriteLine(text[i, 0] + " " + text[i, 1]);
             }
         }
+        print("File updated");
     }
 }

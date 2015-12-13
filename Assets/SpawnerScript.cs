@@ -44,11 +44,6 @@ public class SpawnerScript : MonoBehaviour {
     }
     void HandleNewScene(GameObject g)
     {
-        GameObject c = (GameObject)Instantiate(player, this.transform.position, Quaternion.identity);
-        c.GetComponent<CharacterMovementScript>().HealthBar = g.GetComponent<CharacterMovementScript>().HealthBar;
-        c.GetComponent<CharacterMovementScript>().Menu = g.GetComponent<CharacterMovementScript>().Menu;
-        c.GetComponent<CharacterMovementScript>().health = 100;
-
-        Destroy(g);
+        Application.LoadLevel(Application.loadedLevel);
     }
 }

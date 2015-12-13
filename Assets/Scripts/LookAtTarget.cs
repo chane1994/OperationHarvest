@@ -9,6 +9,7 @@ public class LookAtTarget : MonoBehaviour {
 	void Start () {
         oldPos = this.transform.localPosition;
         lookAt = GameObject.FindGameObjectWithTag("LookAtObj").transform;
+        lookForTarget = true;
 	}
 	
 	// Update is called once per frame

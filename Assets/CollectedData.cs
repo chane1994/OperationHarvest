@@ -4,9 +4,10 @@ using System.Collections;
 public class CollectedData : MonoBehaviour {
     public GameObject button;
     public GameObject door;
+    public GameObject[] shutters;
 	// Use this for initialization
 	void Start () {
-	
+        shutters = GameObject.FindGameObjectsWithTag("Shutters");
 	}
 	
 	// Update is called once per frame
@@ -24,6 +25,13 @@ public class CollectedData : MonoBehaviour {
             button.GetComponent<UIButtonScript>().WasClicked = false;
             Debug.Log("It worked!");
             door.SetActive(false);
+            if (shutters.Length != 0)
+            {
+                foreach (GameObject g in shutters)
+                {
+                    g.SetActive(false);
+                }
+            }
         }
     }
 }

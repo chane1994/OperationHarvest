@@ -245,6 +245,7 @@ public class CharacterMovementScript : MonoBehaviour {
             }
             if (_climbing)
             {
+                
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 this.gameObject.GetComponent<Rigidbody>().useGravity = false;
                 if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)

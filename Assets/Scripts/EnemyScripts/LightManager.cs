@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Diagnostics;
 
 public class LightManager : MonoBehaviour {
 	/*public Light light1;
@@ -59,6 +60,8 @@ public class LightManager : MonoBehaviour {
 
     public void SetAlarm(bool status)
     {
+        StackTrace st = new StackTrace();
+        print(st.GetFrame(1).GetMethod().Name);
         //print("ALARM SET");
         if (status)
         {

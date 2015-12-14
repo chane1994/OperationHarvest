@@ -148,6 +148,9 @@ public class BulletMovement : MonoBehaviour {
                 if (col.gameObject.GetComponent<GuardController>())
                 {
                     col.gameObject.GetComponent<GuardController>().TakeHit(10f);
+                    //Added to fix player colliding with dead enemy
+                    //Physics.IgnoreCollision(col.gameObject.GetComponent<Collider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>());
+
                 }
                 else if (col.gameObject.GetComponent<TurretController>())
                 {

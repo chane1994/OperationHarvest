@@ -132,7 +132,7 @@ public class CharacterMovementScript : MonoBehaviour {
 			}
 			if(_running)
 			{
-				player.transform.Translate (Vector3.left * movingSpeed * 5*-Input.GetAxis ("Horizontal"), camera.transform);
+				player.transform.Translate (Vector3.left * movingSpeed * 2*-Input.GetAxis ("Horizontal"), camera.transform);
                 charAnimator.SetBool("running", _running);
 			}
 			else

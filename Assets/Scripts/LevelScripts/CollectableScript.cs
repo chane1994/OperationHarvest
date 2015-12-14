@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
+using System.Text;
 
 
 public class CollectableScript : MonoBehaviour {
@@ -30,12 +31,13 @@ public class CollectableScript : MonoBehaviour {
     void UpdateFile()
     {
         string[,] text = new string[NUM_BUTTONS, 2];
-        using (StreamReader file = new StreamReader("./Assets/loreFiles/LoreManager.txt"))
-        {
+          StreamReader read = null;
+        //TextAsset file1 = Resources.Load("LoreManager") as TextAsset;
+            read = new StreamReader("./Assets/Lore/LoreManager.txt");
             string line = "";
             for (int i = 0; i < NUM_BUTTONS; i++)
             {
-                line = file.ReadLine();
+                line = read.ReadLine();
                 text[i, 0] = line.Split(' ')[0];
                 text[i, 1] = line.Split(' ')[1];
                 if (text[i, 0] == gameObject.name)
@@ -43,16 +45,19 @@ public class CollectableScript : MonoBehaviour {
                     text[i, 1] = "true";
                 }
             }
-        }
-
-        using (StreamWriter file = new StreamWriter("./Assets/loreFiles/LoreManager.txt"))
-        {
-            file.Flush();
-            for (int i = 0; i < NUM_BUTTONS; i++)
+            read.Close();
+            //StringBuilder stringBuilder = new StringBuilder(file1.text);
+           // StringWriter write = new StringWriter(stringBuilder);
+            using (StreamWriter file = new StreamWriter("./Assets/Lore/LoreManager.txt"))
             {
-                file.WriteLine(text[i, 0] + " " + text[i, 1]);
+                file.Flush();
+                for (int i = 0; i < NUM_BUTTONS; i++)
+                {
+                    file.WriteLine(text[i, 0] + " " + text[i, 1]);
+                    Debug.Log(text[i, 0] + " " + text[i, 1]);
+                }
+                //write.Close();
+                print("File updated");
             }
-        }
-        print("File updated");
     }
 }

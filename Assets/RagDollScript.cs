@@ -7,6 +7,7 @@ public class RagDollScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
+        //Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), player.GetComponent<Collider>());
         age = 0;
 	}
 	

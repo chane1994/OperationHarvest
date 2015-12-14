@@ -3,19 +3,20 @@ using System.Collections;
 using System.IO;
 using UnityEngine.UI;
 
-public class DataFileScript : MonoBehaviour {
-    const int NUM_BUTTONS=10;
+public class DataFileScript : MonoBehaviour
+{
+    const int NUM_BUTTONS = 10;
     public Sprite notObtained;
     public GameObject words;
     GameObject offButton;
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start()
     {
         words.GetComponent<Text>().text = "";
-        StreamReader file = new StreamReader("./Assets/loreFiles/LoreManager.txt");
+        StreamReader file = new StreamReader("./Assets/Lore/LoreManager.txt");
         string[,] text = new string[NUM_BUTTONS, 2];
         offButton = GameObject.Find("OffButton");
-        
+
         //Requires that File be in the same order as the objects
         string line = "";
         for (int i = 0; i < NUM_BUTTONS; i++)
@@ -30,22 +31,23 @@ public class DataFileScript : MonoBehaviour {
                 gameObject.transform.GetChild(0).FindChild(text[i, 0]).GetComponent<Image>().sprite = notObtained;
             }
         }
-	}
+        file.Close();
+    }
 
     // Update is called once per frame
-    void Update() 
+    void Update()
     {
         if (offButton.GetComponent<UIButtonScript>().WasClicked)
         {
             Application.LoadLevel("MainMenuScene");
         }
-        for (int i = 1; i < NUM_BUTTONS+1; i++)
+        for (int i = 1; i < NUM_BUTTONS + 1; i++)
         {   //TODO:change the file to only contain true values
             if (gameObject.transform.GetChild(0).GetChild(i).GetComponent<UIButtonScript>().WasClicked && gameObject.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite != notObtained)
             {
                 gameObject.transform.GetChild(0).GetChild(i).GetComponent<UIButtonScript>().WasClicked = false;
                 words.GetComponent<Text>().text = "";
-                using (StreamReader file = new StreamReader("./Assets/loreFiles/" + gameObject.transform.GetChild(0).GetChild(i).name + ".txt"))
+                using (StreamReader file = new StreamReader("./Assets/Lore/" + gameObject.transform.GetChild(0).GetChild(i).name + ".txt"))
                 {
                     string line;
                     do
@@ -56,5 +58,5 @@ public class DataFileScript : MonoBehaviour {
                 }
             }
         }
-	}
+    }
 }

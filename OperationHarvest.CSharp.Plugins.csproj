@@ -57,12 +57,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -81,20 +75,30 @@
     <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\BumpedReflectionEmissive.shader" />
     <None Include="Assets\Asset Folder\ManyWorlds\Material Library\Custom Shaders\TES_BumpedReflectionEmissive.shader" />
     <None Include="Assets\Detonator Explosion Framework\Resources\Detonator\Textures\HeatDistort.shader" />
+    <None Include="Assets\Lore\DataFile1.txt" />
+    <None Include="Assets\Lore\DataFile10.txt" />
+    <None Include="Assets\Lore\DataFile2.txt" />
+    <None Include="Assets\Lore\DataFile3.txt" />
+    <None Include="Assets\Lore\DataFile4.txt" />
+    <None Include="Assets\Lore\DataFile5.txt" />
+    <None Include="Assets\Lore\DataFile6.txt" />
+    <None Include="Assets\Lore\DataFile7.txt" />
+    <None Include="Assets\Lore\DataFile8.txt" />
+    <None Include="Assets\Lore\DataFile9.txt" />
+    <None Include="Assets\Lore\LoreManager.txt" />
     <None Include="Assets\Mobility_01_Free_v2\Mobility_Free_Unity_Info.txt" />
     <None Include="Assets\Ninja_01_Free_v01\Docs\Ninja_01_Free_v1_READ_ME.txt" />
-    <None Include="Assets\loreFiles\DataFile1.txt" />
-    <None Include="Assets\loreFiles\DataFile10.txt" />
-    <None Include="Assets\loreFiles\DataFile2.txt" />
-    <None Include="Assets\loreFiles\DataFile3.txt" />
-    <None Include="Assets\loreFiles\DataFile4.txt" />
-    <None Include="Assets\loreFiles\DataFile5.txt" />
-    <None Include="Assets\loreFiles\DataFile6.txt" />
-    <None Include="Assets\loreFiles\DataFile7.txt" />
-    <None Include="Assets\loreFiles\DataFile8.txt" />
-    <None Include="Assets\loreFiles\DataFile9.txt" />
-    <None Include="Assets\loreFiles\LoreManager.txt" />
-    <None Include="Assets\loreFiles\Test.txt" />
+    <None Include="Assets\Resources\DataFile1.txt" />
+    <None Include="Assets\Resources\DataFile10.txt" />
+    <None Include="Assets\Resources\DataFile2.txt" />
+    <None Include="Assets\Resources\DataFile3.txt" />
+    <None Include="Assets\Resources\DataFile4.txt" />
+    <None Include="Assets\Resources\DataFile5.txt" />
+    <None Include="Assets\Resources\DataFile6.txt" />
+    <None Include="Assets\Resources\DataFile7.txt" />
+    <None Include="Assets\Resources\DataFile8.txt" />
+    <None Include="Assets\Resources\DataFile9.txt" />
+    <None Include="Assets\Resources\LoreManager.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2012\UnityVS.CSharp.targets" />
 </Project>

@@ -110,7 +110,6 @@ public class GuardController : MonoBehaviour
             RaycastHit hit;
             Debug.DrawRay(muzzleLocation.position, new Vector3(7 * direction, 0, 0), Color.blue);
             // if (Physics.Raycast(transform.position, new Vector3(direction, 0, 0), 7.0f))
-
             if (Physics.Raycast(muzzleLocation.position, new Vector3(direction, 0, 0), out hit, 7.0f) && hit.collider.tag == "Player" && player.GetComponent<CharacterMovementScript>().health > 0)
             {
                 if (canfire)
@@ -136,10 +135,11 @@ public class GuardController : MonoBehaviour
             if (Physics.Raycast(muzzleLocation.position, new Vector3(direction, 0, 0), out hit, 21.0f) && hit.collider.tag == "Player" && !GameObject.FindGameObjectWithTag("Light Manager").GetComponent<LightManager>().AlarmStatus())
             {
                 ActivateAlarm();
+                GameObject.FindGameObjectWithTag("Bonus Collectable").GetComponent<BonusCollectable>().AlarmWasTriggered();
             }
             else
             {
-                DeactivateAlarm();
+                //DeactivateAlarm();
             }
 
         }
@@ -211,7 +211,7 @@ public class GuardController : MonoBehaviour
         StartCoroutine(Delay(1.0f));
 
 
-        canfire = true;
+        //canfire = true;
 
     }
     public void TakeHit(float f)
@@ -247,6 +247,7 @@ public class GuardController : MonoBehaviour
         //GameObject instance = (GameObject)Instantiate(currentBullet, muzzleLocation.position, muzzleLocation.rotation);
         //instance.GetComponent<BulletMovement>().Position = position;
         instance.GetComponent<BulletMovement>().SetAttacker(this.gameObject);
+        canfire = true;
     }
     void ActivateAlarm()
     {

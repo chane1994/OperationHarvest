@@ -1,0 +1,10 @@
+DataFile1 true
+DataFile2 false
+DataFile3 true
+DataFile4 false
+DataFile5 true
+DataFile6 true
+DataFile7 true
+DataFile8 true
+DataFile9 true
+DataFile10 false

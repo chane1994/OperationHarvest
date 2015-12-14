@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SpawnerScript : MonoBehaviour {
     public GameObject player;
@@ -7,6 +8,7 @@ public class SpawnerScript : MonoBehaviour {
     public GameObject gameOver;
     public GameObject button;
     public GameObject button2;
+    public 
     bool spawn;
 	// Use this for initialization
 	void Start () {
@@ -17,6 +19,7 @@ public class SpawnerScript : MonoBehaviour {
 	void Update () {
         if (gameOver.activeSelf)
         {
+
             if (button.GetComponent<UIButtonScript>().WasClicked)
             {
                 button.GetComponent<UIButtonScript>().WasClicked = false;

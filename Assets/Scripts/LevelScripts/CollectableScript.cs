@@ -30,7 +30,7 @@ public class CollectableScript : MonoBehaviour {
 
     void UpdateFile()
     {
-        string[,] text = new string[NUM_BUTTONS, 2];
+        /*string[,] text = new string[NUM_BUTTONS, 2];
           StreamReader read = null;
         //TextAsset file1 = Resources.Load("LoreManager") as TextAsset;
             read = new StreamReader("./Assets/Lore/LoreManager.txt");
@@ -58,6 +58,6 @@ public class CollectableScript : MonoBehaviour {
                 }
                 //write.Close();
                 print("File updated");
-            }
+            }*/
     }
 }

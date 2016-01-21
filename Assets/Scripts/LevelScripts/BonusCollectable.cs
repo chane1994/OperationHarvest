@@ -19,7 +19,7 @@ public class BonusCollectable : MonoBehaviour {
 
     public void UpdateFile()
     {
-        if (!alarmHasBeenTriggered)
+        /*if (!alarmHasBeenTriggered)
         {
             string[,] text = new string[NUM_BUTTONS, 2];
             using (StreamReader file = new StreamReader("./Assets/Lore/LoreManager.txt"))
@@ -46,7 +46,7 @@ public class BonusCollectable : MonoBehaviour {
                 }
             }
             print("File updated");
-        }
+        }*/
     }
 
     public void AlarmWasTriggered()

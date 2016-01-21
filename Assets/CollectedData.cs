@@ -20,11 +20,12 @@ public class CollectedData : MonoBehaviour {
 	}
     void OnTriggerStay(Collider col)
     {
+        
         if (col.gameObject.tag == "Player" && button.GetComponent<UIButtonScript>().WasClicked  && this.gameObject.name ==  "Goal" )
         {
             winScreen.SetActive(true);
-            StartCoroutine(Delay(4f));
-            GameObject.FindGameObjectWithTag("Bonus Collectable").GetComponent<BonusCollectable>().UpdateFile();
+            StartCoroutine(Delay(3f));
+            //GameObject.FindGameObjectWithTag("Bonus Collectable").GetComponent<BonusCollectable>().UpdateFile();
         }
         if (col.gameObject.tag == "Player" && button.GetComponent<UIButtonScript>().WasClicked && this.gameObject.name != "Goal")
         {
